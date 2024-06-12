@@ -1,0 +1,41 @@
+export enum Colors {
+  white = 'rgb(255, 255, 255)',
+  black = 'rgb(0, 0, 0)',
+  gray = 'rgb(150, 150, 160)',
+}
+
+export const DarkTheme = {
+  colors: {
+    ...Colors,
+    main: 'rgb(24, 24, 32)',
+    primary: 'rgb(47, 48, 56)',
+    secondary: 'rgb(67, 68, 76)',
+    error: 'rgb(253, 93, 92)',
+    primaryHover: 'rgb(64, 64, 74)',
+    secondaryHover: 'rgb(7, 223, 206)',
+    errorHover: 'rgb(225, 65, 65)',
+    primaryDisabled: 'rgb(30, 32, 40)',
+    primaryText: 'rgb(255, 255, 255)',
+    secondaryText: 'rgb(170, 170, 170)',
+    icon: 'rgb(255, 255, 255)',
+    placeholderText: 'rgb(120, 120, 130)',
+  },
+};
+
+export const LightTheme = {
+  colors: {
+    ...Colors,
+    main: 'rgb(210, 210, 220)',
+    primary: 'rgb(250, 250, 255)',
+    secondary: 'rgb(230, 230, 235)',
+    error: 'rgb(253, 93, 92)',
+    primaryHover: 'rgb(245, 245, 255)',
+    secondaryHover: 'rgb(7, 223, 206)',
+    errorHover: 'rgb(225, 65, 65)',
+    primaryDisabled: 'rgb(225, 225, 233)',
+    primaryText: 'rgb(0, 0, 0)',
+    secondaryText: 'rgb(25, 25, 30)',
+    icon: 'rgb(0, 0, 0)',
+    placeholderText: 'rgb(180, 180, 190)',
+  },
+};
