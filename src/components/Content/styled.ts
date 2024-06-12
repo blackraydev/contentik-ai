@@ -21,4 +21,10 @@ export const Markdown = styled(MDEditor.Markdown)`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  h2 {
+    border: none !important;
+  }
+
+  ul: padding: 0 !important;
 `;
