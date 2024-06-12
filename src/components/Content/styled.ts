@@ -23,8 +23,15 @@ export const Markdown = styled(MDEditor.Markdown)`
   }
 
   h2 {
+    margin-bottom: 8px !important;
     border: none !important;
   }
 
-  ul: padding: 0 !important;
+  ul {
+    padding-left: 1em !important;
+  }
+
+  p {
+    margin-bottom: 8px;
+  }
 `;
