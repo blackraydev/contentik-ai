@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { Button, Input, Textarea } from '../../UI';
 import { getContent } from '../../api';
-import { InteractionStyled } from './styled';
+import { InteractionStyled, SelectStyled } from './styled';
 import { useContentScope } from '../../scopes';
+import { languages, styles, tones } from './consts';
 
 export const Interaction = () => {
   const [topic, setTopic] = useState('');
   const [description, setDescription] = useState('');
+  const [style, setStyle] = useState('');
+  const [tone, setTone] = useState('');
+  const [language, setLanguage] = useState(languages[0].value);
   const [isLoading, setLoading] = useState(false);
   const { setContent } = useContentScope();
 
@@ -17,7 +21,7 @@ export const Interaction = () => {
       setContent('');
       setLoading(true);
 
-      const stream = await getContent({ title: topic, description });
+      const stream = await getContent({ topic, description, style, tone, language });
       const decoder = new TextDecoder();
 
       if (!stream) {
@@ -26,7 +30,6 @@ export const Interaction = () => {
 
       for await (const chunk of stream) {
         const decodedChunk = decoder.decode(chunk);
-
         setContent((prev) => prev + decodedChunk);
       }
     } finally {
@@ -36,11 +39,40 @@ export const Interaction = () => {
 
   return (
     <InteractionStyled>
-      <Input value={topic} onChange={(e) => setTopic(e.target.value)} placeholder="Тема" />
+      <Input
+        label="Тема *"
+        value={topic}
+        onChange={(e) => setTopic(e.target.value)}
+        placeholder="Тема"
+      />
       <Textarea
+        label="Описание *"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Описание"
+      />
+      <SelectStyled
+        label="Стиль письма"
+        placeholder="Выбрать стиль"
+        value={style}
+        onChange={setStyle}
+        options={styles}
+        withClear
+      />
+      <SelectStyled
+        label="Тон"
+        placeholder="Выбрать тон"
+        value={tone}
+        onChange={setTone}
+        options={tones}
+        withClear
+      />
+      <SelectStyled
+        label="Язык"
+        placeholder="Выбрать язык"
+        value={language}
+        onChange={setLanguage}
+        options={languages}
       />
       <Button isLoading={isLoading} disabled={isSubmitDisabled} onClick={handleSubmit}>
         Сгенерировать!

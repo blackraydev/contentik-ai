@@ -9,7 +9,7 @@ export const TextareaWrapper = styled.div`
 export const Label = styled.label`
   font-size: 16px;
   color: ${({ theme }) => theme.colors.primaryText};
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   margin-left: 10px;
 `;
 

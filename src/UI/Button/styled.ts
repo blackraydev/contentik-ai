@@ -11,6 +11,7 @@ export const ButtonStyled = styled.button`
   font-size: 16px;
   padding: 16px;
   cursor: pointer;
+  margin-top: 10px;
 
   &:hover {
     background: ${({ theme }) => theme.colors.primaryHover};
