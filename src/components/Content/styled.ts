@@ -9,12 +9,12 @@ export const Markdown = styled(MDEditor.Markdown)`
   align-items: flex-start;
   font-size: 16px;
   font-weight: 400;
-  width: 500px;
+  width: 700px;
   height: 750px;
   line-height: 0.6cm;
   overflow-y: scroll;
   background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.brightWhite};
   border-radius: 15px;
   padding: 15px 20px;
 
