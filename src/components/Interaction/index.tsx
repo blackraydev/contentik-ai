@@ -1,11 +1,14 @@
-import { useState } from 'react';
-import { Button, Input, SearchSelect, Textarea } from '../../UI';
+import { Fragment, useMemo, useState } from 'react';
+import { Button, Input, SearchSelect, Tabs, Textarea } from '../../UI';
 import { getContent } from '../../api';
-import { InteractionStyled, SelectStyled } from './styled';
+import { InteractionStyled, SelectStyled, TextareaStyled } from './styled';
 import { useContentScope } from '../../scopes';
-import { languages, styles, tones } from './consts';
+import { languages, modes, styles, tones } from './consts';
+import { Mode } from './types';
 
 export const Interaction = () => {
+  const [mode, setMode] = useState<Mode>(modes[0].value);
+  const [text, setText] = useState('');
   const [topic, setTopic] = useState('');
   const [description, setDescription] = useState('');
   const [style, setStyle] = useState('');
@@ -14,14 +17,20 @@ export const Interaction = () => {
   const [isLoading, setLoading] = useState(false);
   const { setContent } = useContentScope();
 
-  const isSubmitDisabled = !topic.trim() || !description.trim() || isLoading;
+  const isSubmitDisabled = useMemo(() => {
+    if (isLoading) return true;
+    if (mode === 'create') {
+      return !topic.trim() || !description.trim();
+    }
+    return !text.trim();
+  }, [mode, text, topic, description, isLoading]);
 
   const handleSubmit = async () => {
     try {
       setContent('');
       setLoading(true);
 
-      const stream = await getContent({ topic, description, style, tone, language });
+      const stream = await getContent({ mode, text, topic, description, style, tone, language });
       const decoder = new TextDecoder();
 
       if (!stream) {
@@ -39,18 +48,30 @@ export const Interaction = () => {
 
   return (
     <InteractionStyled>
-      <Input
-        label="Тема *"
-        value={topic}
-        onChange={(e) => setTopic(e.target.value)}
-        placeholder="Тема"
-      />
-      <Textarea
-        label="Описание *"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Описание"
-      />
+      <Tabs options={modes} value={mode} onChange={(value) => setMode(value as Mode)} />
+      {mode === 'create' ? (
+        <Fragment>
+          <Input
+            label="Тема *"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            placeholder="Тема"
+          />
+          <Textarea
+            label="Описание *"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Описание"
+          />
+        </Fragment>
+      ) : (
+        <TextareaStyled
+          label="Текст *"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Текст"
+        />
+      )}
       <SearchSelect
         label="Стиль письма"
         placeholder="Выбрать стиль"
