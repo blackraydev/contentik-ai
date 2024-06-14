@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Input, Textarea } from '../../UI';
+import { Button, Input, SearchSelect, Textarea } from '../../UI';
 import { getContent } from '../../api';
 import { InteractionStyled, SelectStyled } from './styled';
 import { useContentScope } from '../../scopes';
@@ -51,7 +51,7 @@ export const Interaction = () => {
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Описание"
       />
-      <SelectStyled
+      <SearchSelect
         label="Стиль письма"
         placeholder="Выбрать стиль"
         value={style}
@@ -59,7 +59,7 @@ export const Interaction = () => {
         options={styles}
         withClear
       />
-      <SelectStyled
+      <SearchSelect
         label="Тон"
         placeholder="Выбрать тон"
         value={tone}
