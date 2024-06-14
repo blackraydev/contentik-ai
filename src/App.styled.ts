@@ -20,11 +20,18 @@ export const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export const AppStyled = styled.div`
+export const AppStyled = styled.div<{ $isMobile: boolean }>`
   display: flex;
+  flex-direction: ${({ $isMobile }) => ($isMobile ? 'column' : 'row')};
   justify-content: center;
   align-items: center;
   height: 100vh;
   width: 100%;
   gap: 50px;
+  padding: 10px;
+  overflow-y: ${({ $isMobile }) => ($isMobile ? 'scroll' : 'none')};
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
