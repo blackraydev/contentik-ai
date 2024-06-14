@@ -17,7 +17,7 @@ export const TextareaStyled = styled.textarea`
   transition: 0.2s ease;
   font-size: 16px;
   border-radius: 15px;
-  padding: 10px 15px;
+  padding: 15px;
   height: 160px;
   resize: none;
   color: ${({ theme }) => theme.colors.primaryText};
