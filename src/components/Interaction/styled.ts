@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Select } from '../../UI';
+import { Select, Textarea } from '../../UI';
 
 export const InteractionStyled = styled.div`
   display: flex;
@@ -11,4 +11,8 @@ export const InteractionStyled = styled.div`
 
 export const SelectStyled = styled(Select)`
   width: 100%;
+`;
+
+export const TextareaStyled = styled(Textarea)`
+  height: 245px;
 `;

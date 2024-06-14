@@ -2,6 +2,8 @@ import { API_URL } from '../consts';
 import '../polyfills/readableStream';
 
 type GetContentParams = {
+  mode: 'create' | 'edit';
+  text: string;
   topic: string;
   description: string;
   style: string;
@@ -9,16 +11,22 @@ type GetContentParams = {
   language: string;
 };
 
-export const getContent = async ({
-  topic,
-  description,
-  style,
-  tone,
-  language,
-}: GetContentParams) => {
+const getStringOrUndefined = (value: string) => {
+  if (!value) return undefined;
+  return value;
+};
+
+export const getContent = async (props: GetContentParams) => {
+  const normalizedProps = Object.entries(props).reduce(
+    (acc, [key, value]) => ({
+      ...acc,
+      [key]: getStringOrUndefined(value),
+    }),
+    {},
+  );
   const response = await fetch(`${API_URL}/getContent`, {
     method: 'POST',
-    body: JSON.stringify({ topic, description, style, tone, language }),
+    body: JSON.stringify(normalizedProps),
     headers: {
       'Content-Type': 'application/json',
     },

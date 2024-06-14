@@ -15,7 +15,6 @@ export const Label = styled.label`
 
 export const TextareaStyled = styled.textarea`
   transition: 0.2s ease;
-  height: 48px;
   font-size: 16px;
   border-radius: 15px;
   padding: 10px 15px;
