@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Select, Textarea } from '../../UI';
+import { MdOutlineClear } from 'react-icons/md';
 
 export const InteractionStyled = styled.div`
   display: flex;
@@ -15,4 +16,12 @@ export const SelectStyled = styled(Select)`
 
 export const TextareaStyled = styled(Textarea)`
   height: 245px;
+`;
+
+export const PhotosWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  flex-wrap: nowrap;
+  align-items: center;
 `;

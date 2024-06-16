@@ -1,16 +1,18 @@
-import { Fragment, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import { Button, Input, SearchSelect, Tabs, Textarea } from '../../UI';
 import { getContent } from '../../api';
 import { InteractionStyled, SelectStyled, TextareaStyled } from './styled';
 import { useContentScope } from '../../scopes';
 import { languages, modes, styles, tones } from './consts';
 import { Mode } from './types';
+import { PhotoUpload } from './components';
 
 export const Interaction = () => {
   const [mode, setMode] = useState<Mode>(modes[0].value);
   const [text, setText] = useState('');
   const [topic, setTopic] = useState('');
   const [description, setDescription] = useState('');
+  const [photos, setPhotos] = useState<File[]>([]);
   const [style, setStyle] = useState('');
   const [tone, setTone] = useState('');
   const [language, setLanguage] = useState(languages[0].value);
@@ -30,7 +32,16 @@ export const Interaction = () => {
       setContent('');
       setLoading(true);
 
-      const stream = await getContent({ mode, text, topic, description, style, tone, language });
+      const stream = await getContent({
+        mode,
+        text,
+        topic,
+        description,
+        style,
+        tone,
+        language,
+        photos,
+      });
       const decoder = new TextDecoder();
 
       if (!stream) {
@@ -44,6 +55,16 @@ export const Interaction = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handlePhotoUploaded = (file?: File) => {
+    if (file) {
+      setPhotos((prev) => [...prev, file]);
+    }
+  };
+
+  const handlePhotoRemove = (index: number) => {
+    setPhotos((prev) => prev.filter((_, i) => i !== index));
   };
 
   return (
@@ -72,6 +93,12 @@ export const Interaction = () => {
           placeholder="Текст"
         />
       )}
+      <PhotoUpload
+        photos={photos}
+        onPhotoUploaded={handlePhotoUploaded}
+        onPhotoRemove={handlePhotoRemove}
+        mode={mode}
+      />
       <SearchSelect
         label="Стиль письма"
         placeholder="Выбрать стиль"

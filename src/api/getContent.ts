@@ -9,27 +9,27 @@ type GetContentParams = {
   style: string;
   tone: string;
   language: string;
-};
-
-const getStringOrUndefined = (value: string) => {
-  if (!value) return undefined;
-  return value;
+  photos: File[];
 };
 
 export const getContent = async (props: GetContentParams) => {
-  const normalizedProps = Object.entries(props).reduce(
-    (acc, [key, value]) => ({
-      ...acc,
-      [key]: getStringOrUndefined(value),
-    }),
-    {},
-  );
+  const formData = new FormData();
+
+  Object.entries(props).forEach(([key, value]) => {
+    if (value && typeof value !== 'object') {
+      formData.append(key, value);
+    }
+  });
+
+  if (props.photos.length) {
+    props.photos.forEach((photo) => {
+      formData.append('photos', photo);
+    });
+  }
+
   const response = await fetch(`${API_URL}/getContent`, {
     method: 'POST',
-    body: JSON.stringify(normalizedProps),
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    body: formData,
   });
 
   return response.body;
