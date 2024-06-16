@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Select, Textarea } from '../../UI';
-import { MdOutlineClear } from 'react-icons/md';
 
 export const InteractionStyled = styled.div`
   display: flex;

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import { Button, Input, SearchSelect, Tabs, Textarea } from '../../UI';
 import { getContent } from '../../api';
 import { InteractionStyled, SelectStyled, TextareaStyled } from './styled';
