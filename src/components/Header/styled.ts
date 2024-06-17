@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const HeaderStyled = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 0 30px;
 `;
 
 export const LogoWrapper = styled.div`
@@ -18,5 +19,5 @@ export const Logo = styled.img`
 
 export const LogoText = styled.p`
   font-size: 24px;
-  color: ${({ theme }) => theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.primaryFont};
 `;

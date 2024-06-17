@@ -27,7 +27,7 @@ export const SelectStyled = styled.div<SelectStyleProps>`
 
 export const Label = styled.span`
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.primaryFont};
   margin-bottom: 8px;
   margin-left: 15px;
 `;
@@ -37,24 +37,23 @@ export const SelectButton = styled.button<{ $isOptionChosen: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 16px;
-  background: ${({ theme }) => theme.colors.primary};
+  border-radius: 0.75rem;
+  background: ${({ theme }) => theme.colors.primaryBg};
   color: ${({ theme, $isOptionChosen }) =>
-    $isOptionChosen ? theme.colors.primaryText : theme.colors.placeholderText};
+    $isOptionChosen ? theme.colors.primaryFont : theme.colors.secondaryFont};
   font-size: 16px;
   padding: 16px 15px;
   cursor: pointer;
   gap: 6px;
   width: 100%;
   height: 48px;
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  border: 1px solid ${({ theme }) => theme.colors.borderDefault};
 
   &:focus {
-    border: 1px solid ${({ theme }) => theme.colors.borderFocus};
+    border: 1px solid ${({ theme }) => theme.colors.borderActive};
   }
-
   &:hover {
-    background: ${({ theme }) => theme.colors.primaryHover};
+    background: ${({ theme }) => theme.colors.inputHover};
   }
 `;
 
@@ -65,39 +64,36 @@ export const OptionsList = styled.ul`
   position: absolute;
   top: 100%;
   left: 0;
-  background: ${({ theme }) => theme.colors.primary};
-  border-radius: 16px;
+  background: ${({ theme }) => theme.colors.primaryBg};
+  border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0px 0px 5px 1px ${({ theme }) => theme.colors.main};
+  border: 1px solid ${({ theme }) => theme.colors.borderDefault};
+  box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
+  padding: 5px;
 `;
 
 export const OptionItem = styled.li`
   width: 100%;
   cursor: pointer;
   padding: 10px 15px;
-  background: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.primaryText};
+  background: ${({ theme }) => theme.colors.primaryBg};
+  color: ${({ theme }) => theme.colors.primaryFont};
+  border-radius: 0.75rem;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primaryHover};
+    background: ${({ theme }) => theme.colors.secondaryBg};
   }
 `;
 
 export const ChevronIcon = styled(FaChevronDown)`
+  cursor: pointer;
   transition: 0.2s ease;
-  color: ${({ theme }) => theme.colors.gray};
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.primaryText};
-  }
+  color: ${({ theme }) => theme.colors.icon};
 `;
 
 export const CrossIcon = styled(MdOutlineClear)`
+  cursor: pointer;
   transition: 0.2s ease;
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({ theme }) => theme.colors.icon};
   margin-right: -2px;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.primaryText};
-  }
 `;

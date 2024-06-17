@@ -15,7 +15,7 @@ export const GlobalStyles = createGlobalStyle`
 
   html {
     transition: 0.2s ease;
-    background: ${({ theme }) => theme.colors.main};
+    background: ${({ theme }) => theme.colors.primaryBg};
     overflow: hidden;
   }
 `;
@@ -26,14 +26,13 @@ export const AppStyled = styled.div`
   height: 100vh;
   width: 100%;
   padding: 30px;
+  gap: 20px;
 `;
 
 export const Wrapper = styled.div<{ $isMobile: boolean }>`
   display: flex;
-  display: flex;
   flex-direction: ${({ $isMobile }) => ($isMobile ? 'column' : 'row')};
   justify-content: center;
-  align-items: center;
   height: 100vh;
   width: 100%;
   gap: 50px;

@@ -33,13 +33,12 @@ export const LabelWrapper = styled.div`
   align-items: center;
   width: 100%;
   gap: 10px;
-  margin-bottom: 8px;
   margin-left: 15px;
 `;
 
 export const Label = styled.span`
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.primaryFont};
 `;
 
 export const SearchInputWrapper = styled.div`
@@ -53,10 +52,10 @@ export const SearchInput = styled(Input)<{ $isOptionChosen: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 16px;
-  background: ${({ theme }) => theme.colors.primary};
+  border-radius: 0.75rem;
+  background: ${({ theme }) => theme.colors.primaryBg};
   color: ${({ theme, $isOptionChosen }) =>
-    $isOptionChosen ? theme.colors.primaryText : theme.colors.gray};
+    $isOptionChosen ? theme.colors.primaryFont : theme.colors.secondaryFont};
   font-size: 16px;
   padding: 16px 15px;
   cursor: pointer;
@@ -65,7 +64,7 @@ export const SearchInput = styled(Input)<{ $isOptionChosen: boolean }>`
   height: 48px;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primaryHover};
+    background: ${({ theme }) => theme.colors.inputHover};
   }
 `;
 
@@ -76,21 +75,24 @@ export const OptionsList = styled.ul`
   position: absolute;
   top: 100%;
   left: 0;
-  background: ${({ theme }) => theme.colors.primary};
-  border-radius: 16px;
+  background: ${({ theme }) => theme.colors.primaryBg};
+  border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0px 0px 5px 1px ${({ theme }) => theme.colors.main};
+  border: 1px solid ${({ theme }) => theme.colors.borderDefault};
+  box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
+  padding: 5px;
 `;
 
 export const OptionItem = styled.li`
   width: 100%;
   cursor: pointer;
   padding: 10px 15px;
-  background: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.primaryText};
+  background: ${({ theme }) => theme.colors.primaryBg};
+  color: ${({ theme }) => theme.colors.primaryFont};
+  border-radius: 0.75rem;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primaryHover};
+    background: ${({ theme }) => theme.colors.secondaryBg};
   }
 `;
 
@@ -98,36 +100,24 @@ export const ChevronIcon = styled(FaChevronDown)`
   cursor: pointer;
   position: absolute;
   right: 15px;
-  top: 16px;
+  top: 24px;
   transition: 0.2s ease;
-  color: ${({ theme }) => theme.colors.gray};
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.primaryText};
-  }
+  color: ${({ theme }) => theme.colors.icon};
 `;
 
 export const CrossIcon = styled(MdOutlineClear)`
   cursor: pointer;
   position: absolute;
   right: 15px;
-  top: 14px;
+  top: 22px;
   transition: 0.2s ease;
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({ theme }) => theme.colors.icon};
   margin-right: -2px;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.primaryText};
-  }
 `;
 
 export const InfoIcon = styled(AiOutlineInfoCircle)`
   cursor: pointer;
   transition: 0.2s ease;
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({ theme }) => theme.colors.icon};
   margin-top: 1px;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.primaryText};
-  }
 `;

@@ -20,7 +20,7 @@ export const LabelWrapper = styled.div`
 
 export const Label = styled.span`
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.primaryFont};
 `;
 
 export const ButtonStyled = styled(Button)`
@@ -49,7 +49,7 @@ export const CrossIcon = styled(MdOutlineClear)`
   cursor: pointer;
   position: absolute;
   transition: 0.2s ease;
-  color: ${({ theme }) => theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.white};
   opacity: 0;
 `;
 
@@ -70,16 +70,12 @@ export const Photo = styled.img`
   cursor: pointer;
   width: 50px;
   height: 50px;
-  border-radius: 15px;
+  border-radius: 0.75rem;
 `;
 
 export const InfoIcon = styled(AiOutlineInfoCircle)`
   cursor: pointer;
   transition: 0.2s ease;
-  color: ${({ theme }) => theme.colors.gray};
   margin-top: 1px;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.primaryText};
-  }
+  color: ${({ theme }) => theme.colors.primaryFont};
 `;

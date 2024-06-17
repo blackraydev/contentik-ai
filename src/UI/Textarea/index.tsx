@@ -1,16 +1,37 @@
 import { TextareaHTMLAttributes, forwardRef } from 'react';
-import { Label, TextareaStyled, TextareaWrapper } from './styles';
+import {
+  ErrorText,
+  InfoIcon,
+  Label,
+  LabelWrapper,
+  LeftPart,
+  TextareaStyled,
+  TextareaWrapper,
+} from './styles';
+import { Tooltip, TooltipProps } from '../Tooltip';
 
 export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label?: string;
+  invalid?: boolean;
+  tooltipProps: Omit<TooltipProps, 'children'>;
 };
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ label, ...props }, ref) => {
+  ({ label, invalid, tooltipProps, ...props }, ref) => {
     return (
       <TextareaWrapper>
-        {label && <Label>{label}</Label>}
-        <TextareaStyled ref={ref} {...props} />
+        <LabelWrapper>
+          <LeftPart>
+            <Label>{label}</Label>
+            {tooltipProps?.content && (
+              <Tooltip {...tooltipProps}>
+                <InfoIcon />
+              </Tooltip>
+            )}
+          </LeftPart>
+          {invalid && <ErrorText>Обязательное поле</ErrorText>}
+        </LabelWrapper>
+        <TextareaStyled $invalid={invalid} ref={ref} {...props} />
       </TextareaWrapper>
     );
   },

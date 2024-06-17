@@ -15,11 +15,11 @@ export const ThemeToggle = () => {
   const { isDarkTheme, toggleTheme } = useThemeScope();
 
   return (
-    <Tooltip position="bottom" content="Сменить тему" offset={50}>
+    <Tooltip width={125} position="bottom" content="Сменить тему" offset={50}>
       <ThemeToggleStyled
-        onClick={toggleTheme}
-        isDarkTheme={isDarkTheme}
         id="theme-toggler"
+        onClick={toggleTheme}
+        $isDarkTheme={isDarkTheme}
         aria-label="auto"
         aria-live="polite"
       >

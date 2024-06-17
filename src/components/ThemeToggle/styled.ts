@@ -1,25 +1,21 @@
 import styled, { css } from 'styled-components';
 
-type ThemeTogglerStyleProps = {
-  isDarkTheme: boolean;
-};
-
-export const ThemeToggleStyled = styled.div<ThemeTogglerStyleProps>`
+export const ThemeToggleStyled = styled.div<{ $isDarkTheme: boolean }>`
   cursor: pointer;
   display: flex;
   align-items: center;
   z-index: 1;
 
-  ${({ isDarkTheme }) => css`
+  ${({ $isDarkTheme }) => css`
     ${SunAndMoon} {
-      transform: rotate(${isDarkTheme ? 90 : 40}deg);
+      transform: rotate(${$isDarkTheme ? 90 : 40}deg);
     }
     ${MoonCircle} {
-      cx: ${isDarkTheme ? 100 : 60}%;
-      cy: ${isDarkTheme ? 0 : 25}%;
+      cx: ${$isDarkTheme ? 100 : 60}%;
+      cy: ${$isDarkTheme ? 0 : 25}%;
     }
     ${SunBeams} {
-      opacity: ${isDarkTheme ? 1 : 0};
+      opacity: ${$isDarkTheme ? 1 : 0};
     }
   `}
 `;

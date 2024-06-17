@@ -47,6 +47,7 @@ export const PhotoUpload = ({ photos, onPhotoUploaded, onPhotoRemove, mode }: Ph
             mode === 'create' ? 'описании' : 'тексте'
           } поста`}
           offset={50}
+          width={220}
         >
           <InfoIcon />
         </Tooltip>

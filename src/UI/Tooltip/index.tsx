@@ -3,12 +3,13 @@ import { TooltipStyled, TooltipWrapper } from './styles';
 
 export type TooltipPositionType = 'top' | 'bottom';
 
-type TooltipProps = {
+export type TooltipProps = {
   content?: ReactNode;
   delay?: number;
   className?: string;
   position?: TooltipPositionType;
   offset?: number;
+  width: number;
   children: ReactNode;
 };
 
@@ -19,6 +20,7 @@ export const Tooltip = ({
   content,
   children,
   offset = 40,
+  width,
 }: TooltipProps) => {
   const [active, setActive] = useState(false);
   const timeoutRef = useRef<number>();
@@ -37,7 +39,7 @@ export const Tooltip = ({
   return (
     <TooltipWrapper className={className} onMouseEnter={showTooltip} onMouseLeave={hideTooltip}>
       {active && (
-        <TooltipStyled position={position} offset={offset}>
+        <TooltipStyled $width={width} $position={position} $offset={offset}>
           {content}
         </TooltipStyled>
       )}

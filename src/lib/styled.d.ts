@@ -3,27 +3,27 @@ import 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
-      main: string;
-      card: string;
-      primary: string;
-      secondary: string;
-      error: string;
-      border: string;
-      borderFocus: string;
-      primaryHover: string;
-      secondaryHover: string;
-      errorHover: string;
-      boxShadow: string;
-      chipsActive: string;
-      primaryDisabled: string;
-      primaryText: string;
-      secondaryText: string;
-      placeholderText: string;
-      icon: string;
+      // Common colors
       white: string;
       black: string;
-      gray: string;
-      brightWhite: string;
+      
+      // Theme colors
+      primaryBg: string;
+      primaryFont: string;
+      primaryBoxShadow: string;
+      borderDefault: string;
+      borderActive: string;
+      secondaryBg: string;
+      secondaryFont: string;
+      inputHover: string;
+      buttonBg: string;
+      buttonFont: string;
+      buttonHover: string;
+      buttonDisabled: string;
+      buttonIcon: string;
+      icon: string;
+      errorFont: string;
+      errorBorder: string;
     };
   }
 }
