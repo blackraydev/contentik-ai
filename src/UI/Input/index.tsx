@@ -5,7 +5,7 @@ import { Tooltip, TooltipProps } from '../Tooltip';
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   invalid?: boolean;
-  tooltipProps: Omit<TooltipProps, 'children'>;
+  tooltipProps?: Omit<TooltipProps, 'children'>;
 };
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
