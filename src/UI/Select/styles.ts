@@ -47,6 +47,11 @@ export const SelectButton = styled.button<{ $isOptionChosen: boolean }>`
   gap: 6px;
   width: 100%;
   height: 48px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+
+  &:focus {
+    border: 1px solid ${({ theme }) => theme.colors.borderFocus};
+  }
 
   &:hover {
     background: ${({ theme }) => theme.colors.primaryHover};

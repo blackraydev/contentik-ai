@@ -14,7 +14,7 @@ export const ButtonStyled = styled.button`
   margin-top: 10px;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primaryHover};
+    border: 1px solid ${({ theme }) => theme.colors.borderHover};
   }
 
   &:disabled {

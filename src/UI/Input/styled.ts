@@ -21,6 +21,11 @@ export const InputStyled = styled.input`
   padding: 0 15px;
   color: ${({ theme }) => theme.colors.primaryText};
   background: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+
+  &:focus {
+    border: 1px solid ${({ theme }) => theme.colors.borderFocus};
+  }
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.placeholderText};

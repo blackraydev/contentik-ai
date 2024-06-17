@@ -1,7 +1,7 @@
 import { Fragment, useMemo, useState } from 'react';
-import { Button, Input, SearchSelect, Tabs, Textarea } from '../../UI';
+import { Button, Card, Input, SearchSelect, Textarea } from '../../UI';
 import { getContent } from '../../api';
-import { InteractionStyled, SelectStyled, TextareaStyled } from './styled';
+import { SelectStyled, TextareaStyled } from './styled';
 import { useContentScope } from '../../scopes';
 import { languages, modes, styles, tones } from './consts';
 import { Mode } from './types';
@@ -68,8 +68,10 @@ export const Interaction = () => {
   };
 
   return (
-    <InteractionStyled>
-      <Tabs options={modes} value={mode} onChange={(value) => setMode(value as Mode)} />
+    <Card
+      width="500px"
+      tabsProps={{ options: modes, value: mode, onChange: (value) => setMode(value as Mode) }}
+    >
       {mode === 'create' ? (
         <Fragment>
           <Input
@@ -125,6 +127,6 @@ export const Interaction = () => {
       <Button isLoading={isLoading} disabled={isSubmitDisabled} onClick={handleSubmit}>
         Сгенерировать!
       </Button>
-    </InteractionStyled>
+    </Card>
   );
 };
