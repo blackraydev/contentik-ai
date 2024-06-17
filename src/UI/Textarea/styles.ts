@@ -1,3 +1,4 @@
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 import styled from 'styled-components';
 
 export const TextareaWrapper = styled.div`
@@ -6,38 +7,58 @@ export const TextareaWrapper = styled.div`
   width: 100%;
 `;
 
-export const Label = styled.label`
-  font-size: 16px;
-  color: ${({ theme }) => theme.colors.primaryText};
+export const LabelWrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
   margin-bottom: 8px;
-  margin-left: 10px;
 `;
 
-export const TextareaStyled = styled.textarea`
+export const LeftPart = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const ErrorText = styled.span`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.errorFont};
+`;
+
+export const Label = styled.label`
+  margin-left: 10px;
+  font-size: 16px;
+  color: ${({ theme }) => theme.colors.primaryFont};
+`;
+
+export const TextareaStyled = styled.textarea<{ $invalid?: boolean }>`
   transition: 0.2s ease;
   font-size: 16px;
-  border-radius: 15px;
+  border-radius: 0.75rem;
   padding: 15px;
   height: 160px;
   resize: none;
-  color: ${({ theme }) => theme.colors.primaryText};
-  background: ${({ theme }) => theme.colors.primary};
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  color: ${({ theme }) => theme.colors.primaryFont};
+  background: ${({ theme }) => theme.colors.primaryBg};
+  border: 1px solid
+    ${({ theme, $invalid }) =>
+      $invalid ? `${theme.colors.errorBorder} !important` : theme.colors.borderDefault};
 
   &:focus {
-    border: 1px solid ${({ theme }) => theme.colors.borderFocus};
+    border: 1px solid ${({ theme }) => theme.colors.borderActive};
   }
-
   &::-webkit-scrollbar {
     display: none;
   }
-
   &::placeholder {
-    color: ${({ theme }) => theme.colors.placeholderText};
+    color: ${({ theme }) => theme.colors.secondaryFont};
   }
+`;
 
-  &:disabled {
-    background: ${({ theme }) => theme.colors.primaryDisabled};
-    color: ${({ theme }) => theme.colors.gray};
-  }
+export const InfoIcon = styled(AiOutlineInfoCircle)`
+  cursor: pointer;
+  transition: 0.2s ease;
+  color: ${({ theme }) => theme.colors.icon};
+  margin-top: 1px;
 `;

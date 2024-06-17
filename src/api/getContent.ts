@@ -6,6 +6,7 @@ type GetContentParams = {
   text: string;
   topic: string;
   description: string;
+  keywords: string;
   style: string;
   tone: string;
   language: string;

@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
 
 export const Markdown = styled(MDEditor.Markdown)<{ $isMobile: boolean }>`
+  color-scheme: none;
+  box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
+  border: 1px solid ${({ theme }) => theme.colors.borderDefault};
+  transition: 0.2s ease;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -9,15 +13,13 @@ export const Markdown = styled(MDEditor.Markdown)<{ $isMobile: boolean }>`
   align-items: flex-start;
   font-size: 16px;
   font-weight: 400;
-  width: ${({ $isMobile }) => ($isMobile ? '100%' : '700px')};
-  height: ${({ $isMobile }) => ($isMobile ? 'fit-content' : '100%')};
-  max-height: ${({ $isMobile }) => ($isMobile ? '0' : '800px')};
-  line-height: 0.6cm;
-  overflow-y: ${({ $isMobile }) => ($isMobile ? 'none' : 'scroll')};
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.brightWhite};
-  border-radius: 15px;
+  width: 100%;
+  height: fit-content;
+  background-color: ${({ theme }) => theme.colors.primaryBg};
+  color: ${({ theme }) => theme.colors.primaryFont};
+  border-radius: 0.75rem;
   padding: 15px 20px;
+  overflow: scroll !important;
 
   &::-webkit-scrollbar {
     display: none;

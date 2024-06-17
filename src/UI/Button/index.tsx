@@ -10,7 +10,8 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 export const Button = ({ children, disabled, isLoading, ...props }: ButtonProps) => {
   return (
     <ButtonStyled disabled={disabled || isLoading} {...props}>
-      {isLoading ? <Loader /> : children}
+      {isLoading && <Loader />}
+      {children}
     </ButtonStyled>
   );
 };

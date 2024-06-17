@@ -35,9 +35,9 @@ export const Path = styled.circle`
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
   animation: dash 1.5s ease-in-out infinite;
-  stroke: ${({ theme }) => theme.colors.icon};
+  stroke: ${({ theme }) => theme.colors.buttonIcon};
   stroke-linecap: round;
-  stroke-width: 2;
+  stroke-width: 4;
   fill: none;
 
   @keyframes dash {

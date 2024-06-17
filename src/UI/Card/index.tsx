@@ -1,18 +1,18 @@
 import { ReactNode } from 'react';
 import { CardStyled, ChildrenStyled } from './styled';
-import { Tabs, TabsProps } from '../Tabs';
 
 type CardProps = {
   width: string;
-  tabsProps: TabsProps;
+  height: string;
   children: ReactNode;
 };
 
-export const Card = ({ width, tabsProps, children }: CardProps) => {
+export const Card = ({ width, height, children }: CardProps) => {
   return (
-    <CardStyled $width={width}>
-      <Tabs {...tabsProps} />
-      <ChildrenStyled>{children}</ChildrenStyled>
+    <CardStyled>
+      <ChildrenStyled $width={width} $height={height}>
+        {children}
+      </ChildrenStyled>
     </CardStyled>
   );
 };

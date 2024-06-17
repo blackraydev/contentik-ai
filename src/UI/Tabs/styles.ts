@@ -1,16 +1,14 @@
 import styled from 'styled-components';
 
 export const TabsWrapper = styled.div`
+  transition: 0.2s ease;
   display: flex;
-  gap: 20px;
   flex-wrap: nowrap;
   overflow-x: scroll;
-  background: ${({ theme }) => theme.colors.primary};
-  padding: 0 25px;
+  background: ${({ theme }) => theme.colors.secondaryBg};
+  padding: 5px;
   width: 100%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: 8px;
   overflow: hidden;
 
   &::-webkit-scrollbar {
@@ -21,10 +19,14 @@ export const TabsWrapper = styled.div`
 export const TabsStyled = styled.div<{ $active?: boolean }>`
   transition: 0.2s ease;
   cursor: pointer;
-  padding: 15px 0;
-  color: ${({ theme }) => theme.colors.primaryText};
-  border-bottom: 2px solid
-    ${({ $active, theme }) => ($active ? theme.colors.chipsActive : 'transparent')};
-  color: ${({ $active, theme }) => ($active ? theme.colors.chipsActive : theme.colors.primaryText)};
+  width: 50%;
+  padding: 10px 0;
+  border-radius: 6px;
+  color: ${({ theme }) => theme.colors.primaryFont};
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.primaryBg : theme.colors.secondaryBg};
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors.primaryFont : theme.colors.secondaryFont};
   text-align: center;
+  box-shadow: ${({ $active, theme }) => $active && theme.colors.primaryBoxShadow};
 `;
