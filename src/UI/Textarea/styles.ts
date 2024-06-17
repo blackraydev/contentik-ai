@@ -22,6 +22,11 @@ export const TextareaStyled = styled.textarea`
   resize: none;
   color: ${({ theme }) => theme.colors.primaryText};
   background: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+
+  &:focus {
+    border: 1px solid ${({ theme }) => theme.colors.borderFocus};
+  }
 
   &::-webkit-scrollbar {
     display: none;

@@ -20,7 +20,16 @@ export const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export const AppStyled = styled.div<{ $isMobile: boolean }>`
+export const AppStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  padding: 30px;
+`;
+
+export const Wrapper = styled.div<{ $isMobile: boolean }>`
+  display: flex;
   display: flex;
   flex-direction: ${({ $isMobile }) => ($isMobile ? 'column' : 'row')};
   justify-content: center;

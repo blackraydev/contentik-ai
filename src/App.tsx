@@ -1,7 +1,7 @@
 import { ContentScope, ThemeScope } from './scopes';
-import { Content, Interaction } from './components';
+import { Content, Header, Interaction } from './components';
 import { useCheckMobileScreen } from './hooks';
-import { AppStyled, GlobalStyles } from './App.styled';
+import { AppStyled, GlobalStyles, Wrapper } from './App.styled';
 
 function App() {
   const isMobile = useCheckMobileScreen();
@@ -10,9 +10,12 @@ function App() {
     <ThemeScope>
       <ContentScope>
         <GlobalStyles />
-        <AppStyled $isMobile={isMobile}>
-          <Interaction />
-          <Content />
+        <AppStyled>
+          <Header />
+          <Wrapper $isMobile={isMobile}>
+            <Interaction />
+            <Content />
+          </Wrapper>
         </AppStyled>
       </ContentScope>
     </ThemeScope>

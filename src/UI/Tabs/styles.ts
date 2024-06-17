@@ -2,13 +2,16 @@ import styled from 'styled-components';
 
 export const TabsWrapper = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 20px;
   flex-wrap: nowrap;
   overflow-x: scroll;
   background: ${({ theme }) => theme.colors.primary};
+  padding: 0 25px;
   width: 100%;
-  padding: 5px;
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  overflow: hidden;
 
   &::-webkit-scrollbar {
     display: none;
@@ -18,11 +21,10 @@ export const TabsWrapper = styled.div`
 export const TabsStyled = styled.div<{ $active?: boolean }>`
   transition: 0.2s ease;
   cursor: pointer;
-  padding: 10px 15px;
-  background: ${({ theme, $active }) =>
-    $active ? theme.colors.primaryHover : theme.colors.primaryDisabled};
+  padding: 15px 0;
   color: ${({ theme }) => theme.colors.primaryText};
-  border-radius: 20px;
-  width: 50%;
+  border-bottom: 2px solid
+    ${({ $active, theme }) => ($active ? theme.colors.chipsActive : 'transparent')};
+  color: ${({ $active, theme }) => ($active ? theme.colors.chipsActive : theme.colors.primaryText)};
   text-align: center;
 `;

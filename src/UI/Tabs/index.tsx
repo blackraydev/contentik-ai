@@ -5,7 +5,7 @@ type Tab = {
   label: string;
 };
 
-type TabsProps = {
+export type TabsProps = {
   options: Tab[];
   value: string;
   onChange: (value: string) => void;
