@@ -7,6 +7,7 @@ export const HeaderStyled = styled.div`
 `;
 
 export const LogoWrapper = styled.div`
+  cursor: pointer;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -20,4 +21,5 @@ export const Logo = styled.img`
 export const LogoText = styled.p`
   font-size: 24px;
   color: ${({ theme }) => theme.colors.primaryFont};
+  margin-left: -8px;
 `;

@@ -17,7 +17,7 @@ export const DarkTheme = {
     secondaryFont: 'rgb(161, 161, 170)',
     buttonBg: 'white',
     buttonFont: 'black',
-    buttonHover: '225, 225, 26',
+    buttonHover: 'rgb(236, 236, 237)',
     buttonDisabled: 'rgb(130, 130, 132)',
     icon: 'white',
     buttonIcon: 'black',
