@@ -1,11 +1,12 @@
 import { ThemeToggle } from '../ThemeToggle';
-import { HeaderStyled, LogoText, LogoWrapper } from './styled';
+import { HeaderStyled, Logo, LogoText, LogoWrapper } from './styled';
 
 export const Header = () => {
   return (
     <HeaderStyled>
       <LogoWrapper>
-        <LogoText>Contentik</LogoText>
+        <Logo src="logo.png" alt="logo" />
+        <LogoText>ontentik</LogoText>
       </LogoWrapper>
       <ThemeToggle />
     </HeaderStyled>

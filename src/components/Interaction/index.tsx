@@ -1,7 +1,7 @@
 import { Fragment, useMemo, useState } from 'react';
-import { Button, Card, Input, SearchSelect, Tabs, Textarea } from '../../UI';
+import { Card, Input, SearchSelect, Tabs, Textarea } from '../../UI';
 import { getContent } from '../../api';
-import { InteractionStyled, SelectStyled, TextareaStyled } from './styled';
+import { GenerateButton, InteractionStyled, SelectStyled, TextareaStyled } from './styled';
 import { useContentScope } from '../../scopes';
 import { languages, modes, styles, tones } from './consts';
 import { Mode, FormFields } from './types';
@@ -189,9 +189,14 @@ export const Interaction = () => {
           onChange={setLanguage}
           options={languages}
         />
-        <Button isLoading={isLoading} disabled={isLoading} onClick={handleSubmit}>
+        <GenerateButton
+          onClick={handleSubmit}
+          isLoading={isLoading}
+          disabled={isLoading}
+          $isGenerating={isLoading}
+        >
           {isLoading ? 'Генерация' : 'Сгенерировать'}
-        </Button>
+        </GenerateButton>
       </Card>
     </InteractionStyled>
   );
