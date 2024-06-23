@@ -1,6 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import {
-  ContentScope,
+  CreateContentScope,
+  EditContentScope,
   GenerationsScope,
   OptimizationScope,
   ThemeScope,
@@ -15,16 +16,18 @@ function App() {
     <BrowserRouter basename="/contentik-ai">
       <ThemeScope>
         <UserScope>
-          <ContentScope>
-            <GenerationsScope>
-              <OptimizationScope>
-                <TonalityScope>
-                  <GlobalStyles />
-                  <AppRouter />
-                </TonalityScope>
-              </OptimizationScope>
-            </GenerationsScope>
-          </ContentScope>
+          <CreateContentScope>
+            <EditContentScope>
+              <GenerationsScope>
+                <OptimizationScope>
+                  <TonalityScope>
+                    <GlobalStyles />
+                    <AppRouter />
+                  </TonalityScope>
+                </OptimizationScope>
+              </GenerationsScope>
+            </EditContentScope>
+          </CreateContentScope>
         </UserScope>
       </ThemeScope>
     </BrowserRouter>

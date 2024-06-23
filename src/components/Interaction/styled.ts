@@ -41,7 +41,7 @@ export const FieldsWrapper = styled.div`
 `;
 
 export const TextareaStyled = styled(Textarea)`
-  height: 253px;
+  height: 350px;
 `;
 
 export const PhotosWrapper = styled.div`

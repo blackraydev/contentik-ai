@@ -8,23 +8,11 @@ import { Description, Details, HeaderStyled, IconsWrapper, Title, UserIcon } fro
 
 export const Header = () => {
   const { pathname } = useLocation();
-  const [{ title, description }, setDetails] = useState(HeaderDetails[PrivateRoutes.App]);
+  const [{ title, description }, setDetails] = useState(HeaderDetails[PrivateRoutes.Dashboard]);
 
   useEffect(() => {
-    switch (pathname) {
-      case PrivateRoutes.App:
-        return setDetails(HeaderDetails[PrivateRoutes.App]);
-      case PrivateRoutes.History:
-        return setDetails(HeaderDetails[PrivateRoutes.History]);
-      case PrivateRoutes.Tariffs:
-        return setDetails(HeaderDetails[PrivateRoutes.Tariffs]);
-      case PrivateRoutes.Optimization:
-        return setDetails(HeaderDetails[PrivateRoutes.Optimization]);
-      case PrivateRoutes.Tonality:
-        return setDetails(HeaderDetails[PrivateRoutes.Tonality]);
-      default:
-        return setDetails(HeaderDetails[PrivateRoutes.App]);
-    }
+    const targetRoute = Object.values(PrivateRoutes).find((route) => route === pathname);
+    setDetails(HeaderDetails[targetRoute || PrivateRoutes.Dashboard]);
   }, [pathname]);
 
   return (

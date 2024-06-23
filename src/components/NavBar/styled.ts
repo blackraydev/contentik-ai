@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaWandMagicSparkles } from 'react-icons/fa6';
-import { FaListUl } from 'react-icons/fa';
+import { FaListUl, FaPen } from 'react-icons/fa';
+import { IoRocketSharp } from 'react-icons/io5';
+import { MdTonality } from 'react-icons/md';
 
 export const NavBarStyled = styled.div`
   transition: 0.2s ease;
@@ -69,6 +71,27 @@ export const BottomPart = styled.div`
 `;
 
 export const MagicIcon = styled(FaWandMagicSparkles)`
+  transition: 0.2s ease;
+  width: 16px;
+  height: 16px;
+  color: ${({ theme }) => theme.colors.icon};
+`;
+
+export const PenIcon = styled(FaPen)`
+  transition: 0.2s ease;
+  width: 16px;
+  height: 16px;
+  color: ${({ theme }) => theme.colors.icon};
+`;
+
+export const SeoIcon = styled(IoRocketSharp)`
+  transition: 0.2s ease;
+  width: 16px;
+  height: 16px;
+  color: ${({ theme }) => theme.colors.icon};
+`;
+
+export const ToneIcon = styled(MdTonality)`
   transition: 0.2s ease;
   width: 16px;
   height: 16px;

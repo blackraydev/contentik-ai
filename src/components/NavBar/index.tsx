@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Limits } from './components';
 import { getActiveTabRoute } from './utils';
-import { tabRoutes } from './consts';
+import { analysisTabRoutes, generationTabRoutes } from './consts';
 import {
   BottomPart,
   Logo,
@@ -15,7 +15,6 @@ import {
   SectionTitle,
   TopPart,
 } from './styled';
-import { analysisTabRoutes, generationTabRoutes } from './consts/tabRoutes';
 
 export const NavBar = () => {
   const { pathname } = useLocation();
