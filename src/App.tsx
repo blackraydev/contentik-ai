@@ -1,24 +1,33 @@
-import { ContentScope, ThemeScope } from './scopes';
-import { Content, Header, Interaction } from './components';
-import { useCheckMobileScreen } from './hooks';
-import { AppStyled, GlobalStyles, Wrapper } from './App.styled';
+import { BrowserRouter } from 'react-router-dom';
+import {
+  ContentScope,
+  GenerationsScope,
+  OptimizationScope,
+  ThemeScope,
+  TonalityScope,
+  UserScope,
+} from './scopes';
+import { Router as AppRouter } from './components';
+import { GlobalStyles } from './App.styled';
 
 function App() {
-  const isMobile = useCheckMobileScreen();
-
   return (
-    <ThemeScope>
-      <ContentScope>
-        <GlobalStyles />
-        <AppStyled>
-          <Header />
-          <Wrapper $isMobile={isMobile}>
-            <Interaction />
-            <Content />
-          </Wrapper>
-        </AppStyled>
-      </ContentScope>
-    </ThemeScope>
+    <BrowserRouter basename="/contentik-ai">
+      <ThemeScope>
+        <UserScope>
+          <ContentScope>
+            <GenerationsScope>
+              <OptimizationScope>
+                <TonalityScope>
+                  <GlobalStyles />
+                  <AppRouter />
+                </TonalityScope>
+              </OptimizationScope>
+            </GenerationsScope>
+          </ContentScope>
+        </UserScope>
+      </ThemeScope>
+    </BrowserRouter>
   );
 }
 

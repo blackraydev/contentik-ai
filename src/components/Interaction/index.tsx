@@ -1,29 +1,41 @@
 import { Fragment, useMemo, useState } from 'react';
-import { Card, Input, SearchSelect, Tabs, Textarea } from '../../UI';
 import { getContent } from '../../api';
-import { GenerateButton, InteractionStyled, SelectStyled, TextareaStyled } from './styled';
-import { useContentScope } from '../../scopes';
-import { languages, modes, styles, tones } from './consts';
-import { Mode, FormFields } from './types';
-import { PhotoUpload } from './components';
+import { useContentScope, useUserScope } from '../../scopes';
+import { Card, Input, SearchSelect, Select, Textarea } from '../../UI';
+import { FormFields } from './types';
+import { languages, styles, tones } from '../../consts';
+import { FieldsWrapper, GenerateButton, InteractionStyled, TextareaStyled, Title } from './styled';
 
 export const Interaction = () => {
-  const [mode, setMode] = useState<Mode>(modes[0].value);
-  const [text, setText] = useState('');
-  const [topic, setTopic] = useState('');
-  const [description, setDescription] = useState('');
-  const [keywords, setKeywords] = useState('');
-  const [photos, setPhotos] = useState<File[]>([]);
-  const [style, setStyle] = useState('');
-  const [tone, setTone] = useState('');
-  const [language, setLanguage] = useState(languages[0].value);
-  const [isLoading, setLoading] = useState(false);
+  const { session } = useUserScope();
+  const {
+    isGenerating,
+    setContent,
+    setGenerating,
+    mode,
+    setMode,
+    text,
+    setText,
+    topic,
+    setTopic,
+    description,
+    setDescription,
+    keywords,
+    setKeywords,
+    style,
+    setStyle,
+    tone,
+    setTone,
+    language,
+    setLanguage,
+    photos,
+    setPhotos,
+  } = useContentScope();
   const [invalidFields, setInvalidFields] = useState<FormFields[]>([]);
-  const { contentDisplayed, setContent, setContentDisplayed } = useContentScope();
 
   const isInvalid = useMemo(() => {
     if (mode === 'create') {
-      return !topic.trim();
+      return !topic.trim() || !description.trim();
     }
     return !text.trim();
   }, [mode, text, topic, description]);
@@ -31,6 +43,9 @@ export const Interaction = () => {
   const validate = () => {
     if (mode === 'create' && !topic.trim()) {
       setInvalidFields((prev) => [...prev, 'topic']);
+    }
+    if (mode === 'create' && !description.trim()) {
+      setInvalidFields((prev) => [...prev, 'description']);
     }
     if (mode === 'edit' && !text.trim()) {
       setInvalidFields((prev) => [...prev, 'text']);
@@ -47,15 +62,11 @@ export const Interaction = () => {
         return validate();
       }
 
-      if (!contentDisplayed) {
-        setContentDisplayed(true);
-      } else {
-        setContent('');
-      }
-
-      setLoading(true);
+      setContent('');
+      setGenerating(true);
 
       const stream = await getContent({
+        userId: session?.user.id || '',
         mode,
         text,
         topic,
@@ -77,31 +88,32 @@ export const Interaction = () => {
         setContent((prev) => prev + decodedChunk);
       }
     } finally {
-      setLoading(false);
+      setGenerating(false);
     }
   };
 
-  const handlePhotoUploaded = (file?: File) => {
-    if (file) {
-      setPhotos((prev) => [...prev, file]);
-    }
-  };
+  // const handlePhotoUploaded = (file?: File) => {
+  //   if (file) {
+  //     setPhotos((prev) => [...prev, file]);
+  //   }
+  // };
 
-  const handlePhotoRemove = (index: number) => {
-    setPhotos((prev) => prev.filter((_, i) => i !== index));
-  };
+  // const handlePhotoRemove = (index: number) => {
+  //   setPhotos((prev) => prev.filter((_, i) => i !== index));
+  // };
 
   return (
     <InteractionStyled>
-      <Tabs
+      {/* <Tabs
         options={modes}
         value={mode}
         onChange={(value) => {
           setMode(value as Mode);
           setInvalidFields([]);
         }}
-      />
-      <Card width="400px" height="fit-content">
+      /> */}
+      <Card width="100%" height="fit-content">
+        <Title>О чём будет ваш пост?</Title>
         {mode === 'create' ? (
           <Fragment>
             <Input
@@ -111,8 +123,8 @@ export const Interaction = () => {
                 setTopic(e.target.value);
                 removeInvalidField('topic');
               }}
-              invalid={invalidFields.includes('topic')}
-              placeholder="Тема"
+              error={{ visible: invalidFields.includes('topic') }}
+              placeholder="Спорт"
               tooltipProps={{
                 content: 'Основная тема или заголовок поста',
                 width: 160,
@@ -125,8 +137,8 @@ export const Interaction = () => {
                 setDescription(e.target.value);
                 removeInvalidField('description');
               }}
-              invalid={invalidFields.includes('description')}
-              placeholder="Описание"
+              error={{ visible: invalidFields.includes('description') }}
+              placeholder="Влияние ежедневного занятия спортом на состояние здоровья человека. Выделить преимущества и недостатки занятия спортом"
               tooltipProps={{
                 content: 'Краткое описание или аннотация поста',
                 width: 175,
@@ -141,7 +153,7 @@ export const Interaction = () => {
               setText(e.target.value);
               removeInvalidField('text');
             }}
-            invalid={invalidFields.includes('text')}
+            error={{ visible: invalidFields.includes('text') }}
             placeholder="Текст"
             tooltipProps={{
               content: 'Текст существующего поста, который нужно отредактировать',
@@ -149,55 +161,63 @@ export const Interaction = () => {
             }}
           />
         )}
-        <Input
-          label="Ключевые слова"
-          value={keywords}
-          onChange={(e) => setKeywords(e.target.value)}
-          invalid={invalidFields.includes('keywords')}
-          placeholder="Ключевые слова"
-          tooltipProps={{
-            content: 'Перечислите ключевые слова через запятую',
-            width: 200,
-          }}
-        />
+      </Card>
+      <Card width="100%" height="fit-content">
+        <Title>Дополнительные настройки</Title>
+        <FieldsWrapper>
+          <Input
+            label="Ключевые слова"
+            value={keywords}
+            onChange={(e) => setKeywords(e.target.value)}
+            placeholder="Арбуз, Банан, Апельсин"
+            tooltipProps={{
+              content: 'Перечислите ключевые слова через запятую',
+              width: 200,
+            }}
+          />
+          <Select
+            label="Язык"
+            placeholder="Выбрать язык"
+            value={language}
+            onChange={setLanguage}
+            options={languages}
+          />
+        </FieldsWrapper>
+        <FieldsWrapper>
+          <SearchSelect
+            label="Стиль письма"
+            placeholder="Выбрать стиль"
+            value={style}
+            onChange={setStyle}
+            options={styles}
+            withClear
+          />
+          <SearchSelect
+            label="Тон"
+            placeholder="Выбрать тон"
+            value={tone}
+            onChange={setTone}
+            options={tones}
+            withClear
+          />
+        </FieldsWrapper>
+      </Card>
+      {/* <Card width="100%" height="fit-content">
         <PhotoUpload
           photos={photos}
           onPhotoUploaded={handlePhotoUploaded}
           onPhotoRemove={handlePhotoRemove}
           mode={mode}
         />
-        <SearchSelect
-          label="Стиль письма"
-          placeholder="Выбрать стиль"
-          value={style}
-          onChange={setStyle}
-          options={styles}
-          withClear
-        />
-        <SearchSelect
-          label="Тон"
-          placeholder="Выбрать тон"
-          value={tone}
-          onChange={setTone}
-          options={tones}
-          withClear
-        />
-        <SelectStyled
-          label="Язык"
-          placeholder="Выбрать язык"
-          value={language}
-          onChange={setLanguage}
-          options={languages}
-        />
-        <GenerateButton
-          onClick={handleSubmit}
-          isLoading={isLoading}
-          disabled={isLoading}
-          $isGenerating={isLoading}
-        >
-          {isLoading ? 'Генерация' : 'Сгенерировать'}
-        </GenerateButton>
-      </Card>
+      </Card> */}
+      <GenerateButton
+        onClick={handleSubmit}
+        isLoading={isGenerating}
+        disabled={isGenerating}
+        $isGenerating={isGenerating}
+      >
+        Сгенерировать
+      </GenerateButton>
     </InteractionStyled>
   );
 };

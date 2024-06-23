@@ -33,10 +33,11 @@ export const LabelWrapper = styled.div`
   align-items: center;
   width: 100%;
   gap: 10px;
-  margin-left: 15px;
+  margin: 8px 0;
 `;
 
 export const Label = styled.span`
+  transition: 0.2s ease;
   font-size: 16px;
   color: ${({ theme }) => theme.colors.primaryFont};
 `;
@@ -52,7 +53,7 @@ export const SearchInput = styled(Input)<{ $isOptionChosen: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0.75rem;
+  border-radius: 15px;
   background: ${({ theme }) => theme.colors.primaryBg};
   color: ${({ theme, $isOptionChosen }) =>
     $isOptionChosen ? theme.colors.primaryFont : theme.colors.secondaryFont};
@@ -76,7 +77,7 @@ export const OptionsList = styled.ul`
   top: 100%;
   left: 0;
   background: ${({ theme }) => theme.colors.primaryBg};
-  border-radius: 0.75rem;
+  border-radius: 15px;
   overflow: hidden;
   border: 1px solid ${({ theme }) => theme.colors.borderDefault};
   box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
@@ -89,7 +90,7 @@ export const OptionItem = styled.li`
   padding: 10px 15px;
   background: ${({ theme }) => theme.colors.primaryBg};
   color: ${({ theme }) => theme.colors.primaryFont};
-  border-radius: 0.75rem;
+  border-radius: 15px;
 
   &:hover {
     background: ${({ theme }) => theme.colors.secondaryBg};
@@ -100,7 +101,7 @@ export const ChevronIcon = styled(FaChevronDown)`
   cursor: pointer;
   position: absolute;
   right: 15px;
-  top: 24px;
+  top: 18px;
   transition: 0.2s ease;
   color: ${({ theme }) => theme.colors.icon};
 `;
@@ -109,7 +110,7 @@ export const CrossIcon = styled(MdOutlineClear)`
   cursor: pointer;
   position: absolute;
   right: 15px;
-  top: 22px;
+  top: 16px;
   transition: 0.2s ease;
   color: ${({ theme }) => theme.colors.icon};
   margin-right: -2px;
@@ -118,6 +119,6 @@ export const CrossIcon = styled(MdOutlineClear)`
 export const InfoIcon = styled(AiOutlineInfoCircle)`
   cursor: pointer;
   transition: 0.2s ease;
-  color: ${({ theme }) => theme.colors.icon};
+  color: ${({ theme }) => theme.colors.secondaryFont};
   margin-top: 1px;
 `;

@@ -12,26 +12,29 @@ import { Tooltip, TooltipProps } from '../Tooltip';
 
 export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label?: string;
-  invalid?: boolean;
-  tooltipProps: Omit<TooltipProps, 'children'>;
+  error?: {
+    visible?: boolean;
+    text?: string;
+  };
+  tooltipProps?: Omit<TooltipProps, 'children'>;
 };
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ label, invalid, tooltipProps, ...props }, ref) => {
+  ({ label, error, tooltipProps, ...props }, ref) => {
     return (
       <TextareaWrapper>
         <LabelWrapper>
           <LeftPart>
             <Label>{label}</Label>
             {tooltipProps?.content && (
-              <Tooltip {...tooltipProps}>
+              <Tooltip {...tooltipProps} offsetVertical={50}>
                 <InfoIcon />
               </Tooltip>
             )}
           </LeftPart>
-          {invalid && <ErrorText>Обязательное поле</ErrorText>}
+          {error?.visible && <ErrorText>{error.text || 'Обязательное поле'}</ErrorText>}
         </LabelWrapper>
-        <TextareaStyled $invalid={invalid} ref={ref} {...props} />
+        <TextareaStyled $invalid={error?.visible} ref={ref} {...props} />
       </TextareaWrapper>
     );
   },

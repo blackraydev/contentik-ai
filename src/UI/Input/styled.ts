@@ -22,12 +22,13 @@ export const LeftPart = styled.div`
 `;
 
 export const ErrorText = styled.span`
+  transition: 0.2s ease;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.errorFont};
 `;
 
 export const Label = styled.label`
-  margin-left: 10px;
+  transition: 0.2s ease;
   font-size: 16px;
   color: ${({ theme }) => theme.colors.primaryFont};
 `;
@@ -36,7 +37,7 @@ export const InputStyled = styled.input<{ $invalid?: boolean }>`
   transition: 0.2s ease;
   height: 48px;
   font-size: 16px;
-  border-radius: 0.75rem;
+  border-radius: 15px;
   padding: 0 15px;
   color: ${({ theme }) => theme.colors.primaryFont};
   background: ${({ theme }) => theme.colors.primaryBg};
@@ -48,13 +49,14 @@ export const InputStyled = styled.input<{ $invalid?: boolean }>`
     border: 1px solid ${({ theme }) => theme.colors.borderActive};
   }
   &::placeholder {
-    color: ${({ theme }) => theme.colors.secondaryFont};
+    transition: 0.2s ease;
+    color: ${({ theme }) => theme.colors.placeholderFont};
   }
 `;
 
 export const InfoIcon = styled(AiOutlineInfoCircle)`
   cursor: pointer;
   transition: 0.2s ease;
-  color: ${({ theme }) => theme.colors.icon};
+  color: ${({ theme }) => theme.colors.secondaryFont};
   margin-top: 1px;
 `;
