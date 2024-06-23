@@ -1,15 +1,15 @@
-import { HistoryIcon, MagicIcon } from '../styled';
+import { HistoryIcon, MagicIcon, PenIcon, SeoIcon, ToneIcon } from '../styled';
 
 export const generationTabRoutes = [
   {
     title: 'Создание',
-    path: '/app',
+    path: '/app/create',
     icon: <MagicIcon />,
   },
   {
     title: 'Редактирование',
     path: '/app/edit',
-    icon: <MagicIcon />,
+    icon: <PenIcon />,
   },
 ];
 
@@ -17,11 +17,11 @@ export const analysisTabRoutes = [
   {
     title: 'Оптимизация',
     path: '/app/optimization',
-    icon: <MagicIcon />,
+    icon: <SeoIcon />,
   },
   {
     title: 'Тональность',
     path: '/app/tonality',
-    icon: <MagicIcon />,
+    icon: <ToneIcon />,
   },
 ];

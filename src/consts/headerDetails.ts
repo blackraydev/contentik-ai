@@ -1,17 +1,17 @@
 import { PrivateRoutes } from './routes';
 
 export const HeaderDetails = {
-  [PrivateRoutes.App]: {
+  [PrivateRoutes.Dashboard]: {
+    title: 'Главная',
+    description: 'Главная страница',
+  },
+  [PrivateRoutes.Create]: {
     title: 'Генерация',
     description: 'Создайте контент, который увлечет ваших читателей',
   },
-  [PrivateRoutes.History]: {
-    title: 'История',
-    description: 'Просмотрите историю своих генераций',
-  },
-  [PrivateRoutes.Tariffs]: {
-    title: 'Тарифы',
-    description: 'Выберите тариф, который соответствует вашим потребностям',
+  [PrivateRoutes.Edit]: {
+    title: 'Редактирование',
+    description: 'Редактируйте контент, созданный вами',
   },
   [PrivateRoutes.Optimization]: {
     title: 'Оптимизация',
@@ -20,5 +20,13 @@ export const HeaderDetails = {
   [PrivateRoutes.Tonality]: {
     title: 'Анализ тональности',
     description: 'Определение эмоциональной окраски текста',
+  },
+  [PrivateRoutes.History]: {
+    title: 'История',
+    description: 'Просмотрите историю своих генераций',
+  },
+  [PrivateRoutes.Tariffs]: {
+    title: 'Тарифы',
+    description: 'Выберите тариф, который соответствует вашим потребностям',
   },
 };

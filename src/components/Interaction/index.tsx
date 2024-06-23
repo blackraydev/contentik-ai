@@ -1,36 +1,53 @@
 import { Fragment, useMemo, useState } from 'react';
 import { getContent } from '../../api';
-import { useContentScope, useUserScope } from '../../scopes';
+import { useUserScope } from '../../scopes';
 import { Card, Input, SearchSelect, Select, Textarea } from '../../UI';
-import { FormFields } from './types';
+import { FormFields, Mode } from './types';
 import { languages, styles, tones } from '../../consts';
 import { FieldsWrapper, GenerateButton, InteractionStyled, TextareaStyled, Title } from './styled';
 
-export const Interaction = () => {
+type InteractionProps = {
+  mode: Mode;
+  setContent: React.Dispatch<React.SetStateAction<string>>;
+  isGenerating: boolean;
+  setGenerating: React.Dispatch<React.SetStateAction<boolean>>;
+  text: string;
+  setText: React.Dispatch<React.SetStateAction<string>>;
+  topic: string;
+  setTopic: React.Dispatch<React.SetStateAction<string>>;
+  description: string;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  keywords: string;
+  setKeywords: React.Dispatch<React.SetStateAction<string>>;
+  style: string;
+  setStyle: React.Dispatch<React.SetStateAction<string>>;
+  tone: string;
+  setTone: React.Dispatch<React.SetStateAction<string>>;
+  language: string;
+  setLanguage: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export const Interaction = ({
+  isGenerating,
+  setContent,
+  setGenerating,
+  mode,
+  text,
+  setText,
+  topic,
+  setTopic,
+  description,
+  setDescription,
+  keywords,
+  setKeywords,
+  style,
+  setStyle,
+  tone,
+  setTone,
+  language,
+  setLanguage,
+}: InteractionProps) => {
   const { session } = useUserScope();
-  const {
-    isGenerating,
-    setContent,
-    setGenerating,
-    mode,
-    setMode,
-    text,
-    setText,
-    topic,
-    setTopic,
-    description,
-    setDescription,
-    keywords,
-    setKeywords,
-    style,
-    setStyle,
-    tone,
-    setTone,
-    language,
-    setLanguage,
-    photos,
-    setPhotos,
-  } = useContentScope();
   const [invalidFields, setInvalidFields] = useState<FormFields[]>([]);
 
   const isInvalid = useMemo(() => {
@@ -75,7 +92,6 @@ export const Interaction = () => {
         style,
         tone,
         language,
-        photos,
       });
       const decoder = new TextDecoder();
 
@@ -92,28 +108,12 @@ export const Interaction = () => {
     }
   };
 
-  // const handlePhotoUploaded = (file?: File) => {
-  //   if (file) {
-  //     setPhotos((prev) => [...prev, file]);
-  //   }
-  // };
-
-  // const handlePhotoRemove = (index: number) => {
-  //   setPhotos((prev) => prev.filter((_, i) => i !== index));
-  // };
-
   return (
     <InteractionStyled>
-      {/* <Tabs
-        options={modes}
-        value={mode}
-        onChange={(value) => {
-          setMode(value as Mode);
-          setInvalidFields([]);
-        }}
-      /> */}
       <Card width="100%" height="fit-content">
-        <Title>О чём будет ваш пост?</Title>
+        <Title>
+          {mode === 'create' ? 'О чём будет ваш пост?' : 'Какой текст вы хотите отредактировать?'}
+        </Title>
         {mode === 'create' ? (
           <Fragment>
             <Input
@@ -202,21 +202,13 @@ export const Interaction = () => {
           />
         </FieldsWrapper>
       </Card>
-      {/* <Card width="100%" height="fit-content">
-        <PhotoUpload
-          photos={photos}
-          onPhotoUploaded={handlePhotoUploaded}
-          onPhotoRemove={handlePhotoRemove}
-          mode={mode}
-        />
-      </Card> */}
       <GenerateButton
         onClick={handleSubmit}
         isLoading={isGenerating}
         disabled={isGenerating}
         $isGenerating={isGenerating}
       >
-        Сгенерировать
+        {mode === 'create' ? 'Сгенерировать' : 'Отредактировать'}
       </GenerateButton>
     </InteractionStyled>
   );

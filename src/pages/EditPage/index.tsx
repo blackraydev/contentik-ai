@@ -1,15 +1,17 @@
 import { Content, Interaction } from '../../components';
 import { useCheckMobileScreen } from '../../hooks';
-import { useContentScope } from '../../scopes';
+import { useEditContentScope } from '../../scopes';
 import { Wrapper } from './styled';
 
 export const EditPage = () => {
-  const { content, isGenerating } = useContentScope();
+  const editContentScope = useEditContentScope();
   const isMobile = useCheckMobileScreen();
+
+  const { content, isGenerating } = editContentScope;
 
   return (
     <Wrapper $isMobile={isMobile}>
-      <Interaction />
+      <Interaction {...editContentScope} mode="edit" />
       <Content
         content={content}
         isGenerating={isGenerating}

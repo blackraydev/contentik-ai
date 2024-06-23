@@ -1,1 +1,1 @@
-export { tabRoutes } from './tabRoutes';
+export { generationTabRoutes, analysisTabRoutes } from './tabRoutes';

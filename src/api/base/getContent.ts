@@ -11,27 +11,15 @@ type GetContentParams = {
   style: string;
   tone: string;
   language: string;
-  photos: File[];
 };
 
 export const getContent = async (props: GetContentParams) => {
-  const formData = new FormData();
-
-  Object.entries(props).forEach(([key, value]) => {
-    if (value && typeof value !== 'object') {
-      formData.append(key, value);
-    }
-  });
-
-  if (props.photos.length) {
-    props.photos.forEach((photo) => {
-      formData.append('photos', photo);
-    });
-  }
-
   const response = await fetch(`${API_URL}/getContent`, {
     method: 'POST',
-    body: formData,
+    body: JSON.stringify({ ...props }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 
   return response.body;
