@@ -1,1 +1,2 @@
-export { getContent } from './getContent';
+export * from './base';
+export * from './supabase';

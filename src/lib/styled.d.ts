@@ -6,15 +6,20 @@ declare module 'styled-components' {
       // Common colors
       white: string;
       black: string;
-      
+      dark: string;
+
       // Theme colors
       primaryBg: string;
+      primaryBgReverse: string;
       primaryFont: string;
+      primaryLightFont: string;
       primaryBoxShadow: string;
       borderDefault: string;
       borderActive: string;
       secondaryBg: string;
+      secondaryLightBg: string;
       secondaryFont: string;
+      secondaryLightFont: string;
       inputHover: string;
       buttonBg: string;
       buttonFont: string;
@@ -24,6 +29,7 @@ declare module 'styled-components' {
       icon: string;
       errorFont: string;
       errorBorder: string;
+      placeholderFont: string;
     };
   }
 }

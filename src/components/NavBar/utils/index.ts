@@ -1,0 +1,1 @@
+export { getActiveTabRoute } from './getActiveTabRoute';

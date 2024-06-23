@@ -32,6 +32,7 @@ export const Circular = styled.svg`
 `;
 
 export const Path = styled.circle`
+  transition: 0.2s ease;
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
   animation: dash 1.5s ease-in-out infinite;

@@ -8,9 +8,9 @@ import {
   Photo,
   CrossIcon,
   PhotoUploadBlocks,
-  Label,
-  LabelWrapper,
   InfoIcon,
+  TitleWrapper,
+  Title,
 } from './styled';
 import { Tooltip } from '../../../../UI';
 import { Mode } from '../../types';
@@ -40,18 +40,18 @@ export const PhotoUpload = ({ photos, onPhotoUploaded, onPhotoRemove, mode }: Ph
 
   return (
     <PhotoUploadStyled>
-      <LabelWrapper>
-        <Label>Фотографии</Label>
+      <TitleWrapper>
+        <Title>Фотографии</Title>
         <Tooltip
           content={`На фотографии можно ссылаться в ${
             mode === 'create' ? 'описании' : 'тексте'
           } поста`}
-          offset={50}
+          offsetVertical={50}
           width={220}
         >
           <InfoIcon />
         </Tooltip>
-      </LabelWrapper>
+      </TitleWrapper>
       <PhotoUploadBlocks $fullWidth={!photos.length}>
         {photos.map((photo, index) => (
           <PhotoHolder onClick={() => onPhotoRemove(index)} key={index}>

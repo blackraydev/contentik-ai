@@ -7,3 +7,6 @@ export { SearchSelect } from './SearchSelect';
 export { Tooltip } from './Tooltip';
 export { Tabs } from './Tabs';
 export { Card } from './Card';
+export { Progress } from './Progress';
+export { TextSkeleton } from './TextSkeleton';
+export { Modal } from './Modal';

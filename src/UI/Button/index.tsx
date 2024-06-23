@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { ButtonStyled } from './styled';
 import { Loader } from '../Loader';
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   isLoading?: boolean;
   children: ReactNode;
 };
@@ -10,8 +10,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 export const Button = ({ children, disabled, isLoading, ...props }: ButtonProps) => {
   return (
     <ButtonStyled disabled={disabled || isLoading} {...props}>
-      {isLoading && <Loader />}
-      {children}
+      {isLoading ? <Loader /> : children}
     </ButtonStyled>
   );
 };

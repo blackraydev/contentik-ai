@@ -61,7 +61,7 @@ export const SearchSelect = ({
     <SearchSelectStyled onBlur={handleSelectBlur} className={className} $isOpen={isOpen}>
       <LabelWrapper>
         <Label>{label}</Label>
-        <Tooltip width={230} content="Можно указать свой вариант или выбрать из предложенных" offset={50}>
+        <Tooltip width={230} content="Можно указать свой вариант или выбрать из предложенных" offsetVertical={50}>
           <InfoIcon />
         </Tooltip>
       </LabelWrapper>

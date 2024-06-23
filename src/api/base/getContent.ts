@@ -1,7 +1,8 @@
-import { API_URL } from '../consts';
-import '../polyfills/readableStream';
+import { API_URL } from '../../consts';
+import '../../polyfills/readableStream';
 
 type GetContentParams = {
+  userId: string;
   mode: 'create' | 'edit';
   text: string;
   topic: string;

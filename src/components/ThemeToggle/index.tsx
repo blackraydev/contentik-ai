@@ -15,7 +15,12 @@ export const ThemeToggle = () => {
   const { isDarkTheme, toggleTheme } = useThemeScope();
 
   return (
-    <Tooltip width={125} position="bottom" content="Сменить тему" offset={50}>
+    <Tooltip
+      width={125}
+      position="bottom"
+      content="Сменить тему"
+      offsetVertical={52}
+    >
       <ThemeToggleStyled
         id="theme-toggler"
         onClick={toggleTheme}

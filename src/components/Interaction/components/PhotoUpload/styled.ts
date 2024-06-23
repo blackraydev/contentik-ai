@@ -9,16 +9,23 @@ export const PhotoUploadStyled = styled.div`
   width: 100%;
 `;
 
-export const LabelWrapper = styled.div`
+export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   gap: 10px;
-  margin-bottom: 8px;
-  margin-left: 15px;
+  margin-bottom: 20px;
+`;
+
+export const Title = styled.h1`
+  text-align: start;
+  font-size: 20px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.primaryFont};
 `;
 
 export const Label = styled.span`
+  transition: 0.2s ease;
   font-size: 16px;
   color: ${({ theme }) => theme.colors.primaryFont};
 `;
@@ -70,12 +77,12 @@ export const Photo = styled.img`
   cursor: pointer;
   width: 50px;
   height: 50px;
-  border-radius: 0.75rem;
+  border-radius: 15px;
 `;
 
 export const InfoIcon = styled(AiOutlineInfoCircle)`
   cursor: pointer;
   transition: 0.2s ease;
   margin-top: 1px;
-  color: ${({ theme }) => theme.colors.primaryFont};
+  color: ${({ theme }) => theme.colors.secondaryFont};
 `;

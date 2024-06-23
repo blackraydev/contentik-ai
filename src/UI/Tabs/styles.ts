@@ -10,6 +10,7 @@ export const TabsWrapper = styled.div`
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
+  min-height: 50px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -21,7 +22,7 @@ export const TabsStyled = styled.div<{ $active?: boolean }>`
   cursor: pointer;
   width: 50%;
   padding: 10px 0;
-  border-radius: 6px;
+  border-radius: 15px;
   color: ${({ theme }) => theme.colors.primaryFont};
   background: ${({ $active, theme }) =>
     $active ? theme.colors.primaryBg : theme.colors.secondaryBg};

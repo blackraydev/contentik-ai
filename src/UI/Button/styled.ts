@@ -6,7 +6,7 @@ export const ButtonStyled = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.75rem;
+  border-radius: 15px;
   background: ${({ theme }) => theme.colors.buttonBg};
   color: ${({ theme }) => theme.colors.buttonFont};
   font-size: 16px;
