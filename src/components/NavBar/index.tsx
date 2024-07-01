@@ -5,7 +5,6 @@ import { getActiveTabRoute } from './utils';
 import { tabRoutes } from './consts';
 import {
   BottomPart,
-  Logo,
   LogoText,
   LogoWrapper,
   NavBarStyled,
@@ -27,8 +26,7 @@ export const NavBar = () => {
     <NavBarStyled>
       <TopPart>
         <LogoWrapper>
-          <Logo src="logo.png" alt="logo" />
-          <LogoText>ontentik</LogoText>
+          <LogoText>Contentik</LogoText>
         </LogoWrapper>
         <Navigation>
           {tabRoutes.map((route) => (
