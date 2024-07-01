@@ -1,1 +1,1 @@
-export { FormFields } from './formFields';
+export type { FormFields } from './formFields';

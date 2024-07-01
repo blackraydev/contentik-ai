@@ -16,9 +16,7 @@ export const MarkdownEditorStyled = styled.div`
     overflow-y: scroll;
     color: ${({ theme }) => theme.colors.primaryFont} !important;
     background: ${({ theme }) => theme.colors.primaryBg};
-    border: 1px solid
-      ${({ theme, $invalid }) =>
-        $invalid ? `${theme.colors.errorBorder} !important` : theme.colors.borderDefault};
+    border: 1px solid ${({ theme }) => theme.colors.borderDefault};
 
     &:focus {
       border: 1px solid ${({ theme }) => theme.colors.borderActive};
