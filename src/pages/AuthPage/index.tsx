@@ -4,7 +4,6 @@ import {
   AuthBlock,
   AuthHeader,
   AuthPageStyled,
-  Logo,
   LogoText,
   LogoWrapper,
   WelcomeBlock,
@@ -16,8 +15,7 @@ export const AuthPage = () => {
       <AuthBlock>
         <AuthHeader>
           <LogoWrapper>
-            <Logo src="logo.png" alt="logo" />
-            <LogoText>ontentik</LogoText>
+            <LogoText>Contentik</LogoText>
           </LogoWrapper>
           <ThemeToggle />
         </AuthHeader>

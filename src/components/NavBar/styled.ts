@@ -35,7 +35,6 @@ export const LogoText = styled.p`
   font-weight: 500;
   font-size: 24px;
   color: ${({ theme }) => theme.colors.primaryFont};
-  margin-left: -8px;
 `;
 
 export const Section = styled.div`
