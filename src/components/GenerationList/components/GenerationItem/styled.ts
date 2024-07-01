@@ -14,26 +14,6 @@ export const GenerationDeleteIcon = styled(IoClose)`
   }
 `;
 
-export const GenerationItemStyled = styled.div<{ $active: boolean }>`
-  transition: 0.2s ease;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  border: ${({ theme }) => `1px solid ${theme.colors.borderDefault}`};
-  box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
-  border-radius: 15px;
-  background: ${({ theme, $active }) => $active && theme.colors.secondaryBg};
-
-  &:hover {
-    background: ${({ theme, $active }) => !$active && theme.colors.secondaryLightBg};
-
-    ${GenerationDeleteIcon} {
-      opacity: 1;
-    }
-  }
-`;
-
 export const GenerationHeader = styled.div`
   display: flex;
   align-items: flex-end;
@@ -60,7 +40,6 @@ export const GenerationDate = styled.p`
   font-size: 14px;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.secondaryFont};
-  margin-bottom: -1px;
 `;
 
 export const GenerationDescription = styled.p<{ $hasAdditionalInfo: boolean }>`
@@ -83,7 +62,7 @@ export const GenerationAdditionalWrapper = styled.div`
 export const GenerationAdditionalName = styled.p`
   transition: 0.2s ease;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.primaryFont};
   width: fit-content;
 `;
@@ -92,9 +71,30 @@ export const GenerationAdditionalInfo = styled.p`
   transition: 0.2s ease;
   font-size: 14px;
   font-weight: 400;
-  color: ${({ theme }) => theme.colors.buttonFont};
-  background: ${({ theme }) => theme.colors.buttonBg};
+  color: ${({ theme }) => theme.colors.primaryFont};
+  background: ${({ theme }) => theme.colors.buttonFont};
   width: fit-content;
   padding: 5px 10px;
   border-radius: 15px;
+  box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
+  border: 1px solid ${({ theme }) => theme.colors.borderDefault};
+`;
+
+export const GenerationItemStyled = styled.div<{ $active: boolean }>`
+  transition: 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 1.5rem;
+  background: ${({ theme }) => theme.colors.primaryBg};
+  border: 1px solid
+    ${({ theme, $active }) => ($active ? theme.colors.buttonBg : theme.colors.primaryBg)};
+  box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
+
+  &:hover {
+    ${GenerationDeleteIcon} {
+      opacity: 1;
+    }
+  }
 `;

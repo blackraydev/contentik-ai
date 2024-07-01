@@ -26,7 +26,6 @@ export const TariffItem = styled.div`
   border-radius: 15px;
   background: ${({ theme }) => theme.colors.primaryBg};
   color: ${({ theme }) => theme.colors.primaryFont};
-  border: 1px solid ${({ theme }) => theme.colors.borderDefault};
   box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
 `;
 
@@ -180,6 +179,11 @@ export const TariffPrice = styled.p`
 export const ChooseTariffButton = styled(Button)`
   background: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
+
+  &:hover {
+    background: rgb(236, 236, 238);
+    color: ${({ theme }) => theme.colors.black};
+  }
 `;
 
 export const TariffFunction = styled.div`

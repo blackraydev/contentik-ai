@@ -14,6 +14,10 @@ type CreateContentContextType = {
   setText: React.Dispatch<React.SetStateAction<string>>;
   topic: string;
   setTopic: React.Dispatch<React.SetStateAction<string>>;
+  contentType: string;
+  setContentType: React.Dispatch<React.SetStateAction<string>>;
+  targetAudience: string;
+  setTargetAudience: React.Dispatch<React.SetStateAction<string>>;
   description: string;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
   keywords: string;
@@ -35,6 +39,10 @@ const CreateContentContext = createContext<CreateContentContextType>({
   setText: () => {},
   topic: '',
   setTopic: () => {},
+  contentType: '',
+  setContentType: () => {},
+  targetAudience: '',
+  setTargetAudience: () => {},
   description: '',
   setDescription: () => {},
   keywords: '',
@@ -54,6 +62,8 @@ export const CreateContentScope = ({ children }: CreateContentScopeProps) => {
   const [isGenerating, setGenerating] = useState(false);
   const [text, setText] = useState('');
   const [topic, setTopic] = useState('');
+  const [contentType, setContentType] = useState('');
+  const [targetAudience, setTargetAudience] = useState('');
   const [description, setDescription] = useState('');
   const [keywords, setKeywords] = useState('');
   const [style, setStyle] = useState('');
@@ -71,6 +81,10 @@ export const CreateContentScope = ({ children }: CreateContentScopeProps) => {
         setText,
         topic,
         setTopic,
+        contentType,
+        setContentType,
+        targetAudience,
+        setTargetAudience,
         description,
         setDescription,
         keywords,

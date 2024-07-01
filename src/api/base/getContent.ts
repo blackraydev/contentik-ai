@@ -6,6 +6,8 @@ type GetContentParams = {
   mode: 'create' | 'edit';
   text: string;
   topic: string;
+  contentType: string;
+  targetAudience: string;
   description: string;
   keywords: string;
   style: string;

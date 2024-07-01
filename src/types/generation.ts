@@ -3,6 +3,8 @@ export type Generation = {
   userId: string;
   mode: 'create' | 'edit';
   topic: string;
+  contentType: string;
+  targetAudience: string;
   description: string;
   keywords: string;
   style: string;

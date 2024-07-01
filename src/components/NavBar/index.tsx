@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Limits } from './components';
 import { getActiveTabRoute } from './utils';
-import { analysisTabRoutes, generationTabRoutes } from './consts';
+import { tabRoutes } from './consts';
 import {
   BottomPart,
   Logo,
@@ -11,8 +11,6 @@ import {
   NavBarStyled,
   NavLink,
   Navigation,
-  Section,
-  SectionTitle,
   TopPart,
 } from './styled';
 
@@ -32,38 +30,19 @@ export const NavBar = () => {
           <Logo src="logo.png" alt="logo" />
           <LogoText>ontentik</LogoText>
         </LogoWrapper>
-        <Section>
-          <SectionTitle>Генерация</SectionTitle>
-          <Navigation>
-            {generationTabRoutes.map((route) => (
-              <NavLink
-                key={route.path}
-                to={route.path}
-                onClick={() => setActiveTabRoute(route.path)}
-                $active={activeTabRoute === route.path}
-              >
-                {route.icon}
-                {route.title}
-              </NavLink>
-            ))}
-          </Navigation>
-        </Section>
-        <Section>
-          <SectionTitle>Анализ</SectionTitle>
-          <Navigation>
-            {analysisTabRoutes.map((route) => (
-              <NavLink
-                key={route.path}
-                to={route.path}
-                onClick={() => setActiveTabRoute(route.path)}
-                $active={activeTabRoute === route.path}
-              >
-                {route.icon}
-                {route.title}
-              </NavLink>
-            ))}
-          </Navigation>
-        </Section>
+        <Navigation>
+          {tabRoutes.map((route) => (
+            <NavLink
+              key={route.path}
+              to={route.path}
+              onClick={() => setActiveTabRoute(route.path)}
+              $active={activeTabRoute === route.path}
+            >
+              {route.icon}
+              {route.title}
+            </NavLink>
+          ))}
+        </Navigation>
       </TopPart>
       <BottomPart>
         <Limits />

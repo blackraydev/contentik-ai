@@ -10,3 +10,4 @@ export { Card } from './Card';
 export { Progress } from './Progress';
 export { TextSkeleton } from './TextSkeleton';
 export { Modal } from './Modal';
+export { Accordion } from './Accordion';

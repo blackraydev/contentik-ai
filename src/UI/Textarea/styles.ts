@@ -39,13 +39,11 @@ export const TextareaStyled = styled.textarea<{ $invalid?: boolean }>`
   font-size: 16px;
   border-radius: 15px;
   padding: 13px 15px;
-  height: 160px;
+  height: 140px;
   resize: none;
   color: ${({ theme }) => theme.colors.primaryFont};
-  background: ${({ theme }) => theme.colors.primaryBg};
-  border: 1px solid
-    ${({ theme, $invalid }) =>
-      $invalid ? `${theme.colors.errorBorder} !important` : theme.colors.borderDefault};
+  background: ${({ theme }) => theme.colors.elemBg};
+  border: 1px solid ${({ theme }) => theme.colors.elemBg};
 
   &:focus {
     border: 1px solid ${({ theme }) => theme.colors.borderActive};
@@ -54,6 +52,7 @@ export const TextareaStyled = styled.textarea<{ $invalid?: boolean }>`
     display: none;
   }
   &::placeholder {
+    transition: 0.2s ease;
     color: ${({ theme }) => theme.colors.placeholderFont};
   }
 `;

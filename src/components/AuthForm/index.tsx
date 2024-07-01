@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { signInWithEmail, signUpNewUser, signInWithOAuth } from '../../api';
-import { Input, Loader } from '../../UI';
+import { Input } from '../../UI';
 import { useUserScope } from '../../scopes';
 import { FormFields } from './types';
 import {

@@ -1,9 +1,9 @@
 import { Fragment, useMemo, useState } from 'react';
 import { getContent } from '../../api';
 import { useUserScope } from '../../scopes';
-import { Card, Input, SearchSelect, Select, Textarea } from '../../UI';
+import { Accordion, Card, Input, SearchSelect, Select, Textarea } from '../../UI';
 import { FormFields, Mode } from './types';
-import { languages, styles, tones } from '../../consts';
+import { contentTypes, languages, styles, tones } from '../../consts';
 import { FieldsWrapper, GenerateButton, InteractionStyled, TextareaStyled, Title } from './styled';
 
 type InteractionProps = {
@@ -15,6 +15,10 @@ type InteractionProps = {
   setText: React.Dispatch<React.SetStateAction<string>>;
   topic: string;
   setTopic: React.Dispatch<React.SetStateAction<string>>;
+  contentType: string;
+  setContentType: React.Dispatch<React.SetStateAction<string>>;
+  targetAudience: string;
+  setTargetAudience: React.Dispatch<React.SetStateAction<string>>;
   description: string;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
   keywords: string;
@@ -36,6 +40,10 @@ export const Interaction = ({
   setText,
   topic,
   setTopic,
+  contentType,
+  setContentType,
+  targetAudience,
+  setTargetAudience,
   description,
   setDescription,
   keywords,
@@ -52,17 +60,14 @@ export const Interaction = ({
 
   const isInvalid = useMemo(() => {
     if (mode === 'create') {
-      return !topic.trim() || !description.trim();
+      return !topic.trim();
     }
     return !text.trim();
-  }, [mode, text, topic, description]);
+  }, [mode, text, topic]);
 
   const validate = () => {
     if (mode === 'create' && !topic.trim()) {
       setInvalidFields((prev) => [...prev, 'topic']);
-    }
-    if (mode === 'create' && !description.trim()) {
-      setInvalidFields((prev) => [...prev, 'description']);
     }
     if (mode === 'edit' && !text.trim()) {
       setInvalidFields((prev) => [...prev, 'text']);
@@ -87,6 +92,8 @@ export const Interaction = ({
         mode,
         text,
         topic,
+        contentType,
+        targetAudience,
         description,
         keywords,
         style,
@@ -110,9 +117,11 @@ export const Interaction = ({
 
   return (
     <InteractionStyled>
-      <Card width="100%" height="fit-content">
+      <Card width="100%" height={'fit-content'}>
         <Title>
-          {mode === 'create' ? 'О чём будет ваш пост?' : 'Какой текст вы хотите отредактировать?'}
+          {mode === 'create'
+            ? 'О чём будет ваш контент?'
+            : 'Какой контент вы хотите отредактировать?'}
         </Title>
         {mode === 'create' ? (
           <Fragment>
@@ -126,18 +135,14 @@ export const Interaction = ({
               error={{ visible: invalidFields.includes('topic') }}
               placeholder="Спорт"
               tooltipProps={{
-                content: 'Основная тема или заголовок поста',
+                content: 'Основная тема или заголовок',
                 width: 160,
               }}
             />
             <Textarea
               label="Описание"
               value={description}
-              onChange={(e) => {
-                setDescription(e.target.value);
-                removeInvalidField('description');
-              }}
-              error={{ visible: invalidFields.includes('description') }}
+              onChange={(e) => setDescription(e.target.value)}
               placeholder="Влияние ежедневного занятия спортом на состояние здоровья человека. Выделить преимущества и недостатки занятия спортом"
               tooltipProps={{
                 content: 'Краткое описание или аннотация поста',
@@ -154,35 +159,38 @@ export const Interaction = ({
               removeInvalidField('text');
             }}
             error={{ visible: invalidFields.includes('text') }}
-            placeholder="Текст"
-            tooltipProps={{
-              content: 'Текст существующего поста, который нужно отредактировать',
-              width: 250,
-            }}
           />
         )}
       </Card>
-      <Card width="100%" height="fit-content">
-        <Title>Дополнительные настройки</Title>
+      <Accordion title="Характеристики" width="100%" height="fit-content">
         <FieldsWrapper>
-          <Input
-            label="Ключевые слова"
-            value={keywords}
-            onChange={(e) => setKeywords(e.target.value)}
-            placeholder="Арбуз, Банан, Апельсин"
-            tooltipProps={{
-              content: 'Перечислите ключевые слова через запятую',
-              width: 200,
-            }}
+          <SearchSelect
+            label="Тип контента"
+            placeholder="Выбрать тип контента"
+            value={contentType}
+            onChange={setContentType}
+            options={contentTypes}
+            withClear
           />
-          <Select
-            label="Язык"
-            placeholder="Выбрать язык"
-            value={language}
-            onChange={setLanguage}
-            options={languages}
+          <Input
+            label="Целевая аудитория"
+            value={targetAudience}
+            onChange={(e) => setTargetAudience(e.target.value)}
+            placeholder="Молодёжь"
           />
         </FieldsWrapper>
+        <Input
+          label="Ключевые слова"
+          value={keywords}
+          onChange={(e) => setKeywords(e.target.value)}
+          placeholder="Арбуз, Банан, Апельсин"
+          tooltipProps={{
+            content: 'Перечислите ключевые слова через запятую',
+            width: 200,
+          }}
+        />
+      </Accordion>
+      <Accordion title="Дополнительные настройки" width="100%" height="fit-content">
         <FieldsWrapper>
           <SearchSelect
             label="Стиль письма"
@@ -201,7 +209,14 @@ export const Interaction = ({
             withClear
           />
         </FieldsWrapper>
-      </Card>
+        <Select
+          label="Язык"
+          placeholder="Выбрать язык"
+          value={language}
+          onChange={setLanguage}
+          options={languages}
+        />
+      </Accordion>
       <GenerateButton
         onClick={handleSubmit}
         isLoading={isGenerating}

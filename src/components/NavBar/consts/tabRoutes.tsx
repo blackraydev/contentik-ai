@@ -1,6 +1,6 @@
-import { HistoryIcon, MagicIcon, PenIcon, SeoIcon, ToneIcon } from '../styled';
+import { HistoryIcon, MagicIcon, PenIcon } from '../styled';
 
-export const generationTabRoutes = [
+export const tabRoutes = [
   {
     title: 'Создание',
     path: '/app/create',
@@ -11,17 +11,9 @@ export const generationTabRoutes = [
     path: '/app/edit',
     icon: <PenIcon />,
   },
-];
-
-export const analysisTabRoutes = [
   {
-    title: 'Оптимизация',
-    path: '/app/optimization',
-    icon: <SeoIcon />,
-  },
-  {
-    title: 'Тональность',
-    path: '/app/tonality',
-    icon: <ToneIcon />,
+    title: 'История',
+    path: '/app/history',
+    icon: <HistoryIcon />,
   },
 ];

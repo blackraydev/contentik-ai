@@ -5,10 +5,9 @@ export const CardStyled = styled.div<{ $padding?: string }>`
   width: 100%;
   height: fit-content;
   background: ${({ theme }) => theme.colors.primaryBg};
-  border-radius: 15px;
-  border: 1px solid ${({ theme }) => theme.colors.borderDefault};
   box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
-  padding: 20px;
+  border-radius: 1.5rem;
+  padding: 25px;
 `;
 
 export const ChildrenStyled = styled.div<{ $width: string; $height: string }>`

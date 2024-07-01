@@ -4,7 +4,7 @@ export const AuthPageStyled = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
-  background: ${({ theme }) => theme.colors.primaryBg};
+  background: ${({ theme }) => theme.colors.mainBg};
   transition: 0.2s ease;
 `;
 

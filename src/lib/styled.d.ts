@@ -9,6 +9,8 @@ declare module 'styled-components' {
       dark: string;
 
       // Theme colors
+      mainBg: string;
+      elemBg: string;
       primaryBg: string;
       primaryBgReverse: string;
       primaryFont: string;

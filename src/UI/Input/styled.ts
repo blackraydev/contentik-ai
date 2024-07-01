@@ -40,10 +40,8 @@ export const InputStyled = styled.input<{ $invalid?: boolean }>`
   border-radius: 15px;
   padding: 0 15px;
   color: ${({ theme }) => theme.colors.primaryFont};
-  background: ${({ theme }) => theme.colors.primaryBg};
-  border: 1px solid
-    ${({ theme, $invalid }) =>
-      $invalid ? `${theme.colors.errorBorder} !important` : theme.colors.borderDefault};
+  background: ${({ theme }) => theme.colors.elemBg};
+  border: 1px solid ${({ theme }) => theme.colors.elemBg};
 
   &:focus {
     border: 1px solid ${({ theme }) => theme.colors.borderActive};

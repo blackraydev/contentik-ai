@@ -1,13 +1,22 @@
 import styled from 'styled-components';
 
-export const GenerationListStyled = styled.div`
+export const GenerationHistoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 50%;
-  height: calc(100vh - 105px);
-  overflow-y: scroll !important;
+  height: calc(100vh - 100px);
   padding-bottom: 25px;
+`;
+
+export const GenerationListStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll !important;
+  padding-bottom: 5px;
 
   &::-webkit-scrollbar {
     display: none;

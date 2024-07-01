@@ -8,3 +8,4 @@ export { languages } from './languages';
 export { modes } from './modes';
 export { months } from './months';
 export { HeaderDetails } from './headerDetails';
+export { contentTypes } from './contentTypes';

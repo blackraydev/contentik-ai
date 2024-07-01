@@ -12,6 +12,7 @@ export const SelectStyled = styled.div<SelectStyleProps>`
   align-items: flex-start;
   justify-content: flex-start;
   position: relative;
+  width: 100%;
 
   ${({ $isOpen }) => css`
     ${OptionsList} {
@@ -38,7 +39,7 @@ export const SelectButton = styled.button<{ $isOptionChosen: boolean }>`
   justify-content: space-between;
   align-items: center;
   border-radius: 15px;
-  background: ${({ theme }) => theme.colors.primaryBg};
+  background: ${({ theme }) => theme.colors.elemBg};
   color: ${({ theme, $isOptionChosen }) =>
     $isOptionChosen ? theme.colors.primaryFont : theme.colors.secondaryFont};
   font-size: 16px;
@@ -47,7 +48,7 @@ export const SelectButton = styled.button<{ $isOptionChosen: boolean }>`
   gap: 6px;
   width: 100%;
   height: 48px;
-  border: 1px solid ${({ theme }) => theme.colors.borderDefault};
+  border: 1px solid ${({ theme }) => theme.colors.elemBg};
 
   &:focus {
     border: 1px solid ${({ theme }) => theme.colors.borderActive};
@@ -64,7 +65,7 @@ export const OptionsList = styled.ul`
   position: absolute;
   top: 100%;
   left: 0;
-  background: ${({ theme }) => theme.colors.primaryBg};
+  background: ${({ theme }) => theme.colors.elemBg};
   border-radius: 15px;
   overflow: hidden;
   border: 1px solid ${({ theme }) => theme.colors.borderDefault};
@@ -76,7 +77,7 @@ export const OptionItem = styled.li`
   width: 100%;
   cursor: pointer;
   padding: 10px 15px;
-  background: ${({ theme }) => theme.colors.primaryBg};
+  background: ${({ theme }) => theme.colors.elemBg};
   color: ${({ theme }) => theme.colors.primaryFont};
   border-radius: 15px;
 
