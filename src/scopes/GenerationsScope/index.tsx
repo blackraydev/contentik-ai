@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { Generation } from '../../types';
+import { Generation, Mode } from '../../types';
 import { supabase } from '../../api';
 
 type GenerationsScopeProps = {
@@ -13,6 +13,10 @@ type GenerationsContextType = {
   setGenerationListFetched: React.Dispatch<React.SetStateAction<boolean>>;
   chosenGeneration: Generation | null;
   setChosenGeneration: React.Dispatch<React.SetStateAction<Generation | null>>;
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  chosenMode: Mode | null;
+  setChosenMode: React.Dispatch<React.SetStateAction<Mode | null>>;
 };
 
 const GenerationsContext = createContext<GenerationsContextType>({
@@ -22,6 +26,10 @@ const GenerationsContext = createContext<GenerationsContextType>({
   setGenerationListFetched: () => {},
   chosenGeneration: null,
   setChosenGeneration: () => {},
+  searchValue: '',
+  setSearchValue: () => {},
+  chosenMode: null,
+  setChosenMode: () => {},
 });
 
 export const useGenerationsScope = () => useContext(GenerationsContext);
@@ -30,6 +38,8 @@ export const GenerationsScope = ({ children }: GenerationsScopeProps) => {
   const [generationList, setGenerationList] = useState<Generation[]>([]);
   const [isGenerationListFetched, setGenerationListFetched] = useState(false);
   const [chosenGeneration, setChosenGeneration] = useState<Generation | null>(null);
+  const [searchValue, setSearchValue] = useState('');
+  const [chosenMode, setChosenMode] = useState<Mode | null>(null);
 
   useEffect(() => {
     const generationsInsertChannel = supabase
@@ -52,7 +62,7 @@ export const GenerationsScope = ({ children }: GenerationsScopeProps) => {
           setGenerationList((prev) =>
             prev.filter((generation) => generation.id !== oldGeneration.id),
           );
-          
+
           if (chosenGeneration?.id === oldGeneration.id) {
             setChosenGeneration(null);
           }
@@ -75,6 +85,10 @@ export const GenerationsScope = ({ children }: GenerationsScopeProps) => {
         setGenerationListFetched,
         chosenGeneration,
         setChosenGeneration,
+        searchValue,
+        setSearchValue,
+        chosenMode,
+        setChosenMode,
       }}
     >
       {children}

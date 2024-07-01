@@ -104,7 +104,7 @@ export const ButtonStyled = styled(Button)`
   color: ${({ theme }) => theme.colors.black};
 
   &:hover {
-    background: rgb(236, 236, 237);
+    background: rgb(236, 236, 238);
     color: ${({ theme }) => theme.colors.black};
   }
 `;

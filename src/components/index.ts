@@ -10,3 +10,4 @@ export { GenerationList } from './GenerationList';
 export { Markdown } from './Markdown';
 export { GenerationView } from './GenerationView';
 export { AnalyzingText } from './AnalyzingText';
+export { MarkdownEditor } from './MarkdownEditor';

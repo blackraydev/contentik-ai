@@ -7,6 +7,12 @@ export const InteractionStyled = styled.div`
   align-items: center;
   width: 50%;
   gap: 20px;
+  height: 100vh;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Title = styled.h3`
@@ -41,7 +47,7 @@ export const FieldsWrapper = styled.div`
 `;
 
 export const TextareaStyled = styled(Textarea)`
-  height: 350px;
+  height: 225px;
 `;
 
 export const PhotosWrapper = styled.div`

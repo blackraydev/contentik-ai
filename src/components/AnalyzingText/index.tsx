@@ -1,9 +1,7 @@
-import { useMemo, useState } from 'react';
 import { useCheckMobileScreen } from '../../hooks';
 import { Card } from '../../UI';
-import { GenerateButton, TextareaStyled, Title, AnalyzingTextStyled } from './styled';
-
-type FormFields = 'text';
+import { GenerateButton, Title, AnalyzingTextStyled } from './styled';
+import { MarkdownEditor } from '../MarkdownEditor';
 
 type AnalyzingTextProps = {
   text: string;
@@ -23,26 +21,9 @@ export const AnalyzingText = ({
   onSubmit,
 }: AnalyzingTextProps) => {
   const isMobile = useCheckMobileScreen();
-  const [invalidFields, setInvalidFields] = useState<FormFields[]>([]);
-
-  const isInvalid = useMemo(() => !text.trim(), [text]);
-
-  const validate = () => {
-    if (!text.trim()) {
-      setInvalidFields((prev) => [...prev, 'text']);
-    }
-  };
-
-  const removeInvalidField = (field: FormFields) => {
-    setInvalidFields((prev) => prev.filter((it) => it !== field));
-  };
 
   const handleSubmit = async () => {
     try {
-      if (isInvalid) {
-        return validate();
-      }
-
       setAnalyzedText('');
       setIsAnalyzing(true);
 
@@ -62,19 +43,13 @@ export const AnalyzingText = ({
     }
   };
 
+  console.log(text);
+
   return (
     <AnalyzingTextStyled>
       <Card width="100%" height={isMobile ? 'fit-content' : 'calc(100vh - 252px)'} padding="0">
         <Title>Какой текст вы хотите проанализировать?</Title>
-        <TextareaStyled
-          value={text}
-          label="Текст"
-          onChange={(e) => {
-            setText(e.target.value);
-            removeInvalidField('text');
-          }}
-          error={{ visible: invalidFields.includes('text') }}
-        />
+        <MarkdownEditor value={text} onChange={(value) => setText(value)} />
       </Card>
       <GenerateButton
         onClick={handleSubmit}

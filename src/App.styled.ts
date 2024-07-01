@@ -10,14 +10,14 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     border: none;
     outline: none;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Rubik', sans-serif !important;
     font-weight: 400;
     font-style: normal;
   }
 
   html {
     transition: 0.2s ease;
-    background: ${({ theme }) => theme.colors.primaryBg};
+    background: ${({ theme }) => theme.colors.mainBg};
     overflow: hidden;
   }
 `;

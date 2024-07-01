@@ -33,7 +33,7 @@ export const LabelWrapper = styled.div`
   align-items: center;
   width: 100%;
   gap: 10px;
-  margin: 8px 0;
+  margin-bottom: 8px;
 `;
 
 export const Label = styled.span`
@@ -54,7 +54,7 @@ export const SearchInput = styled(Input)<{ $isOptionChosen: boolean }>`
   justify-content: space-between;
   align-items: center;
   border-radius: 15px;
-  background: ${({ theme }) => theme.colors.primaryBg};
+  background: ${({ theme }) => theme.colors.elemBg};
   color: ${({ theme, $isOptionChosen }) =>
     $isOptionChosen ? theme.colors.primaryFont : theme.colors.secondaryFont};
   font-size: 16px;
@@ -76,7 +76,7 @@ export const OptionsList = styled.ul`
   position: absolute;
   top: 100%;
   left: 0;
-  background: ${({ theme }) => theme.colors.primaryBg};
+  background: ${({ theme }) => theme.colors.elemBg};
   border-radius: 15px;
   overflow: hidden;
   border: 1px solid ${({ theme }) => theme.colors.borderDefault};
@@ -88,7 +88,7 @@ export const OptionItem = styled.li`
   width: 100%;
   cursor: pointer;
   padding: 10px 15px;
-  background: ${({ theme }) => theme.colors.primaryBg};
+  background: ${({ theme }) => theme.colors.elemBg};
   color: ${({ theme }) => theme.colors.primaryFont};
   border-radius: 15px;
 

@@ -12,7 +12,6 @@ export const NavBarStyled = styled.div`
   justify-content: space-between;
   width: 250px;
   height: 100%;
-  background: ${({ theme }) => theme.colors.primaryBg};
   color: ${({ theme }) => theme.colors.primaryFont};
   padding-bottom: 25px;
 `;
@@ -112,13 +111,25 @@ export const NavLink = styled(Link)<{ $active: boolean }>`
   cursor: pointer;
   transition: 0.2s ease;
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.primaryFont};
+  color: ${({ theme, $active }) => ($active ? theme.colors.buttonFont : theme.colors.primaryFont)};
   text-decoration: none;
-  background: ${({ theme, $active }) => ($active ? theme.colors.secondaryBg : 'none')};
-  padding: 14px 15px;
+  padding: 15px;
   border-radius: 15px;
+  background: ${({ theme, $active }) => $active && theme.colors.buttonBg};
 
-  &:hover {
-    background: ${({ theme, $active }) => !$active && theme.colors.secondaryLightBg};
+  ${MagicIcon} {
+    color: ${({ theme, $active }) => $active && theme.colors.buttonFont};
+  }
+  ${PenIcon} {
+    color: ${({ theme, $active }) => $active && theme.colors.buttonFont};
+  }
+  ${SeoIcon} {
+    color: ${({ theme, $active }) => $active && theme.colors.buttonFont};
+  }
+  ${ToneIcon} {
+    color: ${({ theme, $active }) => $active && theme.colors.buttonFont};
+  }
+  ${HistoryIcon} {
+    color: ${({ theme, $active }) => $active && theme.colors.buttonFont};
   }
 `;
