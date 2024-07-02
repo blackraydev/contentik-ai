@@ -10,7 +10,7 @@ export const signUpNewUser = async ({ email, password }: SignUpNewUserProps) => 
     email,
     password,
     options: {
-      emailRedirectTo: 'https://blackraydev.github.io/contentik-ai/app',
+      emailRedirectTo: 'https://blackraydev.github.io/contentik-ai',
     },
   });
 
