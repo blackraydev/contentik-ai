@@ -6,7 +6,6 @@ export const TariffItem = styled.div`
   transition: 0.2s ease;
   display: flex;
   flex-direction: column;
-  width: calc(33.33% - 10px);
   height: fit-content;
   padding: 20px;
   border-radius: 15px;
@@ -19,7 +18,6 @@ export const TariffItemPro = styled.div`
   transition: 0.2s ease;
   display: flex;
   flex-direction: column;
-  width: calc(33.33% - 10px);
   height: fit-content;
   padding: 20px;
   border-width: 1px;
@@ -216,16 +214,16 @@ export const Wrapper = styled.div<{ $isMobile: boolean }>`
   width: 100%;
   overflow-y: ${({ $isMobile }) => ($isMobile ? 'scroll' : 'none')};
   padding-bottom: ${({ $isMobile }) => ($isMobile ? '80px' : '25px')};
-  gap: ${({ $isMobile }) => ($isMobile ? '20px' : '20px')};
+  gap: ${({ $isMobile }) => ($isMobile ? '20px' : '0')};
 
   &::-webkit-scrollbar {
     display: none;
   }
 
   ${TariffItem} {
-    width: calc(100% - 5px);
+    width: ${({ $isMobile }) => ($isMobile ? 'calc(100% - 5px)' : 'calc(33.33% - 10px)')};
   }
   ${TariffItemPro} {
-    width: calc(100% - 5px);
+    width: ${({ $isMobile }) => ($isMobile ? 'calc(100% - 5px)' : 'calc(33.33% - 10px)')};
   }
 `;
