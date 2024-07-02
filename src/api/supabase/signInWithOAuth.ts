@@ -9,7 +9,7 @@ export const signInWithOAuth = async ({ provider }: SignInWithOAuthProps) => {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
-      redirectTo: 'https://localhost:5173/contentik-ai/app',
+      redirectTo: 'https://blackraydev.github.io/contentik-ai/app',
       queryParams: {
         prompt: 'consent',
       },
