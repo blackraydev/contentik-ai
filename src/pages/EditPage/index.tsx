@@ -26,7 +26,7 @@ export const EditPage = () => {
 
     return (
       <Fragment>
-        <Interaction {...editContentScope} mode="create" />
+        <Interaction {...editContentScope} mode="edit" />
         <Content
           content={content}
           isGenerating={isGenerating}
