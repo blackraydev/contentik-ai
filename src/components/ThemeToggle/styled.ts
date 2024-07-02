@@ -1,6 +1,18 @@
 import styled, { css } from 'styled-components';
 
-export const ThemeToggleStyled = styled.div<{ $isDarkTheme: boolean }>`
+export const SunAndMoon = styled.svg`
+  transition: 0.2s ease;
+  width: 32px;
+  height: 32px;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: currentColor;
+  fill: none;
+  color: ${({ theme }) => theme.colors.icon};
+`;
+
+export const ThemeToggleStyled = styled.div<{ $isDarkTheme: boolean; $isMobile: boolean }>`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -18,18 +30,11 @@ export const ThemeToggleStyled = styled.div<{ $isDarkTheme: boolean }>`
       opacity: ${$isDarkTheme ? 1 : 0};
     }
   `}
-`;
 
-export const SunAndMoon = styled.svg`
-  transition: 0.2s ease;
-  width: 32px;
-  height: 32px;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke: currentColor;
-  fill: none;
-  color: ${({ theme }) => theme.colors.icon};
+  ${SunAndMoon} {
+    width: ${({ $isMobile }) => ($isMobile ? '24px' : '32px')};
+    height: ${({ $isMobile }) => ($isMobile ? '24px' : '32px')};
+  }
 `;
 
 export const Moon = styled.mask``;

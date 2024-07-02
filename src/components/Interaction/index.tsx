@@ -1,10 +1,19 @@
 import { Fragment, useMemo, useState } from 'react';
 import { getContent } from '../../api';
 import { useUserScope } from '../../scopes';
-import { Accordion, Card, Input, SearchSelect, Select, Textarea } from '../../UI';
+import { Accordion, Button, Card, Input, SearchSelect, Select, Textarea } from '../../UI';
 import { FormFields, Mode } from './types';
 import { contentTypes, languages, styles, tones } from '../../consts';
-import { FieldsWrapper, GenerateButton, InteractionStyled, TextareaStyled, Title } from './styled';
+import {
+  ButtonsWrapper,
+  FieldsWrapper,
+  GenerateButton,
+  InteractionStyled,
+  TextareaStyled,
+  Title,
+} from './styled';
+import { useCheckScreenType } from '../../hooks';
+import { scrollToFirstError } from '../../utils';
 
 type InteractionProps = {
   mode: Mode;
@@ -29,6 +38,7 @@ type InteractionProps = {
   setTone: React.Dispatch<React.SetStateAction<string>>;
   language: string;
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
+  setMobileView: React.Dispatch<React.SetStateAction<'info' | 'content'>>;
 };
 
 export const Interaction = ({
@@ -54,7 +64,9 @@ export const Interaction = ({
   setTone,
   language,
   setLanguage,
+  setMobileView,
 }: InteractionProps) => {
+  const { isMobile } = useCheckScreenType();
   const { session } = useUserScope();
   const [invalidFields, setInvalidFields] = useState<FormFields[]>([]);
 
@@ -81,10 +93,13 @@ export const Interaction = ({
   const handleSubmit = async () => {
     try {
       if (isInvalid) {
-        return validate();
+        validate();
+        scrollToFirstError();
+        return;
       }
 
       setContent('');
+      setMobileView('content');
       setGenerating(true);
 
       const stream = await getContent({
@@ -116,7 +131,7 @@ export const Interaction = ({
   };
 
   return (
-    <InteractionStyled>
+    <InteractionStyled $isMobile={isMobile}>
       <Card width="100%" height={'fit-content'}>
         <Title>
           {mode === 'create'
@@ -145,7 +160,7 @@ export const Interaction = ({
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Влияние ежедневного занятия спортом на состояние здоровья человека. Выделить преимущества и недостатки занятия спортом"
               tooltipProps={{
-                content: 'Краткое описание или аннотация поста',
+                content: 'Краткое описание или аннотация',
                 width: 175,
               }}
             />
@@ -166,7 +181,7 @@ export const Interaction = ({
         <FieldsWrapper>
           <SearchSelect
             label="Тип контента"
-            placeholder="Выбрать тип контента"
+            placeholder="Тип"
             value={contentType}
             onChange={setContentType}
             options={contentTypes}
@@ -194,7 +209,7 @@ export const Interaction = ({
         <FieldsWrapper>
           <SearchSelect
             label="Стиль письма"
-            placeholder="Выбрать стиль"
+            placeholder="Стиль"
             value={style}
             onChange={setStyle}
             options={styles}
@@ -202,7 +217,7 @@ export const Interaction = ({
           />
           <SearchSelect
             label="Тон"
-            placeholder="Выбрать тон"
+            placeholder="Тон"
             value={tone}
             onChange={setTone}
             options={tones}
@@ -211,20 +226,34 @@ export const Interaction = ({
         </FieldsWrapper>
         <Select
           label="Язык"
-          placeholder="Выбрать язык"
+          placeholder="Язык"
           value={language}
           onChange={setLanguage}
           options={languages}
         />
       </Accordion>
-      <GenerateButton
-        onClick={handleSubmit}
-        isLoading={isGenerating}
-        disabled={isGenerating}
-        $isGenerating={isGenerating}
-      >
-        {mode === 'create' ? 'Сгенерировать' : 'Отредактировать'}
-      </GenerateButton>
+      {isMobile ? (
+        <ButtonsWrapper>
+          <GenerateButton
+            onClick={handleSubmit}
+            isLoading={isGenerating}
+            disabled={isGenerating}
+            $isGenerating={isGenerating}
+          >
+            {mode === 'create' ? 'Сгенерировать' : 'Отредактировать'}
+          </GenerateButton>
+          <Button onClick={() => setMobileView('content')}>Контент</Button>
+        </ButtonsWrapper>
+      ) : (
+        <GenerateButton
+          onClick={handleSubmit}
+          isLoading={isGenerating}
+          disabled={isGenerating}
+          $isGenerating={isGenerating}
+        >
+          {mode === 'create' ? 'Сгенерировать' : 'Отредактировать'}
+        </GenerateButton>
+      )}
     </InteractionStyled>
   );
 };

@@ -13,10 +13,12 @@ import {
   SignInButton,
   Title,
 } from './styled';
+import { useCheckScreenType } from '../../hooks';
 
 type AuthType = 'sign-in' | 'sign-up';
 
 export const AuthForm = () => {
+  const { isMobile } = useCheckScreenType();
   const { setSession, setUser } = useUserScope();
   const [authType, setAuthType] = useState<AuthType>('sign-up');
   const [email, setEmail] = useState('');
@@ -103,7 +105,7 @@ export const AuthForm = () => {
   };
 
   return (
-    <AuthFormStyled>
+    <AuthFormStyled $isMobile={isMobile}>
       <Title>{authType === 'sign-in' ? 'Вход в аккаунт' : 'Создание аккаунта'}</Title>
       <Label>
         {authType === 'sign-in'
@@ -149,7 +151,7 @@ export const AuthForm = () => {
       <SignInButton onClick={handleSubmit} isLoading={isSubmitting}>
         {authType === 'sign-in' ? 'Войти' : 'Зарегистрироваться'}
       </SignInButton>
-      <LabelSeparator>Или войти через</LabelSeparator>
+      <LabelSeparator $isMobile={isMobile}>Или войти через</LabelSeparator>
       <SignInButton isLoading={isOAuthLoading} onClick={() => handleOAuth('google')}>
         <GoogleIcon />
         Google

@@ -3,7 +3,9 @@ import { Progress } from '../../../../UI';
 import {
   ButtonStyled,
   LimitsBody,
+  LimitsButtonMobile,
   LimitsIcon,
+  LimitsIconMobile,
   LimitsStyled,
   LimitsText,
   LimitsWrapper,
@@ -11,9 +13,29 @@ import {
   TariffTitle,
 } from './styled';
 import { PrivateRoutes } from '../../../../consts';
+import { useCheckScreenType } from '../../../../hooks';
 
-export const Limits = () => {
+type LimitsProps = {
+  isMobileOpen?: boolean;
+  setOpen?: (open: boolean) => void;
+};
+
+export const Limits = ({ isMobileOpen, setOpen }: LimitsProps) => {
+  const { isMobile, isTablet } = useCheckScreenType();
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(PrivateRoutes.Tariffs);
+    setOpen?.(false);
+  };
+
+  if (!isMobileOpen && (isMobile || isTablet)) {
+    return (
+      <LimitsButtonMobile onClick={() => navigate(PrivateRoutes.Tariffs)}>
+        <LimitsIconMobile />
+      </LimitsButtonMobile>
+    );
+  }
 
   return (
     <LimitsStyled>
@@ -25,7 +47,7 @@ export const Limits = () => {
           <LimitsText>4 из 5</LimitsText>
         </LimitsBody>
         <Progress width="100%" progress={80} />
-        <ButtonStyled onClick={() => navigate(PrivateRoutes.Tariffs)}>Улучшить тариф</ButtonStyled>
+        <ButtonStyled onClick={handleClick}>Улучшить тариф</ButtonStyled>
       </LimitsWrapper>
     </LimitsStyled>
   );

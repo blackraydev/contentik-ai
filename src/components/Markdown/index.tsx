@@ -1,4 +1,4 @@
-import { useCheckMobileScreen } from '../../hooks';
+import { useCheckScreenType } from '../../hooks';
 import { MarkdownStyled } from './styled';
 
 type MarkdownProps = {
@@ -6,7 +6,7 @@ type MarkdownProps = {
 };
 
 export const Markdown = ({ source }: MarkdownProps) => {
-  const isMobile = useCheckMobileScreen();
+  const { isMobile } = useCheckScreenType();
 
   return <MarkdownStyled source={source} $isMobile={isMobile} />;
 };

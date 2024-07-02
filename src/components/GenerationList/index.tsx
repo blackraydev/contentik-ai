@@ -4,10 +4,12 @@ import { GenerationItem, SearchBar } from './components';
 import { GenerationHistoryWrapper, GenerationListStyled, GenerationsEmptyText } from './styled';
 import { supabase } from '../../api';
 import { Modal } from '../../UI';
+import { useCheckScreenType } from '../../hooks';
 
 const filterIgnoredFields = ['id', 'userId', 'createdAt', 'content'];
 
 export const GenerationList = () => {
+  const { isMobile } = useCheckScreenType();
   const { generationList, chosenGeneration, setChosenGeneration, searchValue, chosenMode } =
     useGenerationsScope();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,7 +75,7 @@ export const GenerationList = () => {
   };
 
   return (
-    <GenerationHistoryWrapper>
+    <GenerationHistoryWrapper $isMobile={isMobile}>
       {isModalOpen && (
         <Modal
           isSubmitting={isGenerationDeleting}

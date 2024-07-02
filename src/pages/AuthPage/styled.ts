@@ -86,13 +86,17 @@ export const LogoText = styled.p`
   margin-left: -8px;
 `;
 
-export const AuthBlock = styled.div`
+export const AuthBlock = styled.div<{ $isMobile: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 50%;
+  width: ${({ $isMobile }) => ($isMobile ? '100%' : '50%')};
   height: 100%;
   position: relative;
-  padding: 40px 60px;
+  padding: ${({ $isMobile }) => ($isMobile ? '30px' : '40px 60px')};
+
+  ${AuthHeader} {
+    padding: ${({ $isMobile }) => ($isMobile ? '30px' : '50px')};
+  }
 `;

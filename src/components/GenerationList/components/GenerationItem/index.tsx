@@ -12,21 +12,27 @@ import {
   GenerationTopic,
   GenerationDeleteIcon,
   GenerationHeader,
+  MagicIcon,
+  PenIcon,
 } from './styled';
+import { useCheckScreenType } from '../../../../hooks';
 
 type GenerationItemProps = Generation & {
   onCrossClick: (generationId: string) => void;
 };
 
 export const GenerationItem = ({ onCrossClick, ...generation }: GenerationItemProps) => {
-  const { chosenGeneration, setChosenGeneration } = useGenerationsScope();
+  const { isMobile } = useCheckScreenType();
+  const { chosenGeneration, setChosenGeneration, setMobileView } = useGenerationsScope();
 
   const {
     id,
+    mode,
     topic,
     contentType,
     targetAudience,
     description,
+    text,
     createdAt,
     keywords,
     style,
@@ -39,6 +45,7 @@ export const GenerationItem = ({ onCrossClick, ...generation }: GenerationItemPr
   );
 
   const handleGenerationClick = () => {
+    setMobileView('content');
     setChosenGeneration(generation);
   };
 
@@ -48,17 +55,24 @@ export const GenerationItem = ({ onCrossClick, ...generation }: GenerationItemPr
   };
 
   return (
-    <GenerationItemStyled onClick={handleGenerationClick} $active={chosenGeneration?.id === id}>
+    <GenerationItemStyled
+      onClick={handleGenerationClick}
+      $active={chosenGeneration?.id === id}
+      $isMobile={isMobile}
+    >
       <GenerationHeader>
         <GenerationTitleWrapper>
-          <GenerationTopic>{topic}</GenerationTopic>
+          {mode === 'create' ? <MagicIcon /> : <PenIcon />}
+          {topic && <GenerationTopic>{topic}</GenerationTopic>}
           <GenerationDate>{getGenerationDate(createdAt)}</GenerationDate>
         </GenerationTitleWrapper>
-        <GenerationDeleteIcon onClick={handleCrossClick} />
+        {!isMobile && <GenerationDeleteIcon onClick={handleCrossClick} />}
       </GenerationHeader>
-      <GenerationDescription $hasAdditionalInfo={hasAdditionalInfo}>
-        {description}
-      </GenerationDescription>
+      {(description || text) && (
+        <GenerationDescription $hasAdditionalInfo={hasAdditionalInfo}>
+          {description || text}
+        </GenerationDescription>
+      )}
       {contentType && (
         <GenerationAdditionalWrapper>
           <GenerationAdditionalName>Тип контента</GenerationAdditionalName>

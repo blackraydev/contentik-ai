@@ -1,5 +1,5 @@
 import { Button } from '../../UI';
-import { useCheckMobileScreen } from '../../hooks';
+import { useCheckScreenType } from '../../hooks';
 import {
   ChooseTariffButton,
   MarkIcon,
@@ -18,7 +18,7 @@ import {
 } from './styled';
 
 export const TariffsPage = () => {
-  const isMobile = useCheckMobileScreen();
+  const { isMobile } = useCheckScreenType();
 
   return (
     <Wrapper $isMobile={isMobile}>
@@ -40,10 +40,10 @@ export const TariffsPage = () => {
         </TariffFunction>
 
         <TariffFunction>
-          <TariffFunctionTitle>Анализ</TariffFunctionTitle>
+          <TariffFunctionTitle>Модель</TariffFunctionTitle>
           <TariffFunctionDescription>
             <MarkIcon />
-            Функция
+            GPT-3.5
           </TariffFunctionDescription>
         </TariffFunction>
       </TariffItem>
@@ -65,18 +65,6 @@ export const TariffsPage = () => {
           <TariffFunctionDescription>
             <MarkIcon />
             200 генераций
-          </TariffFunctionDescription>
-          <TariffFunctionDescription>
-            <MarkIcon />
-            Загрузка фотографий
-          </TariffFunctionDescription>
-        </TariffFunction>
-
-        <TariffFunction>
-          <TariffFunctionTitle>Анализ</TariffFunctionTitle>
-          <TariffFunctionDescription>
-            <MarkIcon />
-            Функция
           </TariffFunctionDescription>
         </TariffFunction>
 
@@ -103,18 +91,6 @@ export const TariffsPage = () => {
           <TariffFunctionDescription>
             <MarkIcon />
             500 генераций
-          </TariffFunctionDescription>
-          <TariffFunctionDescription>
-            <MarkIcon />
-            Загрузка фотографий
-          </TariffFunctionDescription>
-        </TariffFunction>
-
-        <TariffFunction>
-          <TariffFunctionTitle>Анализ</TariffFunctionTitle>
-          <TariffFunctionDescription>
-            <MarkIcon />
-            Функция
           </TariffFunctionDescription>
         </TariffFunction>
 

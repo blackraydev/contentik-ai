@@ -5,6 +5,7 @@ export type Generation = {
   topic: string;
   contentType: string;
   targetAudience: string;
+  text: string;
   description: string;
   keywords: string;
   style: string;

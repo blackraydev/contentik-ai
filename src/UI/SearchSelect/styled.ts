@@ -6,7 +6,52 @@ import { Input } from '../Input';
 
 type SelectStyleProps = {
   $isOpen: boolean;
+  $isMobile: boolean;
 };
+
+export const SearchInputWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+export const Label = styled.span`
+  transition: 0.2s ease;
+  color: ${({ theme }) => theme.colors.primaryFont};
+`;
+
+export const SearchInput = styled(Input)<{ $isOptionChosen: boolean }>`
+  transition: 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px;
+  background: ${({ theme }) => theme.colors.elemBg};
+  color: ${({ theme, $isOptionChosen }) =>
+    $isOptionChosen ? theme.colors.primaryFont : theme.colors.secondaryFont};
+  padding: 16px 15px;
+  cursor: pointer;
+  gap: 6px;
+  width: 100%;
+  height: 48px;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.inputHover};
+  }
+`;
+
+export const OptionItem = styled.li`
+  width: 100%;
+  cursor: pointer;
+  padding: 10px 15px;
+  background: ${({ theme }) => theme.colors.elemBg};
+  color: ${({ theme }) => theme.colors.primaryFont};
+  border-radius: 15px;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.secondaryBg};
+  }
+`;
 
 export const SearchSelectStyled = styled.div<SelectStyleProps>`
   display: flex;
@@ -26,6 +71,19 @@ export const SearchSelectStyled = styled.div<SelectStyleProps>`
       transform: rotate(${$isOpen ? 180 : 0}deg);
     }
   `}
+
+  ${Label} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};
+  }
+  ${SearchInput} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};
+  }
+  ${OptionItem} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};
+  }
+  ${SearchInputWrapper} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};
+  }
 `;
 
 export const LabelWrapper = styled.div`
@@ -34,39 +92,6 @@ export const LabelWrapper = styled.div`
   width: 100%;
   gap: 10px;
   margin-bottom: 8px;
-`;
-
-export const Label = styled.span`
-  transition: 0.2s ease;
-  font-size: 16px;
-  color: ${({ theme }) => theme.colors.primaryFont};
-`;
-
-export const SearchInputWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
-
-export const SearchInput = styled(Input)<{ $isOptionChosen: boolean }>`
-  transition: 0.2s ease;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 15px;
-  background: ${({ theme }) => theme.colors.elemBg};
-  color: ${({ theme, $isOptionChosen }) =>
-    $isOptionChosen ? theme.colors.primaryFont : theme.colors.secondaryFont};
-  font-size: 16px;
-  padding: 16px 15px;
-  cursor: pointer;
-  gap: 6px;
-  width: 100%;
-  height: 48px;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.inputHover};
-  }
 `;
 
 export const OptionsList = styled.ul`
@@ -82,19 +107,6 @@ export const OptionsList = styled.ul`
   border: 1px solid ${({ theme }) => theme.colors.borderDefault};
   box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
   padding: 5px;
-`;
-
-export const OptionItem = styled.li`
-  width: 100%;
-  cursor: pointer;
-  padding: 10px 15px;
-  background: ${({ theme }) => theme.colors.elemBg};
-  color: ${({ theme }) => theme.colors.primaryFont};
-  border-radius: 15px;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.secondaryBg};
-  }
 `;
 
 export const ChevronIcon = styled(FaChevronDown)`

@@ -1,4 +1,4 @@
-import { useCheckMobileScreen } from '../../hooks';
+import { useCheckScreenType } from '../../hooks';
 import { Card } from '../../UI';
 import { GenerateButton, Title, AnalyzingTextStyled } from './styled';
 import { MarkdownEditor } from '../MarkdownEditor';
@@ -20,7 +20,7 @@ export const AnalyzingText = ({
   setIsAnalyzing,
   onSubmit,
 }: AnalyzingTextProps) => {
-  const isMobile = useCheckMobileScreen();
+  const {isMobile} = useCheckScreenType();
 
   const handleSubmit = async () => {
     try {

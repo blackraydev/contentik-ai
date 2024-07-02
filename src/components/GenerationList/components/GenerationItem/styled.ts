@@ -1,5 +1,23 @@
 import styled from 'styled-components';
 import { IoClose } from 'react-icons/io5';
+import { FaWandMagicSparkles } from 'react-icons/fa6';
+import { FaPen } from 'react-icons/fa';
+
+export const MagicIcon = styled(FaWandMagicSparkles)`
+  transition: 0.2s ease;
+  width: 14px;
+  height: 14px;
+  color: ${({ theme }) => theme.colors.icon};
+  margin-right: -5px;
+`;
+
+export const PenIcon = styled(FaPen)`
+  transition: 0.2s ease;
+  width: 13px;
+  height: 13px;
+  color: ${({ theme }) => theme.colors.icon};
+  margin-right: -5px;
+`;
 
 export const GenerationDeleteIcon = styled(IoClose)`
   transition: 0.2s ease;
@@ -16,7 +34,7 @@ export const GenerationDeleteIcon = styled(IoClose)`
 
 export const GenerationHeader = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 8px;
@@ -48,6 +66,10 @@ export const GenerationDescription = styled.p<{ $hasAdditionalInfo: boolean }>`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.secondaryFont};
   margin-bottom: ${({ $hasAdditionalInfo }) => ($hasAdditionalInfo ? '5px' : '0')};
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 `;
 
 export const GenerationAdditionalWrapper = styled.div`
@@ -80,7 +102,7 @@ export const GenerationAdditionalInfo = styled.p`
   border: 1px solid ${({ theme }) => theme.colors.borderDefault};
 `;
 
-export const GenerationItemStyled = styled.div<{ $active: boolean }>`
+export const GenerationItemStyled = styled.div<{ $active: boolean; $isMobile: boolean }>`
   transition: 0.2s ease;
   cursor: pointer;
   display: flex;
@@ -96,5 +118,21 @@ export const GenerationItemStyled = styled.div<{ $active: boolean }>`
     ${GenerationDeleteIcon} {
       opacity: 1;
     }
+  }
+
+  ${GenerationTopic} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};
+  }
+  ${GenerationDate} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '13px' : '14px')};
+  }
+  ${GenerationDescription} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '13px' : '14px')};
+  }
+  ${GenerationAdditionalName} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '13px' : '14px')};
+  }
+  ${GenerationAdditionalInfo} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '13px' : '14px')};
   }
 `;

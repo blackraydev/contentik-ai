@@ -8,6 +8,7 @@ import {
   SelectButton,
   SelectStyled,
 } from './styles';
+import { useCheckScreenType } from '../../hooks';
 
 type SelectOption = {
   value: string;
@@ -33,6 +34,7 @@ export const Select = ({
   withClear = false,
   className,
 }: SelectProps) => {
+  const { isMobile } = useCheckScreenType();
   const [isOpen, setIsOpen] = useState(false);
 
   const chosenOption = options.find((option) => option.value === value);
@@ -54,7 +56,12 @@ export const Select = ({
   };
 
   return (
-    <SelectStyled onBlur={handleSelectBlur} className={className} $isOpen={isOpen}>
+    <SelectStyled
+      onBlur={handleSelectBlur}
+      className={className}
+      $isOpen={isOpen}
+      $isMobile={isMobile}
+    >
       <Label>{label}</Label>
       <SelectButton onClick={() => setIsOpen(!isOpen)} $isOptionChosen={Boolean(chosenOption)}>
         {chosenOptionLabel || placeholder}

@@ -9,6 +9,7 @@ import {
   TextareaWrapper,
 } from './styles';
 import { Tooltip, TooltipProps } from '../Tooltip';
+import { useCheckScreenType } from '../../hooks';
 
 export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label?: string;
@@ -21,8 +22,10 @@ export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ label, error, tooltipProps, ...props }, ref) => {
+    const { isMobile } = useCheckScreenType();
+
     return (
-      <TextareaWrapper>
+      <TextareaWrapper $isMobile={isMobile} data-error={error?.visible && 'error'}>
         <LabelWrapper>
           <LeftPart>
             <Label>{label}</Label>

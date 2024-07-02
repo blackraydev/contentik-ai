@@ -2,35 +2,21 @@ import styled from 'styled-components';
 import { FcGoogle } from 'react-icons/fc';
 import { Button } from '../../UI';
 
-export const AuthFormStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 400px;
-  height: 100%;
-  color: ${({ theme }) => theme.colors.primaryFont};
-`;
-
 export const Title = styled.h1`
   transition: 0.2s ease;
   color: ${({ theme }) => theme.colors.primaryFont};
   margin-bottom: 15px;
+  text-align: center;
 `;
 
 export const Label = styled.p`
   transition: 0.2s ease;
   color: ${({ theme }) => theme.colors.secondaryFont};
   margin-bottom: 25px;
+  text-align: center;
 `;
 
-export const SignInButton = styled(Button)`
-  width: 100%;
-  height: 48px;
-  gap: 8px;
-`;
-
-export const LabelSeparator = styled.label`
+export const LabelSeparator = styled.label<{ $isMobile: boolean }>`
   transition: 0.2s ease;
   display: flex;
   align-items: center;
@@ -40,9 +26,6 @@ export const LabelSeparator = styled.label`
   text-transform: uppercase;
   width: 100%;
   text-align: center;
-  margin: 30px 0;
-  margin-top: 30px;
-  margin-bottom: 25px;
   position: relative;
 
   &:before {
@@ -61,6 +44,34 @@ export const LabelSeparator = styled.label`
     background: ${({ theme }) => theme.colors.secondaryBg};
     width: calc((100% - 150px) / 2);
   }
+`;
+
+export const AuthFormStyled = styled.div<{ $isMobile: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: ${({ $isMobile }) => ($isMobile ? '100%' : '400px')};
+  max-width: 400px;
+  height: 100%;
+  color: ${({ theme }) => theme.colors.primaryFont};
+
+  ${Title} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '30px' : '32px')};
+  }
+  ${Label} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};
+  }
+  ${LabelSeparator} {
+    margin-top: ${({ $isMobile }) => ($isMobile ? '20px' : '30px')};
+    margin-bottom: ${({ $isMobile }) => ($isMobile ? '10px' : '20px')};
+  }
+`;
+
+export const SignInButton = styled(Button)`
+  width: 100%;
+  height: 48px;
+  gap: 8px;
 `;
 
 export const GoogleIcon = styled(FcGoogle)`

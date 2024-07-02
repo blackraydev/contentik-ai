@@ -1,1 +1,1 @@
-export { useCheckMobileScreen } from './useCheckMobileScreen';
+export { useCheckScreenType } from './useCheckScreenType';

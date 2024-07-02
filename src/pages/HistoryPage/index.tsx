@@ -1,16 +1,16 @@
 import { Fragment, useEffect } from 'react';
 import { GenerationList, GenerationView } from '../../components';
-import { useCheckMobileScreen } from '../../hooks';
+import { useCheckScreenType } from '../../hooks';
 import { supabase } from '../../api';
 import { useGenerationsScope, useUserScope } from '../../scopes';
 import { Generation } from '../../types';
 import { LoaderStyled, LoaderWrapper, Wrapper } from './styled';
 
 export const HistoryPage = () => {
-  const { isGenerationListFetched, setGenerationListFetched, setGenerationList } =
+  const { isGenerationListFetched, setGenerationListFetched, setGenerationList, mobileView } =
     useGenerationsScope();
   const { session } = useUserScope();
-  const isMobile = useCheckMobileScreen();
+  const { isMobile } = useCheckScreenType();
 
   useEffect(() => {
     if (isGenerationListFetched) return;
@@ -42,6 +42,10 @@ export const HistoryPage = () => {
           <LoaderStyled />
         </LoaderWrapper>
       );
+    }
+
+    if (isMobile) {
+      return mobileView === 'history' ? <GenerationList /> : <GenerationView />;
     }
 
     return (

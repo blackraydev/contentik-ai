@@ -2,6 +2,83 @@ import styled from 'styled-components';
 import { IoFlash } from 'react-icons/io5';
 import { Button } from '../../../../UI';
 
+export const LimitsButtonMobile = styled(Button)`
+  transition: 0.2s ease;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: ${({ theme }) => theme.colors.buttonBg};
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  width: unset;
+  padding: 10px;
+  margin-bottom: 25px;
+
+  circle {
+    stroke: ${({ theme }) => theme.colors.white};
+  }
+
+  &:before {
+    content: '';
+    background: linear-gradient(
+      -45deg,
+      rgb(227, 185, 251),
+      rgb(193, 109, 247),
+      rgb(126, 106, 239),
+      rgb(91, 77, 236)
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400% 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 10s ease infinite;
+    transition: 0.2s ease;
+    border-radius: 10px;
+    opacity: 1;
+  }
+
+  &:hover:before {
+    opacity: 1;
+  }
+
+  &:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 15px;
+    background: transparent;
+  }
+
+  @keyframes glowing {
+    0% {
+      background-position: 0 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0 50%;
+    }
+  }
+`;
+
+export const LimitsIconMobile = styled(IoFlash)`
+  width: 16px;
+  height: 16px;
+  transition: 0.2s ease;
+  color: rgb(225, 225, 0);
+`;
+
 export const LimitsStyled = styled.div`
   transition: 0.2s ease;
   display: flex;

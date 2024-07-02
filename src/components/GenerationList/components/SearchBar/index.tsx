@@ -1,13 +1,15 @@
-import { modes } from '../../../../consts';
+import { historyModes } from '../../../../consts';
+import { useCheckScreenType } from '../../../../hooks';
 import { useGenerationsScope } from '../../../../scopes';
 import { Mode } from '../../../../types';
 import { InputStyled, SearchBarStyled, SelectStyled } from './styled';
 
 export const SearchBar = () => {
+  const { isMobile } = useCheckScreenType();
   const { searchValue, setSearchValue, chosenMode, setChosenMode } = useGenerationsScope();
 
   return (
-    <SearchBarStyled>
+    <SearchBarStyled $isMobile={isMobile}>
       <InputStyled
         label="Поиск"
         value={searchValue}
@@ -18,7 +20,7 @@ export const SearchBar = () => {
         label="Способ генерации"
         value={chosenMode ? chosenMode : ''}
         onChange={(value) => setChosenMode(value as Mode)}
-        options={modes}
+        options={historyModes}
         withClear
       />
     </SearchBarStyled>

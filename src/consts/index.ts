@@ -5,7 +5,7 @@ export { PublicRoutes, PrivateRoutes } from './routes';
 export { styles } from './styles';
 export { tones } from './tones';
 export { languages } from './languages';
-export { modes } from './modes';
+export { modes, historyModes } from './modes';
 export { months } from './months';
 export { HeaderDetails } from './headerDetails';
 export { contentTypes } from './contentTypes';

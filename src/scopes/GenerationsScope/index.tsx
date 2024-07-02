@@ -17,6 +17,8 @@ type GenerationsContextType = {
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
   chosenMode: Mode | null;
   setChosenMode: React.Dispatch<React.SetStateAction<Mode | null>>;
+  mobileView: 'history' | 'content';
+  setMobileView: React.Dispatch<React.SetStateAction<'history' | 'content'>>;
 };
 
 const GenerationsContext = createContext<GenerationsContextType>({
@@ -30,6 +32,8 @@ const GenerationsContext = createContext<GenerationsContextType>({
   setSearchValue: () => {},
   chosenMode: null,
   setChosenMode: () => {},
+  mobileView: 'history',
+  setMobileView: () => {},
 });
 
 export const useGenerationsScope = () => useContext(GenerationsContext);
@@ -40,6 +44,7 @@ export const GenerationsScope = ({ children }: GenerationsScopeProps) => {
   const [chosenGeneration, setChosenGeneration] = useState<Generation | null>(null);
   const [searchValue, setSearchValue] = useState('');
   const [chosenMode, setChosenMode] = useState<Mode | null>(null);
+  const [mobileView, setMobileView] = useState<'history' | 'content'>('history');
 
   useEffect(() => {
     const generationsInsertChannel = supabase
@@ -89,6 +94,8 @@ export const GenerationsScope = ({ children }: GenerationsScopeProps) => {
         setSearchValue,
         chosenMode,
         setChosenMode,
+        mobileView,
+        setMobileView,
       }}
     >
       {children}

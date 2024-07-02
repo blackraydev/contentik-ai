@@ -2,20 +2,6 @@ import styled, { css } from 'styled-components';
 import { IoCheckmark } from 'react-icons/io5';
 import { Button } from '../../UI';
 
-export const Wrapper = styled.div<{ $isMobile: boolean }>`
-  display: flex;
-  flex-direction: ${({ $isMobile }) => ($isMobile ? 'column' : 'row')};
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
-  overflow-y: ${({ $isMobile }) => ($isMobile ? 'scroll' : 'none')};
-  padding-bottom: 25px;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
 export const TariffItem = styled.div`
   transition: 0.2s ease;
   display: flex;
@@ -219,4 +205,27 @@ export const MarkIcon = styled(IoCheckmark)`
   height: 20px;
   color: ${({ theme }) => theme.colors.icon};
   margin-top: -2px;
+`;
+
+export const Wrapper = styled.div<{ $isMobile: boolean }>`
+  display: flex;
+  flex-direction: ${({ $isMobile }) => ($isMobile ? 'column' : 'row')};
+  justify-content: space-between;
+  align-items: ${({ $isMobile }) => ($isMobile ? 'center' : 'flex-start')};
+  height: 100%;
+  width: 100%;
+  overflow-y: ${({ $isMobile }) => ($isMobile ? 'scroll' : 'none')};
+  padding-bottom: ${({ $isMobile }) => ($isMobile ? '80px' : '25px')};
+  gap: ${({ $isMobile }) => ($isMobile ? '20px' : '20px')};
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  ${TariffItem} {
+    width: calc(100% - 5px);
+  }
+  ${TariffItemPro} {
+    width: calc(100% - 5px);
+  }
 `;

@@ -6,7 +6,7 @@ export const HeaderDetails = {
     description: 'Главная страница',
   },
   [PrivateRoutes.Create]: {
-    title: 'Генерация',
+    title: 'Создание',
     description: 'Создайте контент, который увлечет ваших читателей',
   },
   [PrivateRoutes.Edit]: {
@@ -28,5 +28,9 @@ export const HeaderDetails = {
   [PrivateRoutes.Tariffs]: {
     title: 'Тарифы',
     description: 'Выберите тариф, который соответствует вашим потребностям',
+  },
+  [PrivateRoutes.Profile]: {
+    title: 'Профиль',
+    description: 'Просмотр данных вашего профиля',
   },
 };

@@ -1,5 +1,6 @@
 import { AuthForm } from '../../components';
 import { ThemeToggle } from '../../components';
+import { useCheckScreenType } from '../../hooks';
 import {
   AuthBlock,
   AuthHeader,
@@ -10,9 +11,11 @@ import {
 } from './styled';
 
 export const AuthPage = () => {
+  const { isMobile } = useCheckScreenType();
+
   return (
     <AuthPageStyled>
-      <AuthBlock>
+      <AuthBlock $isMobile={isMobile}>
         <AuthHeader>
           <LogoWrapper>
             <LogoText>Contentik</LogoText>
@@ -21,7 +24,7 @@ export const AuthPage = () => {
         </AuthHeader>
         <AuthForm />
       </AuthBlock>
-      <WelcomeBlock></WelcomeBlock>
+      {!isMobile && <WelcomeBlock></WelcomeBlock>}
     </AuthPageStyled>
   );
 };

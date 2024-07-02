@@ -28,6 +28,8 @@ type EditContentContextType = {
   setTone: React.Dispatch<React.SetStateAction<string>>;
   language: string;
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
+  mobileView: 'info' | 'content';
+  setMobileView: React.Dispatch<React.SetStateAction<'info' | 'content'>>;
 };
 
 const EditContentContext = createContext<EditContentContextType>({
@@ -53,6 +55,8 @@ const EditContentContext = createContext<EditContentContextType>({
   setTone: () => {},
   language: languages[0].value,
   setLanguage: () => {},
+  mobileView: 'info',
+  setMobileView: () => {},
 });
 
 export const useEditContentScope = () => useContext(EditContentContext);
@@ -69,6 +73,7 @@ export const EditContentScope = ({ children }: EditContentScopeProps) => {
   const [style, setStyle] = useState('');
   const [tone, setTone] = useState('');
   const [language, setLanguage] = useState(languages[0].value);
+  const [mobileView, setMobileView] = useState<'info' | 'content'>('info');
 
   return (
     <EditContentContext.Provider
@@ -95,6 +100,8 @@ export const EditContentScope = ({ children }: EditContentScopeProps) => {
         setTone,
         language,
         setLanguage,
+        mobileView,
+        setMobileView,
       }}
     >
       {children}

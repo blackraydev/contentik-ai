@@ -12,6 +12,7 @@ import {
 } from './styled';
 import { SearchInput } from './styled';
 import { Tooltip } from '../Tooltip';
+import { useCheckScreenType } from '../../hooks';
 
 type SelectOption = {
   value: string;
@@ -37,6 +38,7 @@ export const SearchSelect = ({
   withClear = false,
   className,
 }: SelectProps) => {
+  const { isMobile } = useCheckScreenType();
   const [isOpen, setIsOpen] = useState(false);
 
   const chosenOption = options.find((option) => option.value === value);
@@ -58,10 +60,19 @@ export const SearchSelect = ({
   };
 
   return (
-    <SearchSelectStyled onBlur={handleSelectBlur} className={className} $isOpen={isOpen}>
+    <SearchSelectStyled
+      onBlur={handleSelectBlur}
+      className={className}
+      $isOpen={isOpen}
+      $isMobile={isMobile}
+    >
       <LabelWrapper>
         <Label>{label}</Label>
-        <Tooltip width={230} content="Можно указать свой вариант или выбрать из предложенных" offsetVertical={50}>
+        <Tooltip
+          width={230}
+          content="Можно указать свой вариант или выбрать из предложенных"
+          offsetVertical={50}
+        >
           <InfoIcon />
         </Tooltip>
       </LabelWrapper>

@@ -10,3 +10,14 @@ export const modes: { value: Mode; label: string }[] = [
     label: 'Редактировать',
   },
 ];
+
+export const historyModes: { value: Mode; label: string }[] = [
+  {
+    value: 'create',
+    label: 'Создание',
+  },
+  {
+    value: 'edit',
+    label: 'Редактирование',
+  },
+];

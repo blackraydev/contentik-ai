@@ -1,36 +1,8 @@
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import styled from 'styled-components';
 
-export const TextareaWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: calc(100% - 27px);
-`;
-
-export const LabelWrapper = styled.div`
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 8px;
-`;
-
-export const LeftPart = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-export const ErrorText = styled.span`
-  transition: 0.2s ease;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.errorFont};
-`;
-
 export const Label = styled.label`
   transition: 0.2s ease;
-  font-size: 16px;
   color: ${({ theme }) => theme.colors.primaryFont};
 `;
 
@@ -55,6 +27,40 @@ export const TextareaStyled = styled.textarea<{ $invalid?: boolean }>`
     transition: 0.2s ease;
     color: ${({ theme }) => theme.colors.placeholderFont};
   }
+`;
+
+export const TextareaWrapper = styled.div<{ $isMobile: boolean }>`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100% - 27px);
+
+  ${Label} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};
+  }
+  ${TextareaStyled} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};
+  }
+`;
+
+export const LabelWrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 8px;
+`;
+
+export const LeftPart = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const ErrorText = styled.span`
+  transition: 0.2s ease;
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.errorFont};
 `;
 
 export const InfoIcon = styled(AiOutlineInfoCircle)`

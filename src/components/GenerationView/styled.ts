@@ -1,9 +1,35 @@
 import styled from 'styled-components';
+import { Button } from '../../UI';
 
-export const GenerationViewStyled = styled.div`
+export const GenerationViewStyled = styled.div<{ $isMobile: boolean }>`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
-  width: 50%;
+  height: 100%;
+  width: ${({ $isMobile }) => ($isMobile ? '100%' : '50%')};
+  gap: 20px;
+`;
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+`;
+
+export const BackToHistoryButton = styled(Button)`
+  width: 100px;
+`;
+
+export const DeleteButton = styled(Button)`
+  background: ${({ theme }) => theme.colors.errorFont};
+  width: 100px;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.errorFont};
+  }
 `;
 
 export const FullWrapper = styled.div`

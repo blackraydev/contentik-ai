@@ -1,7 +1,15 @@
 import styled from 'styled-components';
 import { FaChevronDown } from 'react-icons/fa';
 
-export const AccordionStyled = styled.div`
+export const Title = styled.h3`
+  transition: 0.2s ease;
+  width: 100%;
+  text-align: start;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.primaryFont};
+`;
+
+export const AccordionStyled = styled.div<{ $isMobile: boolean }>`
   transition: 0.2s ease;
   width: 100%;
   height: fit-content;
@@ -9,6 +17,10 @@ export const AccordionStyled = styled.div`
   box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
   border-radius: 1.5rem;
   padding: 25px;
+
+  ${Title} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '18px' : '20px')};
+  }
 `;
 
 export const Header = styled.div`
@@ -19,15 +31,6 @@ export const Header = styled.div`
   height: 24px;
   cursor: pointer;
   border-radius: 15px;
-`;
-
-export const Title = styled.h3`
-  transition: 0.2s ease;
-  width: 100%;
-  text-align: start;
-  font-size: 20px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.primaryFont};
 `;
 
 export const ChevronIcon = styled(FaChevronDown)<{ $open: boolean }>`

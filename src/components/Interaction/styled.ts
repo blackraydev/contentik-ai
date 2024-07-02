@@ -1,20 +1,6 @@
 import styled from 'styled-components';
 import { Button, Textarea } from '../../UI';
 
-export const InteractionStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-  gap: 20px;
-  height: 100vh;
-  overflow: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
 export const Title = styled.h3`
   transition: 0.2s ease;
   width: 100%;
@@ -25,13 +11,22 @@ export const Title = styled.h3`
   margin-bottom: 10px;
 `;
 
-export const Description = styled.p`
-  transition: 0.2s ease;
-  width: 100%;
-  text-align: start;
-  font-size: 16px;
-  color: ${({ theme }) => theme.colors.secondaryFont};
-  margin-top: -2px;
+export const InteractionStyled = styled.div<{ $isMobile: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: ${({ $isMobile }) => ($isMobile ? '100%' : '50%')};
+  gap: 20px;
+  height: 100vh;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  ${Title} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '18px' : '20px')};
+  }
 `;
 
 export const FieldsWrapper = styled.div`
@@ -58,6 +53,14 @@ export const PhotosWrapper = styled.div`
   align-items: center;
 `;
 
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+`;
+
 export const GenerateButton = styled(Button)<{ $isGenerating: boolean }>`
   transition: 0.2s ease;
   border: none;
@@ -70,7 +73,7 @@ export const GenerateButton = styled(Button)<{ $isGenerating: boolean }>`
   position: relative;
   z-index: 0;
   border-radius: 15px;
-  width: 150px;
+  width: 160px;
 
   circle {
     stroke: ${({ theme }) => theme.colors.white};

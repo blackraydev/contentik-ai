@@ -28,6 +28,8 @@ type CreateContentContextType = {
   setTone: React.Dispatch<React.SetStateAction<string>>;
   language: string;
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
+  mobileView: 'info' | 'content';
+  setMobileView: React.Dispatch<React.SetStateAction<'info' | 'content'>>;
 };
 
 const CreateContentContext = createContext<CreateContentContextType>({
@@ -53,6 +55,8 @@ const CreateContentContext = createContext<CreateContentContextType>({
   setTone: () => {},
   language: languages[0].value,
   setLanguage: () => {},
+  mobileView: 'info',
+  setMobileView: () => {},
 });
 
 export const useCreateContentScope = () => useContext(CreateContentContext);
@@ -69,6 +73,7 @@ export const CreateContentScope = ({ children }: CreateContentScopeProps) => {
   const [style, setStyle] = useState('');
   const [tone, setTone] = useState('');
   const [language, setLanguage] = useState(languages[0].value);
+  const [mobileView, setMobileView] = useState<'info' | 'content'>('info');
 
   return (
     <CreateContentContext.Provider
@@ -95,6 +100,8 @@ export const CreateContentScope = ({ children }: CreateContentScopeProps) => {
         setTone,
         language,
         setLanguage,
+        mobileView,
+        setMobileView,
       }}
     >
       {children}

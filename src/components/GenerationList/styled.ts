@@ -1,14 +1,5 @@
 import styled from 'styled-components';
 
-export const GenerationHistoryWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 50%;
-  height: calc(100vh - 100px);
-  padding-bottom: 25px;
-`;
-
 export const GenerationListStyled = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,10 +7,22 @@ export const GenerationListStyled = styled.div`
   width: 100%;
   height: 100%;
   overflow-y: scroll !important;
-  padding-bottom: 5px;
 
   &::-webkit-scrollbar {
     display: none;
+  }
+`;
+
+export const GenerationHistoryWrapper = styled.div<{ $isMobile: boolean }>`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: ${({ $isMobile }) => ($isMobile ? '100%' : '50%')};
+  height: ${({ $isMobile }) => ($isMobile ? 'calc(100vh - 50px)' : 'calc(100vh - 100px)')};
+  padding-bottom: ${({ $isMobile }) => ($isMobile ? '0' : '25px')};
+
+  ${GenerationListStyled} {
+    padding-bottom: ${({ $isMobile }) => ($isMobile ? '35px' : '5px')};
   }
 `;
 

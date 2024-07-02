@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
-export const ContentStyled = styled.div`
+export const ContentStyled = styled.div<{ $isMobile: boolean }>`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
-  width: 50%;
+  width: ${({ $isMobile }) => ($isMobile ? '100%' : '50%')};
+  gap: 20px;
+
+  button {
+    width: 50%;
+  }
 `;
 
 export const FullWrapper = styled.div`

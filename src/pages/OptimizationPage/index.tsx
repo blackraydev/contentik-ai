@@ -1,4 +1,4 @@
-import { useCheckMobileScreen } from '../../hooks';
+import { useCheckScreenType } from '../../hooks';
 import { useOptimizationScope } from '../../scopes';
 import { Content, AnalyzingText } from '../../components';
 import { analyzeOptimization } from '../../api';
@@ -6,7 +6,7 @@ import { Wrapper } from './styled';
 
 export const OptimizationPage = () => {
   const optimizationScope = useOptimizationScope();
-  const isMobile = useCheckMobileScreen();
+  const { isMobile } = useCheckScreenType();
 
   const { analyzedText, isAnalyzing } = optimizationScope;
 

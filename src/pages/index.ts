@@ -5,3 +5,4 @@ export { TariffsPage } from './TariffsPage';
 export { OptimizationPage } from './OptimizationPage';
 export { TonalityPage } from './TonalityPage';
 export { EditPage } from './EditPage';
+export { ProfilePage } from './ProfilePage';

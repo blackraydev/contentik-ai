@@ -8,6 +8,7 @@ import {
   TariffsPage,
   TonalityPage,
   EditPage,
+  ProfilePage,
 } from '../../../pages';
 
 export const privateRoutes: RouteProps[] = [
@@ -34,6 +35,10 @@ export const privateRoutes: RouteProps[] = [
   {
     path: PrivateRoutes.Tariffs,
     element: <TariffsPage />,
+  },
+  {
+    path: PrivateRoutes.Profile,
+    element: <ProfilePage />,
   },
 ];
 

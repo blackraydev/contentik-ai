@@ -1,12 +1,37 @@
-import { Card } from '../../UI';
-import { useCheckMobileScreen } from '../../hooks';
+import { useState } from 'react';
+import { Card, Modal } from '../../UI';
+import { supabase } from '../../api';
+import { useCheckScreenType } from '../../hooks';
 import { useGenerationsScope } from '../../scopes';
 import { Markdown } from '../Markdown';
-import { FullWrapper, GenerationViewStyled, Text } from './styled';
+import {
+  BackToHistoryButton,
+  ButtonsWrapper,
+  DeleteButton,
+  FullWrapper,
+  GenerationViewStyled,
+  Text,
+} from './styled';
 
 export const GenerationView = () => {
-  const { chosenGeneration, generationList } = useGenerationsScope();
-  const isMobile = useCheckMobileScreen();
+  const { chosenGeneration, generationList, setMobileView, setChosenGeneration } =
+    useGenerationsScope();
+  const { isMobile } = useCheckScreenType();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isGenerationDeleting, setIsGenerationDeleting] = useState(false);
+
+  const handleGenerationDelete = async () => {
+    if (!chosenGeneration?.id) return;
+
+    try {
+      setIsGenerationDeleting(true);
+      await supabase.from('generations').delete().eq('id', chosenGeneration.id);
+      setChosenGeneration(null);
+      setMobileView('history');
+    } finally {
+      setIsGenerationDeleting(false);
+    }
+  };
 
   const renderContent = () => {
     if (chosenGeneration) {
@@ -25,13 +50,28 @@ export const GenerationView = () => {
   }
 
   return (
-    <GenerationViewStyled>
+    <GenerationViewStyled $isMobile={isMobile}>
+      {isModalOpen && (
+        <Modal
+          isSubmitting={isGenerationDeleting}
+          onSubmit={handleGenerationDelete}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
       <Card
         width={isMobile ? '100%' : '100%'}
-        height={isMobile ? 'fit-content' : 'calc(100vh - 175px)'}
+        height={isMobile ? 'calc(100vh - 225px)' : 'calc(100vh - 175px)'}
       >
         {renderContent()}
       </Card>
+      {isMobile && (
+        <ButtonsWrapper>
+          <BackToHistoryButton onClick={() => setMobileView?.('history')}>
+            История
+          </BackToHistoryButton>
+          <DeleteButton onClick={() => setIsModalOpen(true)}>Удалить</DeleteButton>
+        </ButtonsWrapper>
+      )}
     </GenerationViewStyled>
   );
 };

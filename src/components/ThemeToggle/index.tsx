@@ -1,4 +1,5 @@
 import { Tooltip } from '../../UI';
+import { useCheckScreenType } from '../../hooks';
 import { useThemeScope } from '../../scopes';
 import {
   Moon,
@@ -12,19 +13,16 @@ import {
 } from './styled';
 
 export const ThemeToggle = () => {
+  const { isMobile } = useCheckScreenType();
   const { isDarkTheme, toggleTheme } = useThemeScope();
 
   return (
-    <Tooltip
-      width={125}
-      position="bottom"
-      content="Сменить тему"
-      offsetVertical={52}
-    >
+    <Tooltip width={125} position="bottom" content="Сменить тему" offsetVertical={52}>
       <ThemeToggleStyled
         id="theme-toggler"
         onClick={toggleTheme}
         $isDarkTheme={isDarkTheme}
+        $isMobile={isMobile}
         aria-label="auto"
         aria-live="polite"
       >

@@ -33,7 +33,7 @@ export const Modal = ({ onSubmit, onClose, isSubmitting }: ModalProps) => {
   return (
     <Overlay onClick={handleClose} $animationActive={animationActive}>
       <ModalStyled onClick={(e) => e.stopPropagation()} $animationActive={animationActive}>
-        <ModalTitle>Вы абсолютно уверены?</ModalTitle>
+        <ModalTitle>Вы уверены?</ModalTitle>
         <ModalDescription>
           После подтверждения данные будут безвозвратно удалены и восстановить их не получится
         </ModalDescription>

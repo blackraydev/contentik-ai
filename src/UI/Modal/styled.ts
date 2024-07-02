@@ -49,6 +49,7 @@ export const ModalStyled = styled.div<{ $animationActive: boolean }>`
   width: 500px;
   border: 1px solid ${({ theme }) => theme.colors.borderDefault};
   box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
+  margin: 15px;
 
   ${({ $animationActive }) =>
     $animationActive
