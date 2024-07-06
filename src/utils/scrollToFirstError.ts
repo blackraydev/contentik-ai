@@ -4,6 +4,6 @@ export const scrollToFirstError = () => {
   setTimeout(() => {
     const errorMessageElement = document.querySelector(ERROR_SELECTOR);
 
-    errorMessageElement?.scrollIntoView({ block: 'center' });
+    errorMessageElement?.scrollIntoView({ block: 'center', behavior: 'smooth' });
   }, 10);
 };

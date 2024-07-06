@@ -7,9 +7,10 @@ export const LayoutMainStyled = styled.div`
   gap: 30px;
 `;
 
-export const LayoutChildrenStyled = styled.div`
+export const LayoutChildrenStyled = styled.div<{ $isMobile: boolean }>`
   display: flex;
   height: 100%;
+  margin-top: ${({ $isMobile }) => ($isMobile ? '60px' : '0')};
 `;
 
 export const LayoutStyled = styled.div<{ $isMobile: boolean; $isTablet: boolean }>`

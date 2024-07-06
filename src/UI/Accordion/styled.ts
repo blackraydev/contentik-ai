@@ -53,5 +53,4 @@ export const ChildrenStyled = styled.div<{ $open: boolean; $width: string; $heig
   height: ${({ $height, $open }) => ($open ? $height : '0')};
   margin-top: ${({ $open }) => ($open ? '20px' : '0')};
   opacity: ${({ $open }) => ($open ? 1 : 0)};
-  transform: translateY(${({ $open }) => ($open ? '0' : '10px')});
 `;

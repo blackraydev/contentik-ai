@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { FaUserLarge } from 'react-icons/fa6';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
-export const HeaderStyled = styled.div`
+export const HeaderStyled = styled.div<{ $isMobile: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   min-height: 50px;
   height: 50px;
+  position: ${({ $isMobile }) => ($isMobile ? 'fixed' : 'relative')};
 `;
 
 export const Title = styled.h1`

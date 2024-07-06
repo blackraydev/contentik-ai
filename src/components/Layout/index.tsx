@@ -16,7 +16,7 @@ export const Layout = ({ children }: LayoutProps) => {
       {!isMobile && <NavBar />}
       <LayoutMainStyled>
         <Header />
-        <LayoutChildrenStyled>{children}</LayoutChildrenStyled>
+        <LayoutChildrenStyled $isMobile={isMobile}>{children}</LayoutChildrenStyled>
       </LayoutMainStyled>
     </LayoutStyled>
   );

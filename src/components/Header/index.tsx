@@ -18,6 +18,7 @@ import {
   BottomPart,
   LogoText,
   LogoWrapper,
+  NavBarMobileDrawer,
   NavBarStyled,
   NavLink,
   NavbarOverlay,
@@ -44,7 +45,7 @@ export const Header = () => {
     if (navbarOpen)
       return (
         <NavbarOverlay onClick={() => setNavbarOpen(false)} $isMobileOpen={navbarOpen}>
-          <NavBarStyled $isMobileOpen={navbarOpen} onClick={(e) => e.stopPropagation()}>
+          <NavBarMobileDrawer $isMobileOpen={navbarOpen} onClick={(e) => e.stopPropagation()}>
             <TopPart>
               <LogoWrapper>
                 <LogoText>Contentik</LogoText>
@@ -69,40 +70,42 @@ export const Header = () => {
             <BottomPart>
               <Limits isMobileOpen={navbarOpen} setOpen={setNavbarOpen} />
             </BottomPart>
-          </NavBarStyled>
+          </NavBarMobileDrawer>
         </NavbarOverlay>
       );
   };
 
   return (
-    <HeaderStyled>
+    <Fragment>
       {renderNavbar()}
-      <Details $isMobile={isMobile}>
-        {isMobile ? (
-          <Fragment>
-            <BurgerMenuIcon onClick={() => setNavbarOpen((prevOpen) => !prevOpen)} />
-            <Title>{title}</Title>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <Title>{title}</Title>
-            <Description>{description}</Description>
-          </Fragment>
-        )}
-      </Details>
-      <IconsWrapper $isMobile={isMobile}>
-        <ThemeToggle />
-        <Tooltip
-          content={<UserTooltipContent />}
-          width={200}
-          offsetVertical={170}
-          offsetHorizontal={92}
-          type="click"
-          position="bottom"
-        >
-          <UserIcon $isMobile={isMobile} />
-        </Tooltip>
-      </IconsWrapper>
-    </HeaderStyled>
+      <HeaderStyled $isMobile={isMobile}>
+        <Details $isMobile={isMobile}>
+          {isMobile ? (
+            <Fragment>
+              <BurgerMenuIcon onClick={() => setNavbarOpen((prevOpen) => !prevOpen)} />
+              <Title>{title}</Title>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <Title>{title}</Title>
+              <Description>{description}</Description>
+            </Fragment>
+          )}
+        </Details>
+        <IconsWrapper $isMobile={isMobile}>
+          <ThemeToggle />
+          <Tooltip
+            content={<UserTooltipContent />}
+            width={200}
+            offsetVertical={170}
+            offsetHorizontal={92}
+            type="click"
+            position="bottom"
+          >
+            <UserIcon $isMobile={isMobile} />
+          </Tooltip>
+        </IconsWrapper>
+      </HeaderStyled>
+    </Fragment>
   );
 };

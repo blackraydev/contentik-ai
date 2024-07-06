@@ -11,6 +11,7 @@ export const Label = styled.span`
   transition: 0.2s ease;
   color: ${({ theme }) => theme.colors.primaryFont};
   margin-bottom: 8px;
+  z-index: 1;
 `;
 
 export const SelectButton = styled.button<{ $isOptionChosen: boolean }>`
@@ -58,11 +59,13 @@ export const SelectStyled = styled.div<SelectStyleProps>`
   position: relative;
   width: 100%;
 
-  ${({ $isOpen }) => css`
+  ${({ $isOpen, $isMobile }) => css`
     ${OptionsList} {
       opacity: ${$isOpen ? 1 : 0};
-      transform: translateY(${$isOpen ? 10 : 0}px);
+      transform: translateY(${$isOpen ? 0 : 10}px);
       visibility: ${!$isOpen && 'hidden'};
+      max-height: ${$isMobile ? '150px' : '180px'};
+      top: ${$isMobile ? '-135px;' : '-160px'};
     }
     ${ChevronIcon} {
       transform: rotate(${$isOpen ? 180 : 0}deg);
@@ -85,14 +88,17 @@ export const OptionsList = styled.ul`
   transition: 0.2s ease;
   z-index: 1000;
   position: absolute;
-  top: 100%;
   left: 0;
   background: ${({ theme }) => theme.colors.elemBg};
   border-radius: 15px;
-  overflow: hidden;
   border: 1px solid ${({ theme }) => theme.colors.borderDefault};
   box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
   padding: 5px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const ChevronIcon = styled(FaChevronDown)`

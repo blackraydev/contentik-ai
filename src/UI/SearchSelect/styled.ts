@@ -61,11 +61,12 @@ export const SearchSelectStyled = styled.div<SelectStyleProps>`
   position: relative;
   width: 100%;
 
-  ${({ $isOpen }) => css`
+  ${({ $isOpen, $isMobile }) => css`
     ${OptionsList} {
       opacity: ${$isOpen ? 1 : 0};
       transform: translateY(${$isOpen ? 10 : 0}px);
       visibility: ${!$isOpen && 'hidden'};
+      max-height: ${$isMobile ? '150px' : '180px'};
     }
     ${ChevronIcon} {
       transform: rotate(${$isOpen ? 180 : 0}deg);
@@ -103,10 +104,15 @@ export const OptionsList = styled.ul`
   left: 0;
   background: ${({ theme }) => theme.colors.elemBg};
   border-radius: 15px;
-  overflow: hidden;
+  overflow-y: scroll;
   border: 1px solid ${({ theme }) => theme.colors.borderDefault};
   box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
   padding: 5px;
+  max-height: 207px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const ChevronIcon = styled(FaChevronDown)`

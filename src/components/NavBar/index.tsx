@@ -9,6 +9,7 @@ import {
   BurgerMenuIcon,
   LogoText,
   LogoWrapper,
+  NavBarMobileDrawer,
   NavBarMobileStyled,
   NavBarStyled,
   NavLink,
@@ -32,6 +33,7 @@ export const NavBar = () => {
   }, [pathname]);
 
   if (isMobile || isTablet) {
+    console.log('yes')
     return (
       <Fragment>
         <NavBarMobileStyled>
@@ -54,7 +56,7 @@ export const NavBar = () => {
         </NavBarMobileStyled>
         {open && (
           <NavbarOverlay onClick={() => setOpen(false)} $isMobileOpen={open}>
-            <NavBarStyled $isMobileOpen={open} onClick={(e) => e.stopPropagation()}>
+            <NavBarMobileDrawer $isMobileOpen={true} onClick={(e) => e.stopPropagation()}>
               <TopPart>
                 <LogoWrapper>
                   <LogoText>Contentik</LogoText>
@@ -79,7 +81,7 @@ export const NavBar = () => {
               <BottomPart>
                 <Limits isMobileOpen={open} setOpen={setOpen} />
               </BottomPart>
-            </NavBarStyled>
+            </NavBarMobileDrawer>
           </NavbarOverlay>
         )}
       </Fragment>

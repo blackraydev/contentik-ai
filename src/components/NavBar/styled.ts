@@ -139,7 +139,7 @@ export const NavbarOverlay = styled.div<{ $isMobileOpen?: boolean }>`
   }
 `;
 
-export const NavBarStyled = styled.div<{ $isMobileOpen?: boolean }>`
+export const NavBarMobileDrawer = styled.div<{ $isMobileOpen?: boolean }>`
   transition: 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -181,6 +181,18 @@ export const NavBarStyled = styled.div<{ $isMobileOpen?: boolean }>`
       opacity: 0;
     }
   }
+`;
+
+export const NavBarStyled = styled.div`
+  transition: 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  height: 100%;
+  color: ${({ theme }) => theme.colors.primaryFont};
+  padding: 0;
+  padding-bottom: 25px;
 `;
 
 export const LogoWrapper = styled.div`

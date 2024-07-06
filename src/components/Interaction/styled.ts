@@ -17,8 +17,9 @@ export const InteractionStyled = styled.div<{ $isMobile: boolean }>`
   align-items: center;
   width: ${({ $isMobile }) => ($isMobile ? '100%' : '50%')};
   gap: 20px;
-  height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  height: ${({ $isMobile }) => ($isMobile ? 'calc(100vh - 70px)' : 'calc(100vh - 100px)')};
+  padding-bottom: 25px;
 
   &::-webkit-scrollbar {
     display: none;
