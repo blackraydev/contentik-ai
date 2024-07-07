@@ -19,7 +19,6 @@ import {
   LogoText,
   LogoWrapper,
   NavBarMobileDrawer,
-  NavBarStyled,
   NavLink,
   NavbarOverlay,
   Navigation,
