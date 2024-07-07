@@ -5,6 +5,7 @@ import {
   AuthBlock,
   AuthHeader,
   AuthPageStyled,
+  Logo,
   LogoText,
   LogoWrapper,
   WelcomeBlock,
@@ -18,6 +19,7 @@ export const AuthPage = () => {
       <AuthBlock $isMobile={isMobile}>
         <AuthHeader>
           <LogoWrapper>
+            <Logo src='/contentik-ai/logo.png' />
             <LogoText>Contentik</LogoText>
           </LogoWrapper>
           <ThemeToggle />

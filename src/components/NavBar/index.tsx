@@ -7,6 +7,7 @@ import { tabRoutes } from './consts';
 import {
   BottomPart,
   BurgerMenuIcon,
+  Logo,
   LogoText,
   LogoWrapper,
   NavBarMobileDrawer,
@@ -33,7 +34,6 @@ export const NavBar = () => {
   }, [pathname]);
 
   if (isMobile || isTablet) {
-    console.log('yes')
     return (
       <Fragment>
         <NavBarMobileStyled>
@@ -59,6 +59,7 @@ export const NavBar = () => {
             <NavBarMobileDrawer $isMobileOpen={true} onClick={(e) => e.stopPropagation()}>
               <TopPart>
                 <LogoWrapper>
+                  <Logo src="/contentik-ai/logo.png" />
                   <LogoText>Contentik</LogoText>
                 </LogoWrapper>
                 <Navigation>
@@ -92,6 +93,7 @@ export const NavBar = () => {
     <NavBarStyled>
       <TopPart>
         <LogoWrapper>
+          <Logo src="/contentik-ai/logo.png" />
           <LogoText>Contentik</LogoText>
         </LogoWrapper>
         <Navigation>

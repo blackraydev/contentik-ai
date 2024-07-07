@@ -16,6 +16,7 @@ import {
 import { useCheckScreenType } from '../../hooks';
 import {
   BottomPart,
+  Logo,
   LogoText,
   LogoWrapper,
   NavBarMobileDrawer,
@@ -47,6 +48,7 @@ export const Header = () => {
           <NavBarMobileDrawer $isMobileOpen={navbarOpen} onClick={(e) => e.stopPropagation()}>
             <TopPart>
               <LogoWrapper>
+                <Logo src='/contentik-ai/logo.png' />
                 <LogoText>Contentik</LogoText>
               </LogoWrapper>
               <Navigation>

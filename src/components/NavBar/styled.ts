@@ -207,6 +207,7 @@ export const LogoWrapper = styled.div`
 export const Logo = styled.img`
   width: 30px;
   height: 30px;
+  margin-right: 5px;
 `;
 
 export const LogoText = styled.p`
