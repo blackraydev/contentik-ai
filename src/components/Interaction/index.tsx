@@ -9,6 +9,7 @@ import {
   FieldsWrapper,
   GenerateButton,
   InteractionStyled,
+  LanguageSelect,
   TextareaStyled,
   Title,
 } from './styled';
@@ -224,12 +225,13 @@ export const Interaction = ({
             withClear
           />
         </FieldsWrapper>
-        <Select
+        <LanguageSelect
           label="Язык"
           placeholder="Язык"
           value={language}
           onChange={setLanguage}
           options={languages}
+          $isMobile={isMobile}
         />
       </Accordion>
       {isMobile ? (

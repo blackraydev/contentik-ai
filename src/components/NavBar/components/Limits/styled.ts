@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { IoFlash } from 'react-icons/io5';
 import { Button } from '../../../../UI';
+import { FaWandMagicSparkles } from 'react-icons/fa6';
+import { FaPen } from 'react-icons/fa';
 
 export const LimitsButtonMobile = styled(Button)`
   transition: 0.2s ease;
@@ -34,7 +36,6 @@ export const LimitsButtonMobile = styled(Button)`
     left: -2px;
     background-size: 400% 400%;
     z-index: -1;
-    filter: blur(5px);
     width: calc(100% + 4px);
     height: calc(100% + 4px);
     animation: glowing 10s ease infinite;
@@ -86,7 +87,7 @@ export const LimitsStyled = styled.div`
   outline: none;
   position: relative;
   z-index: 0;
-  height: 250px;
+  height: 300px;
   border-radius: 15px;
 
   &:before {
@@ -126,13 +127,14 @@ export const TariffTitle = styled.p`
   font-size: 16px;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.white};
-  margin-bottom: -10px;
+  margin-bottom: -5px;
 `;
 
 export const TariffPlan = styled.p`
   font-size: 24px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.white};
+  margin-bottom: 10px;
 `;
 
 export const LimitsWrapper = styled.div`
@@ -163,14 +165,13 @@ export const LimitsContent = styled.div`
 export const LimitsBody = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: -5px;
+  gap: 12px;
 `;
 
 export const LimitsText = styled.div`
   transition: 0.2s ease;
   color: ${({ theme }) => theme.colors.white};
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 500;
   width: 100%;
   text-align: start;
@@ -184,4 +185,18 @@ export const ButtonStyled = styled(Button)`
     background: rgb(236, 236, 238);
     color: ${({ theme }) => theme.colors.black};
   }
+`;
+
+export const MagicIcon = styled(FaWandMagicSparkles)`
+  transition: 0.2s ease;
+  width: 20px;
+  height: 20px;
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const PenIcon = styled(FaPen)`
+  transition: 0.2s ease;
+  width: 20px;
+  height: 20px;
+  color: ${({ theme }) => theme.colors.white};
 `;

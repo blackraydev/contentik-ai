@@ -18,6 +18,7 @@ export const SearchBar = () => {
       />
       <SelectStyled
         label="Способ генерации"
+        placeholder="Способ"
         value={chosenMode ? chosenMode : ''}
         onChange={(value) => setChosenMode(value as Mode)}
         options={historyModes}

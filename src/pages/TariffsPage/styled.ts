@@ -48,7 +48,7 @@ export const TariffItemPro = styled.div`
   }
 `;
 
-export const TariffSticker = styled.div<{ $plan: 'start' | 'pro' | 'expert' }>`
+export const TariffSticker = styled.div<{ $plan: 'trial' | 'start' | 'pro' | 'expert' }>`
   transition: 0.2s ease;
   padding: 20px;
   width: 100%;
@@ -58,10 +58,6 @@ export const TariffSticker = styled.div<{ $plan: 'start' | 'pro' | 'expert' }>`
 
   ${({ $plan }) => {
     switch ($plan) {
-      case 'start':
-        return css`
-          background: ${({ theme }) => theme.colors.secondaryLightBg};
-        `;
       case 'pro':
         return css`
           background: none;
@@ -79,7 +75,15 @@ export const TariffSticker = styled.div<{ $plan: 'start' | 'pro' | 'expert' }>`
         `;
       case 'expert':
         return css`
-          background: ${({ theme }) => theme.colors.secondaryLightBg};
+          background: ${({ theme }) => theme.colors.buttonBg};
+          color: ${({ theme }) => theme.colors.buttonFont};
+
+          ${TariffTitle} {
+            color: ${({ theme }) => theme.colors.buttonFont};
+          }
+          ${TariffPrice} {
+            color: ${({ theme }) => theme.colors.buttonFont};
+          }
         `;
     }
   }}
@@ -170,6 +174,15 @@ export const ChooseTariffButton = styled(Button)`
   }
 `;
 
+export const ChooseExpertTariffButton = styled(Button)`
+  background: ${({ theme }) => theme.colors.elemBg};
+  color: ${({ theme }) => theme.colors.primaryFont};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.inputHover};
+  }
+`;
+
 export const TariffFunction = styled.div`
   transition: 0.2s ease;
   display: flex;
@@ -221,9 +234,9 @@ export const Wrapper = styled.div<{ $isMobile: boolean }>`
   }
 
   ${TariffItem} {
-    width: ${({ $isMobile }) => ($isMobile ? 'calc(100% - 5px)' : 'calc(33.33% - 10px)')};
+    width: ${({ $isMobile }) => ($isMobile ? 'calc(100% - 5px)' : 'calc(25% - 10px)')};
   }
   ${TariffItemPro} {
-    width: ${({ $isMobile }) => ($isMobile ? 'calc(100% - 5px)' : 'calc(33.33% - 10px)')};
+    width: ${({ $isMobile }) => ($isMobile ? 'calc(100% - 5px)' : 'calc(25% - 10px)')};
   }
 `;

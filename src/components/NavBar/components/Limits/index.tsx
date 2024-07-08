@@ -1,19 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 import { Progress } from '../../../../UI';
+import { PrivateRoutes } from '../../../../consts';
+import { useCheckScreenType } from '../../../../hooks';
 import {
   ButtonStyled,
   LimitsBody,
   LimitsButtonMobile,
-  LimitsIcon,
   LimitsIconMobile,
   LimitsStyled,
   LimitsText,
   LimitsWrapper,
+  MagicIcon,
+  PenIcon,
   TariffPlan,
   TariffTitle,
 } from './styled';
-import { PrivateRoutes } from '../../../../consts';
-import { useCheckScreenType } from '../../../../hooks';
 
 type LimitsProps = {
   isMobileOpen?: boolean;
@@ -43,10 +44,15 @@ export const Limits = ({ isMobileOpen, setOpen }: LimitsProps) => {
         <TariffTitle>Тариф</TariffTitle>
         <TariffPlan>Пробный</TariffPlan>
         <LimitsBody>
-          <LimitsIcon />
+          <MagicIcon />
           <LimitsText>4 из 5</LimitsText>
         </LimitsBody>
         <Progress width="100%" progress={80} />
+        <LimitsBody>
+          <PenIcon />
+          <LimitsText>1 из 1</LimitsText>
+        </LimitsBody>
+        <Progress width="100%" progress={100} />
         <ButtonStyled onClick={handleClick}>Улучшить тариф</ButtonStyled>
       </LimitsWrapper>
     </LimitsStyled>

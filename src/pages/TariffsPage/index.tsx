@@ -1,6 +1,7 @@
 import { Button } from '../../UI';
 import { useCheckScreenType } from '../../hooks';
 import {
+  ChooseExpertTariffButton,
   ChooseTariffButton,
   MarkIcon,
   TariffChips,
@@ -23,6 +24,33 @@ export const TariffsPage = () => {
   return (
     <Wrapper $isMobile={isMobile}>
       <TariffItem>
+        <TariffSticker $plan="trial">
+          <TariffHeader>
+            <TariffTitle>Пробный</TariffTitle>
+          </TariffHeader>
+          <TariffPrice>Бесплатно</TariffPrice>
+          <Button>Выбрать тариф</Button>
+        </TariffSticker>
+
+        <TariffFunction>
+          <TariffFunctionTitle>Генерации</TariffFunctionTitle>
+          <TariffFunctionDescription>
+            <MarkIcon />5 генераций
+          </TariffFunctionDescription>
+          <TariffFunctionDescription>
+            <MarkIcon />1 редактирование
+          </TariffFunctionDescription>
+        </TariffFunction>
+
+        <TariffFunction>
+          <TariffFunctionTitle>Модель</TariffFunctionTitle>
+          <TariffFunctionDescription>
+            <MarkIcon />
+            GPT-3.5
+          </TariffFunctionDescription>
+        </TariffFunction>
+      </TariffItem>
+      <TariffItem>
         <TariffSticker $plan="start">
           <TariffHeader>
             <TariffTitle>Стартовый</TariffTitle>
@@ -36,6 +64,10 @@ export const TariffsPage = () => {
           <TariffFunctionDescription>
             <MarkIcon />
             50 генераций
+          </TariffFunctionDescription>
+          <TariffFunctionDescription>
+            <MarkIcon />
+            25 редактирований
           </TariffFunctionDescription>
         </TariffFunction>
 
@@ -64,7 +96,11 @@ export const TariffsPage = () => {
           <TariffFunctionTitle>Генерации</TariffFunctionTitle>
           <TariffFunctionDescription>
             <MarkIcon />
-            200 генераций
+            500 генераций
+          </TariffFunctionDescription>
+          <TariffFunctionDescription>
+            <MarkIcon />
+            100 редактирований
           </TariffFunctionDescription>
         </TariffFunction>
 
@@ -73,6 +109,14 @@ export const TariffsPage = () => {
           <TariffFunctionDescription>
             <MarkIcon />
             GPT-4 Omni
+          </TariffFunctionDescription>
+        </TariffFunction>
+
+        <TariffFunction>
+          <TariffFunctionTitle>Поддержка</TariffFunctionTitle>
+          <TariffFunctionDescription>
+            <MarkIcon />
+            Приоритетная поддержка
           </TariffFunctionDescription>
         </TariffFunction>
       </TariffItemPro>
@@ -83,14 +127,18 @@ export const TariffsPage = () => {
             <TariffTitle>Эксперт</TariffTitle>
           </TariffHeader>
           <TariffPrice>2999 ₽ / месяц</TariffPrice>
-          <Button>Выбрать тариф</Button>
+          <ChooseExpertTariffButton>Выбрать тариф</ChooseExpertTariffButton>
         </TariffSticker>
 
         <TariffFunction>
           <TariffFunctionTitle>Генерации</TariffFunctionTitle>
           <TariffFunctionDescription>
             <MarkIcon />
-            500 генераций
+            2000 генераций
+          </TariffFunctionDescription>
+          <TariffFunctionDescription>
+            <MarkIcon />
+            250 редактирований
           </TariffFunctionDescription>
         </TariffFunction>
 
@@ -99,6 +147,14 @@ export const TariffsPage = () => {
           <TariffFunctionDescription>
             <MarkIcon />
             GPT-4 Omni
+          </TariffFunctionDescription>
+        </TariffFunction>
+
+        <TariffFunction>
+          <TariffFunctionTitle>Поддержка</TariffFunctionTitle>
+          <TariffFunctionDescription>
+            <MarkIcon />
+            Персональная поддержка
           </TariffFunctionDescription>
         </TariffFunction>
       </TariffItem>

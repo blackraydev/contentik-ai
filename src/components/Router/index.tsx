@@ -4,10 +4,11 @@ import { privateRoutes, publicRoutes } from './consts';
 import { PrivateRoutes, PublicRoutes } from '../../consts';
 import { Layout as PrivatePageLayout } from '../../components';
 import { AuthLoader, Layout } from './styled';
+import { isUserEmailVerified } from '../../utils';
 
 export const Router = () => {
   const { isAuthenticating, session, user } = useUserScope();
-  const isAuthenticationInvalid = !session && !user;
+  const isAuthenticationInvalid = (!session && !user) || !isUserEmailVerified(user);
 
   const renderSingleRoute = (routeProps: RouteProps) => {
     return <Route {...routeProps} key={routeProps.path} />;
@@ -38,7 +39,6 @@ export const Router = () => {
       return <Navigate to={PublicRoutes.Auth} />;
     }
 
-    // TODO: Edit to dashboard
     return <Navigate to={PrivateRoutes.Create} />;
   };
 

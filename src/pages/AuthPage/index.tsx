@@ -1,6 +1,8 @@
-import { AuthForm } from '../../components';
+import { AuthForm, SubmitAuthForm } from '../../components';
 import { ThemeToggle } from '../../components';
 import { useCheckScreenType } from '../../hooks';
+import { useUserScope } from '../../scopes';
+import { isUserEmailVerified } from '../../utils';
 import {
   AuthBlock,
   AuthHeader,
@@ -12,19 +14,28 @@ import {
 } from './styled';
 
 export const AuthPage = () => {
+  const { user } = useUserScope();
   const { isMobile } = useCheckScreenType();
+
+  const renderForm = () => {
+    if (user && !isUserEmailVerified(user)) {
+      return <SubmitAuthForm />;
+    }
+
+    return <AuthForm />;
+  };
 
   return (
     <AuthPageStyled>
       <AuthBlock $isMobile={isMobile}>
         <AuthHeader>
           <LogoWrapper>
-            <Logo src='/contentik-ai/logo.png' />
+            <Logo src="/contentik-ai/logo.png" />
             <LogoText>Contentik</LogoText>
           </LogoWrapper>
           <ThemeToggle />
         </AuthHeader>
-        <AuthForm />
+        {renderForm()}
       </AuthBlock>
       {!isMobile && <WelcomeBlock></WelcomeBlock>}
     </AuthPageStyled>

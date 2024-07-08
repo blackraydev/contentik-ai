@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   ChevronIcon,
   CrossIcon,
@@ -38,6 +38,7 @@ export const SearchSelect = ({
   withClear = false,
   className,
 }: SelectProps) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const { isMobile } = useCheckScreenType();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -76,9 +77,14 @@ export const SearchSelect = ({
           <InfoIcon />
         </Tooltip>
       </LabelWrapper>
-      <SearchInputWrapper>
+      <SearchInputWrapper
+        onClick={() => {
+          setIsOpen(!isOpen);
+          inputRef.current?.focus();
+        }}
+      >
         <SearchInput
-          onClick={() => setIsOpen(!isOpen)}
+          ref={inputRef}
           onChange={(e) => onChange(e.target.value)}
           value={chosenOption ? chosenOptionLabel : value}
           placeholder={placeholder}

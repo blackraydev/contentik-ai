@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-import { Button, Textarea } from '../../UI';
+import styled, { css } from 'styled-components';
+import { Button, Select, Textarea } from '../../UI';
+import { OptionsList } from '../../UI/Select/styles';
 
 export const Title = styled.h3`
   transition: 0.2s ease;
@@ -52,6 +53,14 @@ export const PhotosWrapper = styled.div`
   gap: 5px;
   flex-wrap: nowrap;
   align-items: center;
+`;
+
+export const LanguageSelect = styled(Select)<{ $isMobile: boolean }>`
+  ${({ $isMobile }) => css`
+    ${OptionsList} {
+      top: ${$isMobile ? '-135px;' : '-160px'};
+    }
+  `}
 `;
 
 export const ButtonsWrapper = styled.div`

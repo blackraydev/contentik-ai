@@ -139,6 +139,15 @@ export const NavbarOverlay = styled.div<{ $isMobileOpen?: boolean }>`
   }
 `;
 
+export const LogoWrapper = styled.div`
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 30px;
+`;
+
 export const NavBarMobileDrawer = styled.div<{ $isMobileOpen?: boolean }>`
   transition: 0.2s ease;
   display: flex;
@@ -147,9 +156,13 @@ export const NavBarMobileDrawer = styled.div<{ $isMobileOpen?: boolean }>`
   width: 250px;
   height: 100%;
   color: ${({ theme }) => theme.colors.primaryFont};
-  padding: ${({ $isMobileOpen }) => ($isMobileOpen ? '25px' : '0')};
-  padding-bottom: 25px;
+  padding: ${({ $isMobileOpen }) => ($isMobileOpen ? '15px' : '0')};
+  padding-bottom: 15px;
   background: ${({ theme, $isMobileOpen }) => ($isMobileOpen ? theme.colors.primaryBg : 'inherit')};
+
+  ${LogoWrapper} {
+    padding: 10px;
+  }
 
   ${({ $isMobileOpen }) =>
     $isMobileOpen
@@ -193,15 +206,6 @@ export const NavBarStyled = styled.div`
   color: ${({ theme }) => theme.colors.primaryFont};
   padding: 0;
   padding-bottom: 25px;
-`;
-
-export const LogoWrapper = styled.div`
-  width: 100%;
-  cursor: pointer;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 30px;
 `;
 
 export const Logo = styled.img`

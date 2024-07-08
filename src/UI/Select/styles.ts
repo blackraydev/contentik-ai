@@ -22,7 +22,7 @@ export const SelectButton = styled.button<{ $isOptionChosen: boolean }>`
   border-radius: 15px;
   background: ${({ theme }) => theme.colors.elemBg};
   color: ${({ theme, $isOptionChosen }) =>
-    $isOptionChosen ? theme.colors.primaryFont : theme.colors.secondaryFont};
+    $isOptionChosen ? theme.colors.primaryFont : theme.colors.placeholderFont};
   padding: 16px 15px;
   cursor: pointer;
   gap: 6px;
@@ -65,7 +65,6 @@ export const SelectStyled = styled.div<SelectStyleProps>`
       transform: translateY(${$isOpen ? 0 : 10}px);
       visibility: ${!$isOpen && 'hidden'};
       max-height: ${$isMobile ? '150px' : '180px'};
-      top: ${$isMobile ? '-135px;' : '-160px'};
     }
     ${ChevronIcon} {
       transform: rotate(${$isOpen ? 180 : 0}deg);
@@ -80,6 +79,7 @@ export const SelectStyled = styled.div<SelectStyleProps>`
   }
   ${OptionItem} {
     font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};
+    padding: ${({ $isMobile }) => ($isMobile ? '10px' : '10px 15px')};
   }
 `;
 
@@ -89,6 +89,7 @@ export const OptionsList = styled.ul`
   z-index: 1000;
   position: absolute;
   left: 0;
+  top: 100%;
   background: ${({ theme }) => theme.colors.elemBg};
   border-radius: 15px;
   border: 1px solid ${({ theme }) => theme.colors.borderDefault};

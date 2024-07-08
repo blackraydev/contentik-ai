@@ -81,6 +81,7 @@ export const SearchSelectStyled = styled.div<SelectStyleProps>`
   }
   ${OptionItem} {
     font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};
+    padding: ${({ $isMobile }) => ($isMobile ? '10px' : '10px 15px')};
   }
   ${SearchInputWrapper} {
     font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};

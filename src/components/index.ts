@@ -2,6 +2,7 @@ export { Interaction } from './Interaction';
 export { Content } from './Content';
 export { Header } from './Header';
 export { AuthForm } from './AuthForm';
+export { SubmitAuthForm } from './SubmitAuthForm';
 export { Router } from './Router';
 export { NavBar } from './NavBar';
 export { Layout } from './Layout';
