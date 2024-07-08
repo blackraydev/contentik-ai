@@ -1,7 +1,7 @@
 import { Fragment, useMemo, useState } from 'react';
 import { getContent } from '../../api';
 import { useUserScope } from '../../scopes';
-import { Accordion, Button, Card, Input, SearchSelect, Select, Textarea } from '../../UI';
+import { Accordion, Button, Card, Input, SearchSelect, Textarea } from '../../UI';
 import { FormFields, Mode } from './types';
 import { contentTypes, languages, styles, tones } from '../../consts';
 import {
