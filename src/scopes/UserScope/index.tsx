@@ -34,6 +34,10 @@ export const UserScope = ({ children }: UserScopeProps) => {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      if (session?.user) {
+        setUser(user);
+      }
+
       setIsAuthenticating(false);
     });
 
@@ -41,6 +45,9 @@ export const UserScope = ({ children }: UserScopeProps) => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      if (session?.user) {
+        setUser(session?.user);
+      }
     });
 
     return () => {
@@ -59,6 +66,8 @@ export const UserScope = ({ children }: UserScopeProps) => {
     const refreshToken = urlObject.searchParams.get('refresh_token');
 
     if (accessToken && refreshToken) {
+      setIsAuthenticating(true);
+
       supabase.auth
         .setSession({
           access_token: accessToken,
@@ -67,6 +76,9 @@ export const UserScope = ({ children }: UserScopeProps) => {
         .then(({ data: { user, session } }) => {
           setUser(user);
           setSession(session);
+        })
+        .finally(() => {
+          setIsAuthenticating(false);
         });
     }
   }, [window.location.href]);
