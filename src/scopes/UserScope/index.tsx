@@ -59,10 +59,15 @@ export const UserScope = ({ children }: UserScopeProps) => {
     const refreshToken = urlObject.searchParams.get('refresh_token');
 
     if (accessToken && refreshToken) {
-      supabase.auth.setSession({
-        access_token: accessToken,
-        refresh_token: refreshToken,
-      });
+      supabase.auth
+        .setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        })
+        .then(({ data: { user, session } }) => {
+          setUser(user);
+          setSession(session);
+        });
     }
   }, [window.location.href]);
 
