@@ -126,7 +126,7 @@ export const TariffsPage = () => {
           <TariffHeader>
             <TariffTitle>Эксперт</TariffTitle>
           </TariffHeader>
-          <TariffPrice>2999 ₽ / месяц</TariffPrice>
+          <TariffPrice>3999 ₽ / месяц</TariffPrice>
           <ChooseExpertTariffButton>Выбрать тариф</ChooseExpertTariffButton>
         </TariffSticker>
 
