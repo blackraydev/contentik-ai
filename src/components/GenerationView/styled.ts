@@ -6,7 +6,6 @@ export const GenerationViewStyled = styled.div<{ $isMobile: boolean }>`
   flex-direction: column;
   align-items: center;
   height: 100%;
-  height: 100%;
   width: ${({ $isMobile }) => ($isMobile ? '100%' : '50%')};
   gap: 20px;
 `;

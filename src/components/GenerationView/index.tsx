@@ -58,10 +58,7 @@ export const GenerationView = () => {
           onClose={() => setIsModalOpen(false)}
         />
       )}
-      <Card
-        width={isMobile ? '100%' : '100%'}
-        height={isMobile ? 'calc(100vh - 225px)' : 'calc(100vh - 175px)'}
-      >
+      <Card width="100%" height={isMobile ? 'calc(100lvh - 280px)' : 'calc(100vh - 175px)'} padding="0 25px 0 25px">
         {renderContent()}
       </Card>
       {isMobile && (

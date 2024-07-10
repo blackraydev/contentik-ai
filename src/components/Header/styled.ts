@@ -6,10 +6,10 @@ export const HeaderStyled = styled.div<{ $isMobile: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: ${({ $isMobile }) => ($isMobile ? 'calc(100% - 30px)' : '100%')};
+  width: 100%;
   min-height: 50px;
   height: 50px;
-  position: ${({ $isMobile }) => ($isMobile ? 'fixed' : 'relative')};
+  position: relative;
 `;
 
 export const Title = styled.h1`

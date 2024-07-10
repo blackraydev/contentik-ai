@@ -12,3 +12,4 @@ export { Markdown } from './Markdown';
 export { GenerationView } from './GenerationView';
 export { AnalyzingText } from './AnalyzingText';
 export { MarkdownEditor } from './MarkdownEditor';
+export { Features } from './Features';

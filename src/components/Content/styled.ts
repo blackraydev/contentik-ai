@@ -4,12 +4,12 @@ export const ContentStyled = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(100vh - 165px);
   width: ${({ $isMobile }) => ($isMobile ? '100%' : '50%')};
   gap: 20px;
 
   button {
     width: 50%;
+    margin: 0;
   }
 `;
 

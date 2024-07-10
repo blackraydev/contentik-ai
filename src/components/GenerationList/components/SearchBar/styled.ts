@@ -4,8 +4,7 @@ import { Input, Select } from '../../../../UI';
 export const InputStyled = styled(Input)``;
 
 export const SelectStyled = styled(Select)`
-  min-width: 180px;
-  width: 30%;
+  width: fit-content;
 `;
 
 export const SearchBarStyled = styled.div<{ $isMobile: boolean }>`
@@ -16,6 +15,6 @@ export const SearchBarStyled = styled.div<{ $isMobile: boolean }>`
   gap: 10px;
 
   ${SelectStyled} {
-    min-width: ${({ $isMobile }) => ($isMobile ? '145px' : '180px')};
+    min-width: ${({ $isMobile }) => ($isMobile ? '140px' : '180px')};
   }
 `;

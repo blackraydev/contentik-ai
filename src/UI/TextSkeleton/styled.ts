@@ -5,6 +5,7 @@ export const TextSkeletonStyled = styled.div`
   flex-wrap: wrap;
   width: 100%;
   gap: 10px;
+  margin-top: 25px;
 `;
 
 export const TextSkeletonText = styled.div<{ width?: number }>`

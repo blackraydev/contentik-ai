@@ -1,4 +1,4 @@
-import { AuthForm, SubmitAuthForm } from '../../components';
+import { AuthForm, Features, SubmitAuthForm } from '../../components';
 import { ThemeToggle } from '../../components';
 import { useCheckScreenType } from '../../hooks';
 import { useUserScope } from '../../scopes';
@@ -37,7 +37,11 @@ export const AuthPage = () => {
         </AuthHeader>
         {renderForm()}
       </AuthBlock>
-      {!isMobile && <WelcomeBlock></WelcomeBlock>}
+      {!isMobile && (
+        <WelcomeBlock>
+          <Features />
+        </WelcomeBlock>
+      )}
     </AuthPageStyled>
   );
 };

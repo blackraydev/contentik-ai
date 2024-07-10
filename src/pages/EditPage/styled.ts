@@ -6,10 +6,5 @@ export const Wrapper = styled.div<{ $isMobile: boolean }>`
   height: 100%;
   width: 100%;
   gap: 20px;
-  overflow-y: ${({ $isMobile }) => ($isMobile ? 'scroll' : 'none')};
   padding-bottom: 25px;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;

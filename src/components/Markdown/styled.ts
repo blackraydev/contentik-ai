@@ -16,6 +16,7 @@ export const MarkdownStyled = styled(MDEditor.Markdown)<{ $isMobile: boolean }>`
   background-color: ${({ theme }) => theme.colors.primaryBg};
   color: ${({ theme }) => theme.colors.primaryFont};
   overflow: scroll !important;
+  padding: 25px 0;
 
   &::-webkit-scrollbar {
     display: none;

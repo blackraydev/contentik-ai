@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { signInWithEmail, signUpNewUser, signInWithOAuth } from '../../api';
 import { Input } from '../../UI';
-import { useUserScope } from '../../scopes';
+import { useToastsScope, useUserScope } from '../../scopes';
 import { FormFields } from './types';
 import {
   AuthFormStyled,
@@ -19,6 +19,7 @@ type AuthType = 'sign-in' | 'sign-up';
 
 export const AuthForm = () => {
   const { isMobile } = useCheckScreenType();
+  const { showToast } = useToastsScope();
   const { setSession, setUser } = useUserScope();
   const [authType, setAuthType] = useState<AuthType>('sign-up');
   const [email, setEmail] = useState('');
@@ -78,8 +79,10 @@ export const AuthForm = () => {
 
       setUser(user);
       setSession(session);
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
+      if (e.message === 'Invalid login credentials' && authType === 'sign-in') {
+        showToast('Аккаунт с такими данными не найден', 'failure');
+      }
     } finally {
       setIsSubmitting(false);
     }

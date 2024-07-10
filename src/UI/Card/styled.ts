@@ -7,7 +7,7 @@ export const CardStyled = styled.div<{ $padding?: string }>`
   background: ${({ theme }) => theme.colors.primaryBg};
   box-shadow: ${({ theme }) => theme.colors.primaryBoxShadow};
   border-radius: 1.5rem;
-  padding: 25px;
+  padding: ${({ $padding }) => $padding ?? '25px'};
 `;
 
 export const ChildrenStyled = styled.div<{ $width: string; $height: string }>`

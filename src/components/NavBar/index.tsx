@@ -24,7 +24,7 @@ import {
 
 export const NavBar = () => {
   const [open, setOpen] = useState(false);
-  const { isMobile, isTablet } = useCheckScreenType();
+  const { isTablet } = useCheckScreenType();
   const { pathname } = useLocation();
   const [activeTabRoute, setActiveTabRoute] = useState(getActiveTabRoute(pathname));
 
@@ -33,7 +33,7 @@ export const NavBar = () => {
     setActiveTabRoute(newActiveTabRoute);
   }, [pathname]);
 
-  if (isMobile || isTablet) {
+  if (isTablet) {
     return (
       <Fragment>
         <NavBarMobileStyled>

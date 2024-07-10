@@ -15,6 +15,7 @@ export const TariffItem = styled.div`
 `;
 
 export const TariffItemPro = styled.div`
+  margin-top: 1px;
   transition: 0.2s ease;
   display: flex;
   flex-direction: column;

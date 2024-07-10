@@ -9,9 +9,12 @@ export const AuthPageStyled = styled.div`
 `;
 
 export const WelcomeBlock = styled.div`
+  overflow: hidden;
   margin: 30px;
   transition: 0.2s ease;
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 50%;
   height: calc(100% - 60px);
   border: none;

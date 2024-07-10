@@ -1,6 +1,6 @@
-import { months } from '../../../../../consts';
+import { months } from '../consts';
 
-export const getGenerationDate = (generationDate: string) => {
+export const getFormattedDate = (generationDate: string) => {
   const date = new Date(generationDate);
 
   const day = date.getDate();

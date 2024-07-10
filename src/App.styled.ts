@@ -19,6 +19,5 @@ export const GlobalStyles = createGlobalStyle`
     transition: 0.2s ease;
     scroll-behavior: smooth;
     background: ${({ theme }) => theme.colors.mainBg};
-    overflow: hidden;
   }
 `;

@@ -103,7 +103,7 @@ export const TopPartMobile = styled.div`
 
 export const NavbarOverlay = styled.div<{ $isMobileOpen?: boolean }>`
   transition: 0.2s ease;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;

@@ -5,6 +5,7 @@ import {
   GenerationsScope,
   OptimizationScope,
   ThemeScope,
+  ToastsScope,
   TonalityScope,
   UserScope,
 } from './scopes';
@@ -21,8 +22,10 @@ function App() {
               <GenerationsScope>
                 <OptimizationScope>
                   <TonalityScope>
-                    <GlobalStyles />
-                    <AppRouter />
+                    <ToastsScope>
+                      <GlobalStyles />
+                      <AppRouter />
+                    </ToastsScope>
                   </TonalityScope>
                 </OptimizationScope>
               </GenerationsScope>

@@ -5,3 +5,4 @@ export { UserScope, useUserScope } from './UserScope';
 export { GenerationsScope, useGenerationsScope } from './GenerationsScope';
 export { OptimizationScope, useOptimizationScope } from './OptimizationScope';
 export { TonalityScope, useTonalityScope } from './TonalityPage';
+export { ToastsScope, useToastsScope } from './ToastScope';

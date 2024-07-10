@@ -5,21 +5,25 @@ export const LayoutMainStyled = styled.div`
   flex-direction: column;
   height: 100%;
   gap: 30px;
+  overflow: hidden;
+  height: 100%;
 `;
 
 export const LayoutChildrenStyled = styled.div<{ $isMobile: boolean }>`
   display: flex;
   height: 100%;
-  margin-top: ${({ $isMobile }) => ($isMobile ? '60px' : '0')};
+  overflow: hidden;
+  height: 100%;
 `;
 
 export const LayoutStyled = styled.div<{ $isMobile: boolean; $isTablet: boolean }>`
   display: flex;
   width: 100%;
-  height: 100vh;
   gap: 30px;
   padding: ${({ $isMobile }) => ($isMobile ? '10px 15px' : '25px')};
   padding-bottom: 0;
+  height: ${({ $isMobile }) => ($isMobile ? '100%' : '100vh')};
+  overflow: hidden;
 
   ${LayoutMainStyled} {
     width: calc(100% - 250px);

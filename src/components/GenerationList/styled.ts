@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const GenerationListStyled = styled.div`
   display: flex;
@@ -6,11 +6,6 @@ export const GenerationListStyled = styled.div`
   gap: 10px;
   width: 100%;
   height: 100%;
-  overflow-y: scroll !important;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 export const GenerationHistoryWrapper = styled.div<{ $isMobile: boolean }>`
@@ -18,11 +13,21 @@ export const GenerationHistoryWrapper = styled.div<{ $isMobile: boolean }>`
   flex-direction: column;
   gap: 10px;
   width: ${({ $isMobile }) => ($isMobile ? '100%' : '50%')};
-  height: ${({ $isMobile }) => ($isMobile ? 'calc(100vh - 50px)' : 'calc(100vh - 100px)')};
+  height: ${({ $isMobile }) => ($isMobile ? 'fit-content' : 'calc(100vh - 100px)')};
   padding-bottom: ${({ $isMobile }) => ($isMobile ? '0' : '25px')};
 
   ${GenerationListStyled} {
     padding-bottom: ${({ $isMobile }) => ($isMobile ? '35px' : '5px')};
+
+    ${({ $isMobile }) =>
+      !$isMobile &&
+      css`
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      `}
   }
 `;
 
