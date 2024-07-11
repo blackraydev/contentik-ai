@@ -20,6 +20,11 @@ export const InteractionStyled = styled.div<{ $isMobile: boolean }>`
   gap: 20px;
   height: ${({ $isMobile }) => ($isMobile ? 'fit-content' : 'calc(100vh - 100px)')};
   padding-bottom: 25px;
+  overflow-y: ${({ $isMobile }) => ($isMobile ? 'none' : 'scroll')};
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   ${Title} {
     font-size: ${({ $isMobile }) => ($isMobile ? '18px' : '20px')};

@@ -4,4 +4,10 @@ export const contentTypes = [
   { value: 'Блог', label: 'Блог' },
   { value: 'Реклама', label: 'Реклама' },
   { value: 'Объявление', label: 'Объявление' },
+  { value: 'Письмо', label: 'Письмо' },
+  { value: 'Описание товара', label: 'Описание товара' },
+  { value: 'Новости', label: 'Новости' },
+  { value: 'Отзыв', label: 'Отзыв' },
+  { value: 'Обзор', label: 'Обзор' },
+  { value: 'Пресс-релиз', label: 'Пресс-релиз' },
 ];

@@ -149,7 +149,7 @@ export const Interaction = ({
                 removeInvalidField('topic');
               }}
               error={{ visible: invalidFields.includes('topic') }}
-              placeholder="Спорт"
+              placeholder="Здоровое питание"
               tooltipProps={{
                 content: 'Основная тема или заголовок',
                 width: 160,
@@ -159,7 +159,7 @@ export const Interaction = ({
               label="Описание"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Влияние ежедневного занятия спортом на состояние здоровья человека. Выделить преимущества и недостатки занятия спортом"
+              placeholder="Польза овощей и фруктов для здоровья"
               tooltipProps={{
                 content: 'Краткое описание или аннотация',
                 width: 175,
@@ -182,7 +182,7 @@ export const Interaction = ({
         <FieldsWrapper>
           <SearchSelect
             label="Тип контента"
-            placeholder="Тип"
+            placeholder="Пост"
             value={contentType}
             onChange={setContentType}
             options={contentTypes}
@@ -192,14 +192,14 @@ export const Interaction = ({
             label="Целевая аудитория"
             value={targetAudience}
             onChange={(e) => setTargetAudience(e.target.value)}
-            placeholder="Молодёжь"
+            placeholder="Молодые мамы"
           />
         </FieldsWrapper>
         <Input
           label="Ключевые слова"
           value={keywords}
           onChange={(e) => setKeywords(e.target.value)}
-          placeholder="Арбуз, Банан, Апельсин"
+          placeholder="Здоровое питание, овощи, фрукты"
           tooltipProps={{
             content: 'Перечислите ключевые слова через запятую',
             width: 200,
@@ -210,7 +210,7 @@ export const Interaction = ({
         <FieldsWrapper>
           <SearchSelect
             label="Стиль письма"
-            placeholder="Стиль"
+            placeholder="Дружелюбный"
             value={style}
             onChange={setStyle}
             options={styles}
@@ -218,7 +218,7 @@ export const Interaction = ({
           />
           <SearchSelect
             label="Тон"
-            placeholder="Тон"
+            placeholder="Вдохновляющий"
             value={tone}
             onChange={setTone}
             options={tones}
