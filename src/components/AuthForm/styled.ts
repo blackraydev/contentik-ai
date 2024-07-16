@@ -79,6 +79,12 @@ export const GoogleIcon = styled(FcGoogle)`
   height: 22px;
 `;
 
+export const VKAuthContainer = styled.div`
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+`;
+
 export const EnterLabel = styled.p`
   transition: 0.2s ease;
   color: ${({ theme }) => theme.colors.secondaryFont};

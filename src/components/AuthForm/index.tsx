@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
-import { signInWithEmail, signUpNewUser, signInWithOAuth } from '../../api';
+import * as VKID from '@vkid/sdk';
 import { Input } from '../../UI';
-import { useToastsScope, useUserScope } from '../../scopes';
+import { useThemeScope, useToastsScope, useUserScope } from '../../scopes';
 import { FormFields } from './types';
 import {
   AuthFormStyled,
@@ -12,15 +12,17 @@ import {
   LabelSeparator,
   SignInButton,
   Title,
+  VKAuthContainer,
 } from './styled';
 import { useCheckScreenType } from '../../hooks';
 
 type AuthType = 'sign-in' | 'sign-up';
 
 export const AuthForm = () => {
+  const { isDarkTheme } = useThemeScope();
   const { isMobile } = useCheckScreenType();
   const { showToast } = useToastsScope();
-  const { setSession, setUser } = useUserScope();
+  const { login, register } = useUserScope();
   const [authType, setAuthType] = useState<AuthType>('sign-up');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,6 +34,34 @@ export const AuthForm = () => {
   const oAuthTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
+    VKID.Config.init({
+      app: 52001497, // Идентификатор приложения.
+      redirectUrl: 'https://localhost:5173/contentik-ai', // Адрес для перехода после авторизации.
+      state: 'dj29fnsadjsd82', // Произвольная строка состояния приложения.
+      codeVerifier: 'FGH767Gd65', // Верификатор в виде случайной строки. Обеспечивает защиту передаваемых данных.
+      mode: VKID.ConfigAuthMode.InNewTab, // По умолчанию авторизация открывается в новой вкладке.
+    });
+
+    // Создание экземпляра кнопки.
+    const oneTap = new VKID.OneTap();
+
+    // Получение контейнера из разметки.
+    const container = document.getElementById('VkIdSdkOneTap');
+
+    // Проверка наличия кнопки в разметке.
+    if (container) {
+      // Отрисовка кнопки в контейнере с именем приложения APP_NAME, светлой темой и на русском языке.
+      oneTap
+        .render({
+          container: container,
+          scheme: isDarkTheme ? VKID.Scheme.LIGHT : VKID.Scheme.DARK,
+          lang: VKID.Languages.RUS,
+          fastAuthEnabled: false,
+        })
+        .on(VKID.WidgetEvents.LOAD, () => VKID.Auth.login({}))
+        .on(VKID.WidgetEvents.ERROR, (e) => console.log(e));
+    }
+
     return () => {
       clearTimeout(oAuthTimerRef.current);
     };
@@ -68,17 +98,8 @@ export const AuthForm = () => {
 
       setIsSubmitting(true);
 
-      const authFunc = authType === 'sign-in' ? signInWithEmail : signUpNewUser;
-      const { data, error } = await authFunc({ email, password });
-
-      if (error) {
-        throw error;
-      }
-
-      const { user, session } = data;
-
-      setUser(user);
-      setSession(session);
+      const authFunc = authType === 'sign-in' ? login : register;
+      await authFunc(email, password);
     } catch (e: any) {
       if (e.message === 'Invalid login credentials' && authType === 'sign-in') {
         showToast('Аккаунт с такими данными не найден', 'failure');
@@ -91,7 +112,7 @@ export const AuthForm = () => {
   const handleOAuth = async (provider: 'google') => {
     try {
       setIsOAuthLoading(true);
-      await signInWithOAuth({ provider });
+      // await signInWithOAuth({ provider });
     } finally {
       oAuthTimerRef.current = setTimeout(() => setIsOAuthLoading(false), 10000);
     }
@@ -155,10 +176,11 @@ export const AuthForm = () => {
         {authType === 'sign-in' ? 'Войти' : 'Зарегистрироваться'}
       </SignInButton>
       <LabelSeparator $isMobile={isMobile}>Или войти через</LabelSeparator>
-      <SignInButton isLoading={isOAuthLoading} onClick={() => handleOAuth('google')}>
+      {/* <SignInButton isLoading={isOAuthLoading} onClick={() => handleOAuth('google')}>
         <GoogleIcon />
         Google
-      </SignInButton>
+      </SignInButton> */}
+      <VKAuthContainer id="VkIdSdkOneTap" />
       <EnterLabel onClick={handleSwitchAuthType}>
         {authType === 'sign-in' ? (
           <Fragment>

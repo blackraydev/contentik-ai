@@ -4,11 +4,10 @@ import { useUserScope } from '../../scopes';
 import { Label, SubmitAuthFormStyled, Title } from './styled';
 
 export const SubmitAuthForm = () => {
-  const { setSession, setUser, user } = useUserScope();
+  const { setUser, user } = useUserScope();
   const { isMobile } = useCheckScreenType();
 
   const handleLogout = () => {
-    setSession(null);
     setUser(null);
   };
 

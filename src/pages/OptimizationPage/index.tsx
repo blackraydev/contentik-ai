@@ -1,7 +1,6 @@
 import { useCheckScreenType } from '../../hooks';
 import { useOptimizationScope } from '../../scopes';
 import { Content, AnalyzingText } from '../../components';
-import { analyzeOptimization } from '../../api';
 import { Wrapper } from './styled';
 
 export const OptimizationPage = () => {
@@ -12,7 +11,7 @@ export const OptimizationPage = () => {
 
   return (
     <Wrapper $isMobile={isMobile}>
-      <AnalyzingText {...optimizationScope} onSubmit={analyzeOptimization} />
+      <AnalyzingText {...optimizationScope} onSubmit={() => {}} />
       <Content
         content={analyzedText}
         isGenerating={isAnalyzing}

@@ -1,2 +1,3 @@
-export * from './base';
-export * from './supabase';
+export { api } from './api';
+export { AuthService } from './authService';
+export { ContentService } from './contentService';

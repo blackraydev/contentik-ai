@@ -3,7 +3,6 @@ import { useCheckScreenType } from '../../hooks';
 import { useToastsScope, useUserScope } from '../../scopes';
 import { Button, Card, Input } from '../../UI';
 import { Title, Wrapper } from './styled';
-import { supabase } from '../../api';
 import { useNavigate } from 'react-router-dom';
 import { PrivateRoutes } from '../../consts';
 
@@ -45,7 +44,7 @@ export const ProfilePage = () => {
 
       setIsChangingPassword(true);
 
-      await supabase.auth.updateUser({ password });
+      // await supabase.auth.updateUser({ password });
 
       setPassword('');
       setRepeatedPassword('');
@@ -67,7 +66,8 @@ export const ProfilePage = () => {
       <Card width="100%" height="fit-content">
         <Title>Данные</Title>
         <Input label="Почта" value={user?.email} disabled />
-        {user?.app_metadata.provider === 'email' && (
+        {/* supabase */}
+        {user && (
           <Fragment>
             <Input
               label="Смена пароля"

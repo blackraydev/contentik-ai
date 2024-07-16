@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.43.5",
+    "@types/axios": "^0.14.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.34",
     "@uiw/react-md-editor": "^4.0.4",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "@vkid/sdk": "^2.1.0",
+    "axios": "^1.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",

@@ -1,9 +1,11 @@
 import { Fragment, useMemo, useState } from 'react';
-import { getContent } from '../../api';
-import { useUserScope } from '../../scopes';
+import { ContentService } from '../../api';
+import { useGenerationsScope, useUserScope } from '../../scopes';
 import { Accordion, Button, Card, Input, SearchSelect, Textarea } from '../../UI';
 import { FormFields, Mode } from './types';
 import { contentTypes, languages, styles, tones } from '../../consts';
+import { useCheckScreenType } from '../../hooks';
+import { scrollToFirstError } from '../../utils';
 import {
   ButtonsWrapper,
   FieldsWrapper,
@@ -13,8 +15,6 @@ import {
   TextareaStyled,
   Title,
 } from './styled';
-import { useCheckScreenType } from '../../hooks';
-import { scrollToFirstError } from '../../utils';
 
 type InteractionProps = {
   mode: Mode;
@@ -68,7 +68,8 @@ export const Interaction = ({
   setMobileView,
 }: InteractionProps) => {
   const { isMobile } = useCheckScreenType();
-  const { session } = useUserScope();
+  const { user } = useUserScope();
+  const { fetchGenerationList } = useGenerationsScope();
   const [invalidFields, setInvalidFields] = useState<FormFields[]>([]);
 
   const isInvalid = useMemo(() => {
@@ -103,8 +104,8 @@ export const Interaction = ({
       setMobileView('content');
       setGenerating(true);
 
-      const stream = await getContent({
-        userId: session?.user.id || '',
+      const stream = await ContentService.generateContent({
+        userId: user?.id || '',
         mode,
         text,
         topic,
@@ -116,6 +117,7 @@ export const Interaction = ({
         tone,
         language,
       });
+
       const decoder = new TextDecoder();
 
       if (!stream) {
@@ -126,6 +128,8 @@ export const Interaction = ({
         const decodedChunk = decoder.decode(chunk);
         setContent((prev) => prev + decodedChunk);
       }
+
+      await fetchGenerationList();
     } finally {
       setGenerating(false);
     }

@@ -6,3 +6,4 @@ export { GenerationsScope, useGenerationsScope } from './GenerationsScope';
 export { OptimizationScope, useOptimizationScope } from './OptimizationScope';
 export { TonalityScope, useTonalityScope } from './TonalityPage';
 export { ToastsScope, useToastsScope } from './ToastScope';
+export { ScopeComposer } from './ScopeComposer';

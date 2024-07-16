@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Card, Modal } from '../../UI';
-import { supabase } from '../../api';
 import { useCheckScreenType } from '../../hooks';
 import { useGenerationsScope } from '../../scopes';
 import { Markdown } from '../Markdown';
@@ -12,10 +11,16 @@ import {
   GenerationViewStyled,
   Text,
 } from './styled';
+import { ContentService } from '../../api';
 
 export const GenerationView = () => {
-  const { chosenGeneration, generationList, setMobileView, setChosenGeneration } =
-    useGenerationsScope();
+  const {
+    chosenGeneration,
+    generationList,
+    setMobileView,
+    setChosenGeneration,
+    setGenerationList,
+  } = useGenerationsScope();
   const { isMobile } = useCheckScreenType();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isGenerationDeleting, setIsGenerationDeleting] = useState(false);
@@ -25,7 +30,12 @@ export const GenerationView = () => {
 
     try {
       setIsGenerationDeleting(true);
-      await supabase.from('generations').delete().eq('id', chosenGeneration.id);
+      await ContentService.deleteContent({ id: chosenGeneration.id });
+
+      setGenerationList((prevGenerationList) =>
+        prevGenerationList.filter((generation) => generation.id !== chosenGeneration.id),
+      );
+
       setChosenGeneration(null);
       setMobileView('history');
     } finally {
@@ -58,7 +68,11 @@ export const GenerationView = () => {
           onClose={() => setIsModalOpen(false)}
         />
       )}
-      <Card width="100%" height={isMobile ? 'calc(100lvh - 280px)' : 'calc(100vh - 175px)'} padding="0 25px 0 25px">
+      <Card
+        width="100%"
+        height={isMobile ? 'calc(100lvh - 280px)' : 'calc(100vh - 175px)'}
+        padding="0 25px 0 25px"
+      >
         {renderContent()}
       </Card>
       {isMobile && (

@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { Generation, Mode } from '../../types';
-import { supabase } from '../../api';
+import { ContentService } from '../../api';
+import { useUserScope } from '../UserScope';
 
 type GenerationsScopeProps = {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ type GenerationsContextType = {
   setChosenMode: React.Dispatch<React.SetStateAction<Mode | null>>;
   mobileView: 'history' | 'content';
   setMobileView: React.Dispatch<React.SetStateAction<'history' | 'content'>>;
+  fetchGenerationList: () => Promise<void>;
 };
 
 const GenerationsContext = createContext<GenerationsContextType>({
@@ -34,11 +36,13 @@ const GenerationsContext = createContext<GenerationsContextType>({
   setChosenMode: () => {},
   mobileView: 'history',
   setMobileView: () => {},
+  fetchGenerationList: async () => {},
 });
 
 export const useGenerationsScope = () => useContext(GenerationsContext);
 
 export const GenerationsScope = ({ children }: GenerationsScopeProps) => {
+  const { user } = useUserScope();
   const [generationList, setGenerationList] = useState<Generation[]>([]);
   const [isGenerationListFetched, setGenerationListFetched] = useState(false);
   const [chosenGeneration, setChosenGeneration] = useState<Generation | null>(null);
@@ -46,40 +50,18 @@ export const GenerationsScope = ({ children }: GenerationsScopeProps) => {
   const [chosenMode, setChosenMode] = useState<Mode | null>(null);
   const [mobileView, setMobileView] = useState<'history' | 'content'>('history');
 
-  useEffect(() => {
-    const generationsInsertChannel = supabase
-      .channel('generations-insert-channel')
-      .on(
-        'postgres_changes',
-        { event: 'INSERT', schema: 'public', table: 'generations' },
-        ({ new: newGeneration }) => {
-          setGenerationList((prev) => [newGeneration as Generation, ...prev]);
-        },
-      )
-      .subscribe();
+  const fetchGenerationList = async () => {
+    try {
+      const userId = user?.id;
 
-    const generationsDeleteChannel = supabase
-      .channel('generations-delete-channel')
-      .on(
-        'postgres_changes',
-        { event: 'DELETE', schema: 'public', table: 'generations' },
-        ({ old: oldGeneration }) => {
-          setGenerationList((prev) =>
-            prev.filter((generation) => generation.id !== oldGeneration.id),
-          );
-
-          if (chosenGeneration?.id === oldGeneration.id) {
-            setChosenGeneration(null);
-          }
-        },
-      )
-      .subscribe();
-
-    return () => {
-      generationsInsertChannel.unsubscribe();
-      generationsDeleteChannel.unsubscribe();
-    };
-  }, []);
+      if (userId) {
+        const { data: generations } = await ContentService.getContents();
+        setGenerationList(generations);
+      }
+    } finally {
+      setGenerationListFetched(true);
+    }
+  };
 
   return (
     <GenerationsContext.Provider
@@ -96,6 +78,7 @@ export const GenerationsScope = ({ children }: GenerationsScopeProps) => {
         setChosenMode,
         mobileView,
         setMobileView,
+        fetchGenerationList,
       }}
     >
       {children}

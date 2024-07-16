@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { signOut } from '../../../../api';
 import { useUserScope } from '../../../../scopes';
 import { PrivateRoutes } from '../../../../consts';
 import {
@@ -14,15 +13,13 @@ import {
 
 export const UserTooltipContent = () => {
   const navigate = useNavigate();
-  const { setIsAuthenticating, setSession, setUser } = useUserScope();
+  const { setIsAuthenticating, setUser, logout } = useUserScope();
 
   const handleLogout = async () => {
     setIsAuthenticating(true);
-    await signOut();
+    logout();
 
-    setSession(null);
     setUser(null);
-    
     setIsAuthenticating(false);
   };
 
