@@ -2,7 +2,6 @@ import { AuthForm, Features, SubmitAuthForm } from '../../components';
 import { ThemeToggle } from '../../components';
 import { useCheckScreenType } from '../../hooks';
 import { useUserScope } from '../../scopes';
-import { isUserEmailVerified } from '../../utils';
 import {
   AuthBlock,
   AuthHeader,
@@ -18,7 +17,7 @@ export const AuthPage = () => {
   const { isMobile } = useCheckScreenType();
 
   const renderForm = () => {
-    if (user && !isUserEmailVerified(user)) {
+    if (user && !user.isActivated) {
       return <SubmitAuthForm />;
     }
 

@@ -7,7 +7,6 @@ import {
   AuthFormStyled,
   EnterLabel,
   EnterLink,
-  GoogleIcon,
   Label,
   LabelSeparator,
   SignInButton,
@@ -29,7 +28,6 @@ export const AuthForm = () => {
   const [repeatedPassword, setRepeatedPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [invalidFields, setInvalidFields] = useState<FormFields[]>([]);
-  const [isOAuthLoading, setIsOAuthLoading] = useState(false);
 
   const oAuthTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
@@ -59,7 +57,7 @@ export const AuthForm = () => {
           fastAuthEnabled: false,
         })
         .on(VKID.WidgetEvents.LOAD, () => VKID.Auth.login({}))
-        .on(VKID.WidgetEvents.ERROR, (e) => console.log(e));
+        .on(VKID.WidgetEvents.ERROR, (e: any) => console.log(e));
     }
 
     return () => {
@@ -106,15 +104,6 @@ export const AuthForm = () => {
       }
     } finally {
       setIsSubmitting(false);
-    }
-  };
-
-  const handleOAuth = async (provider: 'google') => {
-    try {
-      setIsOAuthLoading(true);
-      // await signInWithOAuth({ provider });
-    } finally {
-      oAuthTimerRef.current = setTimeout(() => setIsOAuthLoading(false), 10000);
     }
   };
 
@@ -176,10 +165,6 @@ export const AuthForm = () => {
         {authType === 'sign-in' ? 'Войти' : 'Зарегистрироваться'}
       </SignInButton>
       <LabelSeparator $isMobile={isMobile}>Или войти через</LabelSeparator>
-      {/* <SignInButton isLoading={isOAuthLoading} onClick={() => handleOAuth('google')}>
-        <GoogleIcon />
-        Google
-      </SignInButton> */}
       <VKAuthContainer id="VkIdSdkOneTap" />
       <EnterLabel onClick={handleSwitchAuthType}>
         {authType === 'sign-in' ? (

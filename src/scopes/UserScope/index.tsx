@@ -47,7 +47,7 @@ export const UserScope = ({ children }: UserScopeProps) => {
           localStorage.setItem('token', response.data.accessToken);
           setUser(response.data.user);
         }
-      } catch (e) {
+      } catch (e: any) {
         console.log(e.response?.data?.message);
       } finally {
         setIsAuthenticating(false);
@@ -66,7 +66,7 @@ export const UserScope = ({ children }: UserScopeProps) => {
 
       localStorage.setItem('token', data.accessToken);
       setUser(data.user);
-    } catch (e) {
+    } catch (e: any) {
       console.log(e.response?.data?.message);
     }
   };
@@ -77,7 +77,7 @@ export const UserScope = ({ children }: UserScopeProps) => {
 
       localStorage.setItem('token', data.accessToken);
       setUser(data.user);
-    } catch (e) {
+    } catch (e: any) {
       console.log(e.response?.data?.message);
     }
   };
@@ -88,7 +88,7 @@ export const UserScope = ({ children }: UserScopeProps) => {
 
       localStorage.removeItem('token');
       setUser(null);
-    } catch (e) {
+    } catch (e: any) {
       console.log(e.response?.data?.message);
     }
   };
