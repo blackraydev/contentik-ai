@@ -13,14 +13,6 @@ export const HeaderDetails = {
     title: 'Редактирование',
     description: 'Редактируйте контент, созданный вами',
   },
-  [PrivateRoutes.Optimization]: {
-    title: 'Оптимизация',
-    description: 'Анализ текста на предмет SEO-оптимизации',
-  },
-  [PrivateRoutes.Tonality]: {
-    title: 'Анализ тональности',
-    description: 'Определение эмоциональной окраски текста',
-  },
   [PrivateRoutes.History]: {
     title: 'История',
     description: 'Просмотрите историю своих генераций',

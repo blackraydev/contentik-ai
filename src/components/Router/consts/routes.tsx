@@ -4,9 +4,7 @@ import {
   CreatePage,
   AuthPage,
   HistoryPage,
-  OptimizationPage,
   TariffsPage,
-  TonalityPage,
   EditPage,
   ProfilePage,
 } from '../../../pages';
@@ -19,14 +17,6 @@ export const privateRoutes: RouteProps[] = [
   {
     path: PrivateRoutes.Edit,
     element: <EditPage />,
-  },
-  {
-    path: PrivateRoutes.Optimization,
-    element: <OptimizationPage />,
-  },
-  {
-    path: PrivateRoutes.Tonality,
-    element: <TonalityPage />,
   },
   {
     path: PrivateRoutes.History,

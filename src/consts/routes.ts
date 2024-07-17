@@ -9,6 +9,4 @@ export const PrivateRoutes = {
   History: '/app/history',
   Tariffs: '/app/tariffs',
   Profile: '/app/profile',
-  Optimization: '/app/optimization',
-  Tonality: '/app/tonality',
 };
