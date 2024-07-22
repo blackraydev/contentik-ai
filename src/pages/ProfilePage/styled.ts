@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Loader } from '../../UI';
 
 export const Wrapper = styled.div<{ $isMobile: boolean }>`
   display: flex;
@@ -23,4 +24,20 @@ export const Title = styled.h3`
   font-weight: 500;
   color: ${({ theme }) => theme.colors.primaryFont};
   margin-bottom: 10px;
+`;
+
+export const TariffLoader = styled(Loader)`
+  width: 40px;
+  height: 40px;
+
+  circle {
+    stroke: ${({ theme }) => theme.colors.icon};
+  }
+`;
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 `;

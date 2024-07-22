@@ -96,7 +96,7 @@ export const ModalDescription = styled.p`
   font-size: 16px;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.secondaryFont};
-  line-height: 0.5cm;
+  line-height: 0.55cm;
   margin-bottom: 5px;
 `;
 

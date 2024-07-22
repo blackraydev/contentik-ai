@@ -32,6 +32,8 @@ declare module 'styled-components' {
       errorFont: string;
       errorBorder: string;
       placeholderFont: string;
+      logo: string;
+      separator: string;
     };
   }
 }

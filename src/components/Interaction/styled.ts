@@ -86,7 +86,7 @@ export const GenerateButton = styled(Button)<{ $isGenerating: boolean }>`
   width: 160px;
 
   circle {
-    stroke: ${({ theme }) => theme.colors.white};
+    stroke: ${({ theme, $isGenerating }) => $isGenerating ? theme.colors.white : theme.colors.buttonFont};
   }
 
   &:before {

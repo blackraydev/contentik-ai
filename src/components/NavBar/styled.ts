@@ -5,6 +5,7 @@ import { FaListUl, FaPen } from 'react-icons/fa';
 import { IoRocketSharp } from 'react-icons/io5';
 import { MdTonality } from 'react-icons/md';
 import { RxHamburgerMenu } from 'react-icons/rx';
+import { Logo } from '../Logo';
 
 export const MagicIcon = styled(FaWandMagicSparkles)`
   transition: 0.2s ease;
@@ -139,13 +140,8 @@ export const NavbarOverlay = styled.div<{ $isMobileOpen?: boolean }>`
   }
 `;
 
-export const LogoWrapper = styled.div`
-  width: 100%;
-  cursor: pointer;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 30px;
+export const StyledLogo = styled(Logo)`
+  padding: 10px;
 `;
 
 export const NavBarMobileDrawer = styled.div<{ $isMobileOpen?: boolean }>`
@@ -159,10 +155,6 @@ export const NavBarMobileDrawer = styled.div<{ $isMobileOpen?: boolean }>`
   padding: ${({ $isMobileOpen }) => ($isMobileOpen ? '15px' : '0')};
   padding-bottom: 15px;
   background: ${({ theme, $isMobileOpen }) => ($isMobileOpen ? theme.colors.primaryBg : 'inherit')};
-
-  ${LogoWrapper} {
-    padding: 10px;
-  }
 
   ${({ $isMobileOpen }) =>
     $isMobileOpen
@@ -206,19 +198,6 @@ export const NavBarStyled = styled.div`
   color: ${({ theme }) => theme.colors.primaryFont};
   padding: 0;
   padding-bottom: 25px;
-`;
-
-export const Logo = styled.img`
-  width: 30px;
-  height: 30px;
-  margin-right: 5px;
-`;
-
-export const LogoText = styled.p`
-  transition: 0.2s ease;
-  font-weight: 500;
-  font-size: 24px;
-  color: ${({ theme }) => theme.colors.primaryFont};
 `;
 
 export const Section = styled.div`

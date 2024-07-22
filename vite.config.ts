@@ -9,4 +9,7 @@ export default defineConfig({
     outDir: './dist',
   },
   base: '/contentik-ai/',
+  preview: {
+    port: 443
+  },
 });

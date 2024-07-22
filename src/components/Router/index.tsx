@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate, RouteProps } from 'react-router-dom';
-import { useUserScope } from '../../scopes';
+import { PrivateScopeComposer, useUserScope } from '../../scopes';
 import { privateRoutes, publicRoutes } from './consts';
 import { PrivateRoutes, PublicRoutes } from '../../consts';
 import { Layout as PrivatePageLayout } from '../../components';
@@ -23,12 +23,14 @@ export const Router = () => {
     }
 
     return (
-      <PrivatePageLayout>
-        <Routes>
-          {privateRoutes.map(renderSingleRoute)}
-          <Route path="*" element={renderRedirect()} />
-        </Routes>
-      </PrivatePageLayout>
+      <PrivateScopeComposer>
+        <PrivatePageLayout>
+          <Routes>
+            {privateRoutes.map(renderSingleRoute)}
+            <Route path="*" element={renderRedirect()} />
+          </Routes>
+        </PrivatePageLayout>
+      </PrivateScopeComposer>
     );
   };
 

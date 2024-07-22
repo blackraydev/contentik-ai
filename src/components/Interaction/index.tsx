@@ -1,9 +1,9 @@
 import { Fragment, useMemo, useState } from 'react';
 import { ContentService } from '../../api';
-import { useGenerationsScope, useUserScope } from '../../scopes';
-import { Accordion, Button, Card, Input, SearchSelect, Textarea } from '../../UI';
+import { useGenerationsScope, useTariffScope, useToastsScope, useUserScope } from '../../scopes';
+import { Accordion, Button, Card, Input, Modal, SearchSelect, Textarea } from '../../UI';
 import { FormFields, Mode } from './types';
-import { contentTypes, languages, styles, tones } from '../../consts';
+import { contentTypes, languages, PrivateRoutes, styles, tones } from '../../consts';
 import { useCheckScreenType } from '../../hooks';
 import { scrollToFirstError } from '../../utils';
 import {
@@ -15,6 +15,8 @@ import {
   TextareaStyled,
   Title,
 } from './styled';
+import { OutOfGenerationsModal, SubscriptionExpiredModal } from './components';
+import { useNavigate } from 'react-router-dom';
 
 type InteractionProps = {
   mode: Mode;
@@ -67,10 +69,16 @@ export const Interaction = ({
   setLanguage,
   setMobileView,
 }: InteractionProps) => {
+  const navigate = useNavigate();
+  const { showToast } = useToastsScope();
   const { isMobile } = useCheckScreenType();
   const { user } = useUserScope();
   const { fetchGenerationList } = useGenerationsScope();
+  const { tariff, fetchTariff, decrementGeneration } = useTariffScope();
+
   const [invalidFields, setInvalidFields] = useState<FormFields[]>([]);
+  const [isOutOfGenerationsModalOpen, setIsOutOfGenerationsModalOpen] = useState(false);
+  const [isSubscriptionModalOpen, setIsSubscriptionModalOpen] = useState(false);
 
   const isInvalid = useMemo(() => {
     if (mode === 'create') {
@@ -94,6 +102,17 @@ export const Interaction = ({
 
   const handleSubmit = async () => {
     try {
+      const generationField = mode === 'create' ? 'creations' : 'edits';
+
+      // Закончились генерации
+      if (!tariff || tariff[generationField] <= 0) {
+        return setIsOutOfGenerationsModalOpen(true);
+      }
+      // Истекла подписка
+      if (tariff.isExpired) {
+        return setIsSubscriptionModalOpen(true);
+      }
+
       if (isInvalid) {
         validate();
         scrollToFirstError();
@@ -103,6 +122,7 @@ export const Interaction = ({
       setContent('');
       setMobileView('content');
       setGenerating(true);
+      decrementGeneration(mode);
 
       const stream = await ContentService.generateContent({
         userId: user?.id || '',
@@ -130,6 +150,11 @@ export const Interaction = ({
       }
 
       await fetchGenerationList();
+    } catch (e: any) {
+      if (e?.status === 402) {
+        fetchTariff();
+        showToast('Лимит генераций исчерпан 😔', 'failure');
+      }
     } finally {
       setGenerating(false);
     }
@@ -137,6 +162,18 @@ export const Interaction = ({
 
   return (
     <InteractionStyled $isMobile={isMobile}>
+      {isOutOfGenerationsModalOpen && (
+        <OutOfGenerationsModal
+          onSubmit={() => navigate(PrivateRoutes.Tariffs)}
+          onClose={() => setIsOutOfGenerationsModalOpen(false)}
+        />
+      )}
+      {isSubscriptionModalOpen && (
+        <SubscriptionExpiredModal
+          onSubmit={() => navigate(PrivateRoutes.Tariffs)}
+          onClose={() => setIsSubscriptionModalOpen(false)}
+        />
+      )}
       <Card width="100%" height={'fit-content'}>
         <Title>
           {mode === 'create'
@@ -253,8 +290,8 @@ export const Interaction = ({
       ) : (
         <GenerateButton
           onClick={handleSubmit}
-          isLoading={isGenerating}
-          disabled={isGenerating}
+          isLoading={isGenerating || !tariff}
+          disabled={isGenerating || !tariff}
           $isGenerating={isGenerating}
         >
           {mode === 'create' ? 'Сгенерировать' : 'Отредактировать'}

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IoFlash } from 'react-icons/io5';
-import { Button } from '../../../../UI';
+import { Button, Loader } from '../../../../UI';
 import { FaWandMagicSparkles } from 'react-icons/fa6';
 import { FaPen } from 'react-icons/fa';
 
@@ -83,6 +83,8 @@ export const LimitsIconMobile = styled(IoFlash)`
 export const LimitsStyled = styled.div`
   transition: 0.2s ease;
   display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   outline: none;
   position: relative;
@@ -199,4 +201,13 @@ export const PenIcon = styled(FaPen)`
   width: 20px;
   height: 20px;
   color: ${({ theme }) => theme.colors.white};
+`;
+
+export const LimitsLoader = styled(Loader)`
+  width: 40px;
+  height: 40px;
+
+  circle {
+    stroke: ${({ theme }) => theme.colors.white};
+  }
 `;

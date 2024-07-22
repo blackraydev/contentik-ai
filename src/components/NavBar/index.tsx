@@ -7,9 +7,6 @@ import { tabRoutes } from './consts';
 import {
   BottomPart,
   BurgerMenuIcon,
-  Logo,
-  LogoText,
-  LogoWrapper,
   NavBarMobileDrawer,
   NavBarMobileStyled,
   NavBarStyled,
@@ -18,9 +15,11 @@ import {
   NavbarOverlay,
   Navigation,
   NavigationMobile,
+  StyledLogo,
   TopPart,
   TopPartMobile,
 } from './styled';
+import { Logo } from '../Logo';
 
 export const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -58,10 +57,7 @@ export const NavBar = () => {
           <NavbarOverlay onClick={() => setOpen(false)} $isMobileOpen={open}>
             <NavBarMobileDrawer $isMobileOpen={true} onClick={(e) => e.stopPropagation()}>
               <TopPart>
-                <LogoWrapper>
-                  <Logo src="/contentik-ai/logo.png" />
-                  <LogoText>Contentik</LogoText>
-                </LogoWrapper>
+                <StyledLogo />
                 <Navigation>
                   {tabRoutes.map((route) => (
                     <NavLink
@@ -92,10 +88,7 @@ export const NavBar = () => {
   return (
     <NavBarStyled>
       <TopPart>
-        <LogoWrapper>
-          <Logo src="/contentik-ai/logo.png" />
-          <LogoText>Contentik</LogoText>
-        </LogoWrapper>
+        <Logo />
         <Navigation>
           {tabRoutes.map((route) => (
             <NavLink

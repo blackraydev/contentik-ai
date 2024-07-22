@@ -1,4 +1,6 @@
 export { scrollToFirstError } from './scrollToFirstError';
-export { isUserEmailVerified } from './isUserEmailVerified';
 export { getFormattedDate } from './getFormattedDate';
+export { getFormattedDateWithTime } from './getFormattedDateWithTime';
 export { upperFirst } from './upperFirst';
+export { pluralize } from './pluralize';
+export { getCheckoutWidget } from './getCheckoutWidget';

@@ -15,6 +15,12 @@ export const Label = styled.p`
   text-align: center;
 `;
 
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+`;
+
 export const SubmitAuthFormStyled = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex-direction: column;

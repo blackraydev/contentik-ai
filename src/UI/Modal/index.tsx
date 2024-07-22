@@ -10,12 +10,24 @@ import {
 } from './styled';
 
 type ModalProps = {
-  onSubmit: () => Promise<void>;
+  onSubmit: (() => Promise<void>) | (() => void);
   onClose: () => void;
-  isSubmitting: boolean;
+  isSubmitting?: boolean;
+  title: string;
+  description: string;
+  submitText: string;
+  declineText: string;
 };
 
-export const Modal = ({ onSubmit, onClose, isSubmitting }: ModalProps) => {
+export const Modal = ({
+  onSubmit,
+  onClose,
+  isSubmitting = false,
+  title,
+  description,
+  submitText,
+  declineText,
+}: ModalProps) => {
   const [animationActive, setAnimationActive] = useState(true);
 
   const handleSubmit = async () => {
@@ -33,15 +45,13 @@ export const Modal = ({ onSubmit, onClose, isSubmitting }: ModalProps) => {
   return (
     <Overlay onClick={handleClose} $animationActive={animationActive}>
       <ModalStyled onClick={(e) => e.stopPropagation()} $animationActive={animationActive}>
-        <ModalTitle>Вы уверены?</ModalTitle>
-        <ModalDescription>
-          После подтверждения данные будут безвозвратно удалены и восстановить их не получится
-        </ModalDescription>
+        <ModalTitle>{title}</ModalTitle>
+        <ModalDescription>{description}</ModalDescription>
         <FooterWrapper>
           <SubmitButton isLoading={isSubmitting} onClick={handleSubmit}>
-            Подтвердить
+            {submitText}
           </SubmitButton>
-          <DeclineButton onClick={handleClose}>Отменить</DeclineButton>
+          <DeclineButton onClick={handleClose}>{declineText}</DeclineButton>
         </FooterWrapper>
       </ModalStyled>
     </Overlay>

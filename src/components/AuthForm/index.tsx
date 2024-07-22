@@ -1,9 +1,11 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import * as VKID from '@vkid/sdk';
 import { Input } from '../../UI';
-import { useThemeScope, useToastsScope, useUserScope } from '../../scopes';
+import { useThemeScope, useUserScope } from '../../scopes';
+import { useCheckScreenType } from '../../hooks';
 import { FormFields } from './types';
 import {
+  AuthButtonContainer,
   AuthFormStyled,
   EnterLabel,
   EnterLink,
@@ -11,57 +13,54 @@ import {
   LabelSeparator,
   SignInButton,
   Title,
-  VKAuthContainer,
+  YandexAuthButton,
+  YandexLogo,
 } from './styled';
-import { useCheckScreenType } from '../../hooks';
-
-type AuthType = 'sign-in' | 'sign-up';
+import { useNavigate } from 'react-router-dom';
+import { AuthType } from '../../types';
+import { PublicRoutes } from '../../consts';
 
 export const AuthForm = () => {
+  const navigate = useNavigate();
+  const [authType, setAuthType] = useState<AuthType>('sign-up');
   const { isDarkTheme } = useThemeScope();
   const { isMobile } = useCheckScreenType();
-  const { showToast } = useToastsScope();
-  const { login, register } = useUserScope();
-  const [authType, setAuthType] = useState<AuthType>('sign-up');
+  const { login, register, setIsAuthenticating } = useUserScope();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatedPassword, setRepeatedPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [invalidFields, setInvalidFields] = useState<FormFields[]>([]);
 
-  const oAuthTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
-
   useEffect(() => {
     VKID.Config.init({
-      app: 52001497, // Идентификатор приложения.
-      redirectUrl: 'https://localhost:5173/contentik-ai', // Адрес для перехода после авторизации.
-      state: 'dj29fnsadjsd82', // Произвольная строка состояния приложения.
-      codeVerifier: 'FGH767Gd65', // Верификатор в виде случайной строки. Обеспечивает защиту передаваемых данных.
-      mode: VKID.ConfigAuthMode.InNewTab, // По умолчанию авторизация открывается в новой вкладке.
+      app: Number(import.meta.env.VITE_VK_CLIENT_ID) || 0,
+      redirectUrl: 'https://app.contentik-ai.ru',
+      state: 'dj29fnsadjsd82',
+      codeVerifier: 'FGH767Gd65',
+      mode: VKID.ConfigAuthMode.Redirect,
+      scope: 'email',
     });
 
-    // Создание экземпляра кнопки.
     const oneTap = new VKID.OneTap();
-
-    // Получение контейнера из разметки.
     const container = document.getElementById('VkIdSdkOneTap');
 
-    // Проверка наличия кнопки в разметке.
     if (container) {
-      // Отрисовка кнопки в контейнере с именем приложения APP_NAME, светлой темой и на русском языке.
       oneTap
         .render({
-          container: container,
-          scheme: isDarkTheme ? VKID.Scheme.LIGHT : VKID.Scheme.DARK,
+          container,
+          scheme: isDarkTheme ? VKID.Scheme.DARK : VKID.Scheme.LIGHT,
           lang: VKID.Languages.RUS,
           fastAuthEnabled: false,
+          styles: {
+            height: 48,
+          },
         })
-        .on(VKID.WidgetEvents.LOAD, () => VKID.Auth.login({}))
         .on(VKID.WidgetEvents.ERROR, (e: any) => console.log(e));
     }
 
     return () => {
-      clearTimeout(oAuthTimerRef.current);
+      oneTap.close();
     };
   }, []);
 
@@ -69,14 +68,19 @@ export const AuthForm = () => {
     if (authType === 'sign-in') {
       return !email.trim() || !password.trim();
     }
-    return !email.trim() || !password.trim() || password !== repeatedPassword;
+    return (
+      !email.trim() ||
+      !password.trim() ||
+      password.trim().length < 6 ||
+      password !== repeatedPassword
+    );
   }, [authType, email, password, repeatedPassword]);
 
   const validate = () => {
     if (!email.trim()) {
       setInvalidFields((prev) => [...prev, 'email']);
     }
-    if (!password.trim()) {
+    if (!password.trim() || password.trim().length < 6) {
       setInvalidFields((prev) => [...prev, 'password']);
     }
     if (authType === 'sign-up' && (!repeatedPassword.trim() || password !== repeatedPassword)) {
@@ -99,12 +103,19 @@ export const AuthForm = () => {
       const authFunc = authType === 'sign-in' ? login : register;
       await authFunc(email, password);
     } catch (e: any) {
-      if (e.message === 'Invalid login credentials' && authType === 'sign-in') {
-        showToast('Аккаунт с такими данными не найден', 'failure');
-      }
+      console.error(e);
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleYandexAuth = () => {
+    const CLIENT_ID = import.meta.env.VITE_YANDEX_CLIENT_ID || '0';
+    const REDIRECT_URI = 'https://app.contentik-ai.ru';
+    const authUrl = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
+
+    setIsAuthenticating(true);
+    window.location.href = authUrl;
   };
 
   const handleSwitchAuthType = () => {
@@ -115,6 +126,10 @@ export const AuthForm = () => {
 
       return 'sign-in';
     });
+  };
+
+  const handleNavigateToResetPassword = () => {
+    navigate(PublicRoutes.Reset);
   };
 
   return (
@@ -131,7 +146,7 @@ export const AuthForm = () => {
           setEmail(e.target.value);
           removeInvalidField('email');
         }}
-        placeholder="name@example.com"
+        placeholder="Email"
         error={{ visible: invalidFields.includes('email') }}
       />
       <Fragment>
@@ -143,7 +158,10 @@ export const AuthForm = () => {
           }}
           placeholder="Пароль"
           type="password"
-          error={{ visible: invalidFields.includes('password') }}
+          error={{
+            visible: invalidFields.includes('password'),
+            text: password.length < 6 ? 'Минимум 6 символов' : 'Обязательное поле',
+          }}
         />
         {authType === 'sign-up' && (
           <Input
@@ -164,19 +182,31 @@ export const AuthForm = () => {
       <SignInButton onClick={handleSubmit} isLoading={isSubmitting}>
         {authType === 'sign-in' ? 'Войти' : 'Зарегистрироваться'}
       </SignInButton>
-      <LabelSeparator $isMobile={isMobile}>Или войти через</LabelSeparator>
-      <VKAuthContainer id="VkIdSdkOneTap" />
-      <EnterLabel onClick={handleSwitchAuthType}>
+      <LabelSeparator $isMobile={isMobile}>Или</LabelSeparator>
+      <AuthButtonContainer id="VkIdSdkOneTap" onClick={() => setIsAuthenticating(true)} />
+      <AuthButtonContainer>
+        <YandexAuthButton onClick={handleYandexAuth}>
+          <YandexLogo src="/contentik-ai/yandex.png" />
+          Войти с Яндекс ID
+        </YandexAuthButton>
+      </AuthButtonContainer>
+      <EnterLabel>
         {authType === 'sign-in' ? (
           <Fragment>
-            Нет аккаунта? <EnterLink>Зарегистрироваться</EnterLink>
+            Нет аккаунта? <EnterLink onClick={handleSwitchAuthType}>Зарегистрироваться</EnterLink>
           </Fragment>
         ) : (
           <Fragment>
-            Уже есть аккаунт? <EnterLink>Войти</EnterLink>
+            Уже есть аккаунт? <EnterLink onClick={handleSwitchAuthType}>Войти</EnterLink>
           </Fragment>
         )}
       </EnterLabel>
+      {authType === 'sign-in' && (
+        <EnterLabel>
+          Забыли пароль?{' '}
+          <EnterLink onClick={handleNavigateToResetPassword}>Восстановите доступ</EnterLink>
+        </EnterLabel>
+      )}
     </AuthFormStyled>
   );
 };

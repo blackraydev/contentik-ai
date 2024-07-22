@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { Progress } from '../../../../UI';
-import { PrivateRoutes } from '../../../../consts';
+import { PrivateRoutes, tariffLimits } from '../../../../consts';
 import { useCheckScreenType } from '../../../../hooks';
 import {
   ButtonStyled,
   LimitsBody,
   LimitsButtonMobile,
   LimitsIconMobile,
+  LimitsLoader,
   LimitsStyled,
   LimitsText,
   LimitsWrapper,
@@ -15,6 +16,7 @@ import {
   TariffPlan,
   TariffTitle,
 } from './styled';
+import { useTariffScope } from '../../../../scopes';
 
 type LimitsProps = {
   isMobileOpen?: boolean;
@@ -23,7 +25,16 @@ type LimitsProps = {
 
 export const Limits = ({ isMobileOpen, setOpen }: LimitsProps) => {
   const { isMobile, isTablet } = useCheckScreenType();
+  const { tariff, isTariffLoading } = useTariffScope();
   const navigate = useNavigate();
+
+  if (!tariff || isTariffLoading) {
+    return (
+      <LimitsStyled>
+        <LimitsLoader />
+      </LimitsStyled>
+    );
+  }
 
   const handleClick = () => {
     navigate(PrivateRoutes.Tariffs);
@@ -42,18 +53,30 @@ export const Limits = ({ isMobileOpen, setOpen }: LimitsProps) => {
     <LimitsStyled>
       <LimitsWrapper>
         <TariffTitle>Тариф</TariffTitle>
-        <TariffPlan>Пробный</TariffPlan>
+        <TariffPlan>{tariffLimits[tariff.plan].name}</TariffPlan>
+
         <LimitsBody>
           <MagicIcon />
-          <LimitsText>4 из 5</LimitsText>
+          <LimitsText>
+            {tariff.creations} из {tariffLimits[tariff.plan].creations}
+          </LimitsText>
         </LimitsBody>
-        <Progress width="100%" progress={80} />
+        <Progress
+          width="100%"
+          progress={(tariff.creations / tariffLimits[tariff.plan].creations) * 100}
+        />
+
         <LimitsBody>
           <PenIcon />
-          <LimitsText>1 из 1</LimitsText>
+          <LimitsText>
+            {tariff.edits} из {tariffLimits[tariff.plan].edits}
+          </LimitsText>
         </LimitsBody>
-        <Progress width="100%" progress={100} />
-        <ButtonStyled onClick={handleClick}>Улучшить тариф</ButtonStyled>
+        <Progress width="100%" progress={(tariff.edits / tariffLimits[tariff.plan].edits) * 100} />
+
+        <ButtonStyled onClick={handleClick}>
+          {tariff.plan === 'expert' ? 'Восполнить лимиты' : 'Улучшить тариф'}
+        </ButtonStyled>
       </LimitsWrapper>
     </LimitsStyled>
   );

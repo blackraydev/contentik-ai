@@ -1,5 +1,6 @@
 export const PublicRoutes = {
   Auth: '/app/auth',
+  Reset: '/app/reset',
 };
 
 export const PrivateRoutes = {

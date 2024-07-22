@@ -15,7 +15,7 @@ import {
   PenIcon,
 } from './styled';
 import { useCheckScreenType } from '../../../../hooks';
-import { getFormattedDate, upperFirst } from '../../../../utils';
+import { getFormattedDateWithTime, upperFirst } from '../../../../utils';
 
 type GenerationItemProps = Generation & {
   onCrossClick: (generationId: string) => void;
@@ -64,7 +64,7 @@ export const GenerationItem = ({ onCrossClick, ...generation }: GenerationItemPr
         <GenerationTitleWrapper>
           {mode === 'create' ? <MagicIcon /> : <PenIcon />}
           {topic && <GenerationTopic>{topic}</GenerationTopic>}
-          <GenerationDate>{getFormattedDate(createdAt)}</GenerationDate>
+          <GenerationDate>{getFormattedDateWithTime(createdAt)}</GenerationDate>
         </GenerationTitleWrapper>
         {!isMobile && <GenerationDeleteIcon onClick={handleCrossClick} />}
       </GenerationHeader>

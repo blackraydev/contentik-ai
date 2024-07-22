@@ -23,7 +23,22 @@ api.interceptors.response.use(
       originalRequest._isRetry = true;
 
       try {
-        const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {
+        const token = localStorage.getItem('token');
+        const isVKToken = token?.slice(0, 2) === 'vk';
+        const isYandexToken = token?.slice(0, 1) === 'y';
+
+        const getQueryPostfix = () => {
+          if (isVKToken) {
+            return 'refreshVK';
+          }
+          if (isYandexToken) {
+            return 'refreshYandex';
+          }
+
+          return 'refresh';
+        };
+
+        const response = await axios.get<AuthResponse>(`${API_URL}/${getQueryPostfix()}`, {
           withCredentials: true,
         });
 

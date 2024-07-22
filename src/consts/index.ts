@@ -1,6 +1,5 @@
 export { API_URL } from './apiUrl';
 export { DarkTheme, LightTheme } from './theme';
-export { SUPABASE_URL, SUPABASE_ANON_KEY } from './supabase';
 export { PublicRoutes, PrivateRoutes } from './routes';
 export { styles } from './styles';
 export { tones } from './tones';
@@ -9,3 +8,4 @@ export { modes, historyModes } from './modes';
 export { months } from './months';
 export { HeaderDetails } from './headerDetails';
 export { contentTypes } from './contentTypes';
+export { tariffLimits } from './tariffLimits';

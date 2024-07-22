@@ -56,20 +56,20 @@ export const ToastButton = styled.button`
 `;
 
 export const SuccessIcon = styled(IoIosCheckmarkCircle)`
-  width: 20px;
-  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   color: rgb(109, 202, 135);
 `;
 
 export const FailureIcon = styled(IoMdCloseCircle)`
-  width: 20px;
-  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   color: rgb(183, 80, 34);
 `;
 
 export const WarningIcon = styled(RiErrorWarningFill)`
-  width: 20px;
-  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   color: yellow;
 `;
 
@@ -77,8 +77,8 @@ export const GenerationDeleteIcon = styled(IoClose)`
   transition: 0.2s ease;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.secondaryFont};
-  width: 24px;
-  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
 
   &:hover {
     color: ${({ theme }) => theme.colors.primaryFont};

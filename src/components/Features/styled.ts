@@ -66,12 +66,20 @@ export const PrevFeatureButton = styled(Button)`
   width: fit-content;
   padding: 12px;
   background: ${({ theme }) => theme.colors.white};
+
+  &:hover {
+    background: rgb(236, 236, 237);
+  }
 `;
 
 export const NextFeatureButton = styled(Button)`
   width: fit-content;
   padding: 12px;
   background: ${({ theme }) => theme.colors.white};
+
+  &:hover {
+    background: rgb(236, 236, 237);
+  }
 `;
 
 export const MagicIcon = styled(FaWandMagicSparkles)`

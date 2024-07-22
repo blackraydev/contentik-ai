@@ -31,6 +31,8 @@ export const DarkTheme = {
     errorFont: 'rgb(160, 62, 62)',
     errorBorder: 'rgb(160, 62, 62)',
     placeholderFont: 'rgb(55, 55, 60)',
+    logo: 'rgb(36, 36, 42)',
+    separator: 'rgb(50, 50, 56)',
   },
 };
 
@@ -61,5 +63,7 @@ export const LightTheme = {
     errorFont: 'rgb(220, 38, 38)',
     errorBorder: 'rgb(220, 38, 38)',
     placeholderFont: 'rgb(165, 167, 180)',
+    logo: 'white',
+    separator: 'rgb(200, 200, 206)',
   },
 };

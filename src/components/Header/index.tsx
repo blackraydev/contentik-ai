@@ -16,9 +16,6 @@ import {
 import { useCheckScreenType } from '../../hooks';
 import {
   BottomPart,
-  Logo,
-  LogoText,
-  LogoWrapper,
   NavBarMobileDrawer,
   NavLink,
   NavbarOverlay,
@@ -28,6 +25,7 @@ import {
 import { Limits } from '../NavBar/components';
 import { tabRoutes } from '../NavBar/consts';
 import { getActiveTabRoute } from '../NavBar/utils';
+import { Logo } from '../Logo';
 
 export const Header = () => {
   const { isMobile } = useCheckScreenType();
@@ -47,10 +45,7 @@ export const Header = () => {
         <NavbarOverlay onClick={() => setNavbarOpen(false)} $isMobileOpen={navbarOpen}>
           <NavBarMobileDrawer $isMobileOpen={navbarOpen} onClick={(e) => e.stopPropagation()}>
             <TopPart>
-              <LogoWrapper>
-                <Logo src='/contentik-ai/logo.png' />
-                <LogoText>Contentik</LogoText>
-              </LogoWrapper>
+              <Logo />
               <Navigation>
                 {tabRoutes.map((route) => (
                   <NavLink

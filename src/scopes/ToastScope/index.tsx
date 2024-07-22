@@ -36,7 +36,7 @@ export const ToastsScope = ({ children }: ToastsScopeProps) => {
 
     setTimeout(() => {
       removeToast(toast.id);
-    }, 5 * 1000);
+    }, 10 * 1000);
   };
 
   const removeToast = (id: number) => {

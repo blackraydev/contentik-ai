@@ -33,16 +33,16 @@ export const LabelSeparator = styled.label<{ $isMobile: boolean }>`
     content: '';
     display: block;
     height: 1px;
-    background: ${({ theme }) => theme.colors.secondaryBg};
-    width: calc((100% - 150px) / 2);
+    background: ${({ theme }) => theme.colors.separator};
+    width: calc((100% - 75px) / 2);
   }
   &:after {
     transition: 0.2s ease;
     content: '';
     display: block;
     height: 1px;
-    background: ${({ theme }) => theme.colors.secondaryBg};
-    width: calc((100% - 150px) / 2);
+    background: ${({ theme }) => theme.colors.separator};
+    width: calc((100% - 75px) / 2);
   }
 `;
 
@@ -79,10 +79,25 @@ export const GoogleIcon = styled(FcGoogle)`
   height: 22px;
 `;
 
-export const VKAuthContainer = styled.div`
+export const AuthButtonContainer = styled.div`
   width: 100%;
   border-radius: 15px;
   overflow: hidden;
+
+  div,
+  span {
+    font-size: 16px !important;
+  }
+`;
+
+export const YandexAuthButton = styled(Button)`
+  max-height: 48px;
+  width: 100%;
+`;
+
+export const YandexLogo = styled.img`
+  width: 22px;
+  height: 22px;
 `;
 
 export const EnterLabel = styled.p`

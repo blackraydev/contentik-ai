@@ -13,14 +13,10 @@ import {
 
 export const UserTooltipContent = () => {
   const navigate = useNavigate();
-  const { setIsAuthenticating, setUser, logout } = useUserScope();
+  const { logout } = useUserScope();
 
   const handleLogout = async () => {
-    setIsAuthenticating(true);
-    logout();
-
-    setUser(null);
-    setIsAuthenticating(false);
+    await logout();
   };
 
   return (

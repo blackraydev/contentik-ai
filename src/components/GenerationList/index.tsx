@@ -91,6 +91,10 @@ export const GenerationList = () => {
           isSubmitting={isGenerationDeleting}
           onSubmit={handleGenerationDelete}
           onClose={() => setIsModalOpen(false)}
+          title="Удалить генерацию?"
+          description="После подтверждения генерация будет безвозвратно удалена и восстановить её не получится"
+          submitText="Подтвердить"
+          declineText="Отменить"
         />
       )}
       <SearchBar />

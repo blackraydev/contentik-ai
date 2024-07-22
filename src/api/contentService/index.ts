@@ -39,6 +39,10 @@ export class ContentService {
       mode: 'cors',
     });
 
+    if (!response.ok) {
+      throw response;
+    }
+
     return response.body;
   }
 

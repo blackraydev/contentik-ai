@@ -7,6 +7,7 @@ import {
   TariffsPage,
   EditPage,
   ProfilePage,
+  ResetPage,
 } from '../../../pages';
 
 export const privateRoutes: RouteProps[] = [
@@ -36,5 +37,9 @@ export const publicRoutes: RouteProps[] = [
   {
     path: PublicRoutes.Auth,
     element: <AuthPage />,
+  },
+  {
+    path: PublicRoutes.Reset,
+    element: <ResetPage />,
   },
 ];

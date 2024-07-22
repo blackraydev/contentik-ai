@@ -56,6 +56,7 @@ export const ErrorText = styled.span`
   transition: 0.2s ease;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.errorFont};
+  margin-top: 5px;
 `;
 
 export const InfoIcon = styled(AiOutlineInfoCircle)`

@@ -77,9 +77,13 @@ export const LogoWrapper = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 30px;
-  height: 30px;
+  transition: 0.2s ease;
+  width: 40px;
+  height: 40px;
   margin-right: 10px;
+  background: ${({ theme }) => theme.colors.logo};
+  padding: 8px;
+  border-radius: 10px;
 `;
 
 export const LogoText = styled.p`

@@ -1,16 +1,8 @@
 import { AuthForm, Features, SubmitAuthForm } from '../../components';
-import { ThemeToggle } from '../../components';
+import { ThemeToggle, Logo } from '../../components';
 import { useCheckScreenType } from '../../hooks';
 import { useUserScope } from '../../scopes';
-import {
-  AuthBlock,
-  AuthHeader,
-  AuthPageStyled,
-  Logo,
-  LogoText,
-  LogoWrapper,
-  WelcomeBlock,
-} from './styled';
+import { AuthBlock, AuthHeader, AuthPageStyled, WelcomeBlock } from './styled';
 
 export const AuthPage = () => {
   const { user } = useUserScope();
@@ -28,10 +20,7 @@ export const AuthPage = () => {
     <AuthPageStyled>
       <AuthBlock $isMobile={isMobile}>
         <AuthHeader>
-          <LogoWrapper>
-            <Logo src="/contentik-ai/logo.png" />
-            <LogoText>Contentik</LogoText>
-          </LogoWrapper>
+          <Logo />
           <ThemeToggle />
         </AuthHeader>
         {renderForm()}
