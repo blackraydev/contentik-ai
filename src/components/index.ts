@@ -12,7 +12,6 @@ export { ThemeToggle } from './ThemeToggle';
 export { GenerationList } from './GenerationList';
 export { Markdown } from './Markdown';
 export { GenerationView } from './GenerationView';
-export { AnalyzingText } from './AnalyzingText';
 export { MarkdownEditor } from './MarkdownEditor';
 export { Features } from './Features';
 export { Tariffs } from './Tariffs';

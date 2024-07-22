@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import * as VKID from '@vkid/sdk';
 import { Input } from '../../UI';
 import { useThemeScope, useUserScope } from '../../scopes';
@@ -35,7 +35,7 @@ export const AuthForm = () => {
   useEffect(() => {
     VKID.Config.init({
       app: Number(import.meta.env.VITE_VK_CLIENT_ID) || 0,
-      redirectUrl: 'https://app.contentik-ai.ru',
+      redirectUrl: 'https://contentik-ai.ru/app',
       state: 'dj29fnsadjsd82',
       codeVerifier: 'FGH767Gd65',
       mode: VKID.ConfigAuthMode.Redirect,
@@ -111,7 +111,7 @@ export const AuthForm = () => {
 
   const handleYandexAuth = () => {
     const CLIENT_ID = import.meta.env.VITE_YANDEX_CLIENT_ID || '0';
-    const REDIRECT_URI = 'https://app.contentik-ai.ru';
+    const REDIRECT_URI = 'https://contentik-ai.ru/app';
     const authUrl = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
 
     setIsAuthenticating(true);
@@ -186,7 +186,7 @@ export const AuthForm = () => {
       <AuthButtonContainer id="VkIdSdkOneTap" onClick={() => setIsAuthenticating(true)} />
       <AuthButtonContainer>
         <YandexAuthButton onClick={handleYandexAuth}>
-          <YandexLogo src="/contentik-ai/yandex.png" />
+          <YandexLogo src="./img/yandex.png" />
           Войти с Яндекс ID
         </YandexAuthButton>
       </AuthButtonContainer>

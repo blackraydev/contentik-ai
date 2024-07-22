@@ -1,11 +1,13 @@
 import { Fragment, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ContentService } from '../../api';
 import { useGenerationsScope, useTariffScope, useToastsScope, useUserScope } from '../../scopes';
-import { Accordion, Button, Card, Input, Modal, SearchSelect, Textarea } from '../../UI';
+import { Accordion, Button, Card, Input, SearchSelect, Textarea } from '../../UI';
 import { FormFields, Mode } from './types';
 import { contentTypes, languages, PrivateRoutes, styles, tones } from '../../consts';
 import { useCheckScreenType } from '../../hooks';
 import { scrollToFirstError } from '../../utils';
+import { OutOfGenerationsModal, SubscriptionExpiredModal } from './components';
 import {
   ButtonsWrapper,
   FieldsWrapper,
@@ -15,8 +17,6 @@ import {
   TextareaStyled,
   Title,
 } from './styled';
-import { OutOfGenerationsModal, SubscriptionExpiredModal } from './components';
-import { useNavigate } from 'react-router-dom';
 
 type InteractionProps = {
   mode: Mode;

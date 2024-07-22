@@ -3,17 +3,17 @@ import { HistoryIcon, MagicIcon, PenIcon } from '../styled';
 export const tabRoutes = [
   {
     title: 'Создание',
-    path: '/app/create',
+    path: '/create',
     icon: <MagicIcon />,
   },
   {
     title: 'Редактирование',
-    path: '/app/edit',
+    path: '/edit',
     icon: <PenIcon />,
   },
   {
     title: 'История',
-    path: '/app/history',
+    path: '/history',
     icon: <HistoryIcon />,
   },
 ];

@@ -1,10 +1,6 @@
 import { PrivateRoutes } from './routes';
 
 export const HeaderDetails = {
-  [PrivateRoutes.Dashboard]: {
-    title: 'Главная',
-    description: 'Главная страница',
-  },
   [PrivateRoutes.Create]: {
     title: 'Создание',
     description: 'Создайте контент, который увлечет ваших читателей',

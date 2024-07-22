@@ -8,8 +8,8 @@ export default defineConfig({
   build: {
     outDir: './dist',
   },
-  base: '/contentik-ai/',
+  base: '/app/',
   preview: {
-    port: 443
+    port: 443,
   },
 });

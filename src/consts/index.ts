@@ -9,3 +9,4 @@ export { months } from './months';
 export { HeaderDetails } from './headerDetails';
 export { contentTypes } from './contentTypes';
 export { tariffLimits } from './tariffLimits';
+export { BASE_NAME } from './baseName';

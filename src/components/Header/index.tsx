@@ -30,13 +30,13 @@ import { Logo } from '../Logo';
 export const Header = () => {
   const { isMobile } = useCheckScreenType();
   const { pathname } = useLocation();
-  const [{ title, description }, setDetails] = useState(HeaderDetails[PrivateRoutes.Dashboard]);
+  const [{ title, description }, setDetails] = useState(HeaderDetails[PrivateRoutes.Create]);
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [activeTabRoute, setActiveTabRoute] = useState(getActiveTabRoute(pathname));
 
   useEffect(() => {
-    const targetRoute = Object.values(PrivateRoutes).find((route) => route === pathname);
-    setDetails(HeaderDetails[targetRoute || PrivateRoutes.Dashboard]);
+    const targetRoute = getActiveTabRoute(pathname);
+    setDetails(HeaderDetails[targetRoute || PrivateRoutes.Create]);
   }, [pathname]);
 
   const renderNavbar = () => {
