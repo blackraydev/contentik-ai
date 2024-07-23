@@ -9,7 +9,4 @@ export default defineConfig({
     outDir: './dist',
   },
   base: '/app/',
-  preview: {
-    port: 443,
-  },
 });
