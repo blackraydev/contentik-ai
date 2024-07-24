@@ -93,7 +93,7 @@ export const Header = () => {
           <Tooltip
             content={<UserTooltipContent />}
             width={200}
-            offsetVertical={170}
+            offsetVertical={258}
             offsetHorizontal={92}
             type="click"
             position="bottom"

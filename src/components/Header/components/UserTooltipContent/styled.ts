@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { FaRegCreditCard, FaUserLarge } from 'react-icons/fa6';
 import { FiLogOut } from 'react-icons/fi';
+import { LiaTelegram } from 'react-icons/lia';
+import { MdOutlineMail } from 'react-icons/md';
 
 export const TooltipContentStyled = styled.div`
   display: flex;
@@ -20,6 +22,25 @@ export const Option = styled.div`
   font-size: 16px;
   border-radius: 15px;
   color: ${({ theme }) => theme.colors.primaryFont};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.secondaryBg};
+  }
+`;
+
+export const OptionLink = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.2s ease;
+  cursor: pointer;
+  text-align: start;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 15px;
+  color: ${({ theme }) => theme.colors.primaryFont};
+  text-decoration: none;
 
   &:hover {
     background: ${({ theme }) => theme.colors.secondaryBg};
@@ -50,6 +71,20 @@ export const CardIcon = styled(FaRegCreditCard)`
   transition: 0.2s ease;
   width: 18px;
   height: 18px;
+  color: ${({ theme }) => theme.colors.icon};
+`;
+
+export const TelegramIcon = styled(LiaTelegram)`
+  transition: 0.2s ease;
+  width: 20px;
+  height: 20px;
+  color: ${({ theme }) => theme.colors.icon};
+`;
+
+export const MailIcon = styled(MdOutlineMail)`
+  transition: 0.2s ease;
+  width: 20px;
+  height: 20px;
   color: ${({ theme }) => theme.colors.icon};
 `;
 

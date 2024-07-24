@@ -4,9 +4,12 @@ import { PrivateRoutes } from '../../../../consts';
 import {
   CardIcon,
   LogoutIcon,
+  MailIcon,
   Option,
+  OptionLink,
   OptionText,
   Separator,
+  TelegramIcon,
   TooltipContentStyled,
   UserIcon,
 } from './styled';
@@ -29,7 +32,19 @@ export const UserTooltipContent = () => {
         <CardIcon />
         <OptionText>Тарифы</OptionText>
       </Option>
+
       <Separator />
+
+      <OptionLink target="_blank" rel="noreferrer noopener" href="https://t.me/contentik_ai_chat">
+        <TelegramIcon />
+        <OptionText>Чат</OptionText>
+      </OptionLink>
+      <OptionLink href="mailto:support@contentik-ai.ru?subject=Вопрос">
+        <MailIcon />
+        <OptionText>Поддержка</OptionText>
+      </OptionLink>
+      <Separator />
+
       <Option onClick={handleLogout}>
         <LogoutIcon />
         <OptionText>Выход</OptionText>
