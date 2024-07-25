@@ -9,13 +9,6 @@ export const Title = styled.h1`
   text-align: center;
 `;
 
-export const Label = styled.p`
-  transition: 0.2s ease;
-  color: ${({ theme }) => theme.colors.secondaryFont};
-  margin-bottom: 25px;
-  text-align: center;
-`;
-
 export const LabelSeparator = styled.label<{ $isMobile: boolean }>`
   transition: 0.2s ease;
   display: flex;
@@ -43,28 +36,6 @@ export const LabelSeparator = styled.label<{ $isMobile: boolean }>`
     height: 1px;
     background: ${({ theme }) => theme.colors.separator};
     width: calc((100% - 75px) / 2);
-  }
-`;
-
-export const AuthFormStyled = styled.div<{ $isMobile: boolean }>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: ${({ $isMobile }) => ($isMobile ? '100%' : '400px')};
-  max-width: 400px;
-  height: 100%;
-  color: ${({ theme }) => theme.colors.primaryFont};
-
-  ${Title} {
-    font-size: ${({ $isMobile }) => ($isMobile ? '30px' : '32px')};
-  }
-  ${Label} {
-    font-size: ${({ $isMobile }) => ($isMobile ? '14px' : '16px')};
-  }
-  ${LabelSeparator} {
-    margin-top: ${({ $isMobile }) => ($isMobile ? '20px' : '30px')};
-    margin-bottom: ${({ $isMobile }) => ($isMobile ? '10px' : '20px')};
   }
 `;
 
@@ -100,10 +71,20 @@ export const YandexLogo = styled.img`
   height: 22px;
 `;
 
+export const ForgotPasswordLabel = styled.p`
+  transition: 0.2s ease;
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  text-align: end;
+  width: 100%;
+`;
+
 export const EnterLabel = styled.p`
   transition: 0.2s ease;
   color: ${({ theme }) => theme.colors.secondaryFont};
-  margin-top: 25px;
+  margin-bottom: 20px;
 `;
 
 export const EnterLink = styled.span`
@@ -115,5 +96,44 @@ export const EnterLink = styled.span`
   &:hover {
     color: ${({ theme }) => theme.colors.primaryFont};
     border-bottom: 1px solid ${({ theme }) => theme.colors.primaryFont};
+  }
+`;
+
+export const PublicOfferLabel = styled(EnterLabel)`
+  transition: 0.2s ease;
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  margin-top: 30px;
+  font-size: 14px !important;
+`;
+
+export const PublicOfferLabelLink = styled.a`
+  cursor: pointer;
+  transition: 0.2s ease;
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.secondaryFont};
+  text-decoration: none;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primaryFont};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.primaryFont};
+  }
+`;
+
+export const AuthFormStyled = styled.div<{ $isMobile: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: ${({ $isMobile }) => ($isMobile ? '100%' : '400px')};
+  max-width: 400px;
+  height: 100%;
+  color: ${({ theme }) => theme.colors.primaryFont};
+
+  ${Title} {
+    font-size: ${({ $isMobile }) => ($isMobile ? '30px' : '32px')};
+  }
+  ${LabelSeparator} {
+    margin-top: ${({ $isMobile }) => ($isMobile ? '20px' : '30px')};
+    margin-bottom: ${({ $isMobile }) => ($isMobile ? '10px' : '20px')};
   }
 `;

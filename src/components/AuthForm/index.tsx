@@ -9,8 +9,10 @@ import {
   AuthFormStyled,
   EnterLabel,
   EnterLink,
-  Label,
+  ForgotPasswordLabel,
   LabelSeparator,
+  PublicOfferLabel,
+  PublicOfferLabelLink,
   SignInButton,
   Title,
   YandexAuthButton,
@@ -135,11 +137,17 @@ export const AuthForm = () => {
   return (
     <AuthFormStyled $isMobile={isMobile}>
       <Title>{authType === 'sign-in' ? 'Вход в аккаунт' : 'Создание аккаунта'}</Title>
-      <Label>
-        {authType === 'sign-in'
-          ? 'Введите свои данные для входа в аккаунт'
-          : 'Введите ваши данные, чтобы создать аккаунт'}
-      </Label>
+      <EnterLabel>
+        {authType === 'sign-in' ? (
+          <Fragment>
+            Нет аккаунта? <EnterLink onClick={handleSwitchAuthType}>Зарегистрироваться</EnterLink>
+          </Fragment>
+        ) : (
+          <Fragment>
+            Уже есть аккаунт? <EnterLink onClick={handleSwitchAuthType}>Войти</EnterLink>
+          </Fragment>
+        )}
+      </EnterLabel>
       <Input
         value={email}
         onChange={(e) => {
@@ -179,6 +187,11 @@ export const AuthForm = () => {
           />
         )}
       </Fragment>
+      {authType === 'sign-in' && (
+        <ForgotPasswordLabel>
+          <EnterLink onClick={handleNavigateToResetPassword}>Восстановить пароль</EnterLink>
+        </ForgotPasswordLabel>
+      )}
       <SignInButton onClick={handleSubmit} isLoading={isSubmitting}>
         {authType === 'sign-in' ? 'Войти' : 'Зарегистрироваться'}
       </SignInButton>
@@ -190,23 +203,16 @@ export const AuthForm = () => {
           Войти с Яндекс ID
         </YandexAuthButton>
       </AuthButtonContainer>
-      <EnterLabel>
-        {authType === 'sign-in' ? (
-          <Fragment>
-            Нет аккаунта? <EnterLink onClick={handleSwitchAuthType}>Зарегистрироваться</EnterLink>
-          </Fragment>
-        ) : (
-          <Fragment>
-            Уже есть аккаунт? <EnterLink onClick={handleSwitchAuthType}>Войти</EnterLink>
-          </Fragment>
-        )}
-      </EnterLabel>
-      {authType === 'sign-in' && (
-        <EnterLabel>
-          Забыли пароль?{' '}
-          <EnterLink onClick={handleNavigateToResetPassword}>Восстановите доступ</EnterLink>
-        </EnterLabel>
-      )}
+      <PublicOfferLabel>
+        Продолжая, вы соглашаетесь c{' '}
+        <PublicOfferLabelLink
+          target="_blank"
+          href="https://contentik-ai.ru/offer"
+          rel="noreferrer noopener"
+        >
+          публичной офертой
+        </PublicOfferLabelLink>
+      </PublicOfferLabel>
     </AuthFormStyled>
   );
 };
