@@ -40,7 +40,16 @@ export class ContentService {
     });
 
     if (!response.ok) {
-      throw response;
+      if (response.status !== 402) {
+        throw response;
+      }
+
+      const { message } = await response.json();
+
+      throw {
+        status: 402,
+        message,
+      };
     }
 
     return response.body;

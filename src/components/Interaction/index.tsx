@@ -152,9 +152,12 @@ export const Interaction = ({
       await fetchGenerationList();
     } catch (e: any) {
       if (e?.status === 402) {
-        fetchTariff();
-        showToast('Лимит генераций исчерпан 😔', 'failure');
+        showToast(e.message, 'failure');
+      } else {
+        showToast('Произошла техническая ошибка', 'failure');
       }
+
+      await fetchTariff();
     } finally {
       setGenerating(false);
     }
