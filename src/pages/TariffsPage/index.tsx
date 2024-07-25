@@ -11,7 +11,7 @@ export const TariffsPage = () => {
   const { showToast } = useToastsScope();
   const { isDarkTheme } = useThemeScope();
   const { isMobile } = useCheckScreenType();
-  const { tariff, checkoutTariff, purchaseTariff, isRequestingCheckout } = useTariffScope();
+  const { tariff, checkoutTariff, fetchTariff, isRequestingCheckout } = useTariffScope();
   const [isSubmitPaymentModalOpen, setIsSubmitPaymentModalOpen] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [chosenPlan, setChosenPlan] = useState<Exclude<Tariff['plan'], 'trial'>>('start');
@@ -29,7 +29,7 @@ export const TariffsPage = () => {
       });
 
       checkout.on('success', async () => {
-        await purchaseTariff(chosenPlan);
+        await fetchTariff();
 
         showToast('Оплата прошла успешно', 'success');
         setIsPaymentModalOpen(false);

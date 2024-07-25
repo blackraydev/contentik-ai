@@ -7,12 +7,6 @@ export class TariffService {
     return await api.get('/tariff');
   }
 
-  static async purchaseTariff(
-    newPlan: Exclude<Tariff['plan'], 'trial'>,
-  ): Promise<AxiosResponse<Tariff>> {
-    return await api.post('/purchaseTariff', { newPlan });
-  }
-
   static async checkoutTariff(
     newPlan: Exclude<Tariff['plan'], 'trial'>,
   ): Promise<AxiosResponse<string>> {

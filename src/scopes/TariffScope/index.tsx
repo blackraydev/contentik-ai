@@ -10,12 +10,10 @@ type TariffScopeProps = {
 type TariffContextType = {
   tariff: Tariff | null;
   isTariffLoading: boolean;
-  purchaseTariff: (newPlan: Exclude<Tariff['plan'], 'trial'>) => Promise<void>;
   checkoutTariff: (newPlan: Exclude<Tariff['plan'], 'trial'>) => Promise<string | undefined | null>;
-  isTariffPurchasing: boolean;
   isRequestingCheckout: boolean;
   decrementGeneration: (mode: Generation['mode']) => void;
-  fetchTariff: () => void;
+  fetchTariff: () => Promise<void>;
   declineSubscription: () => Promise<void>;
   isSubscriptionDeclining: boolean;
 };
@@ -23,12 +21,10 @@ type TariffContextType = {
 const TariffContext = createContext<TariffContextType>({
   tariff: null,
   isTariffLoading: true,
-  purchaseTariff: async () => {},
   checkoutTariff: async () => '',
-  isTariffPurchasing: false,
   isRequestingCheckout: false,
   decrementGeneration: () => {},
-  fetchTariff: () => {},
+  fetchTariff: async () => {},
   declineSubscription: async () => {},
   isSubscriptionDeclining: false,
 });
@@ -39,7 +35,6 @@ export const TariffScope = ({ children }: TariffScopeProps) => {
   const { showToast } = useToastsScope();
   const [tariff, setTariff] = useState<Tariff | null>(null);
   const [isTariffLoading, setIsTariffLoading] = useState(true);
-  const [isTariffPurchasing, setIsTariffPurchasing] = useState(false);
   const [isRequestingCheckout, setIsRequestingCheckout] = useState(false);
   const [isSubscriptionDeclining, setIsSubscriptionDeclining] = useState(false);
 
@@ -68,19 +63,6 @@ export const TariffScope = ({ children }: TariffScopeProps) => {
       showToast('Произошла ошибка при покупке тарифа', 'failure');
     } finally {
       setIsRequestingCheckout(false);
-    }
-  };
-
-  const purchaseTariff = async (newPlan: Exclude<Tariff['plan'], 'trial'>) => {
-    try {
-      setIsTariffPurchasing(true);
-
-      const { data: tariff } = await TariffService.purchaseTariff(newPlan);
-      setTariff(tariff);
-    } catch (e) {
-      showToast('Произошла ошибка при покупке тарифа', 'failure');
-    } finally {
-      setIsTariffPurchasing(false);
     }
   };
 
@@ -125,9 +107,7 @@ export const TariffScope = ({ children }: TariffScopeProps) => {
         tariff,
         fetchTariff,
         isTariffLoading,
-        purchaseTariff,
         checkoutTariff,
-        isTariffPurchasing,
         isRequestingCheckout,
         decrementGeneration,
         declineSubscription,
