@@ -5,6 +5,6 @@ export type Tariff = {
   edits: number;
   startAt: string;
   endAt: string;
-  paymentMethodId: string | null;
+  hasSubscription: boolean;
   isExpired: boolean;
 };

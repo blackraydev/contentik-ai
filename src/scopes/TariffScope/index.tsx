@@ -85,14 +85,10 @@ export const TariffScope = ({ children }: TariffScopeProps) => {
       if (!tariff) return;
 
       setIsSubscriptionDeclining(true);
-      await TariffService.declineSubscription();
 
-      const updatedTariff: Tariff = {
-        ...tariff,
-        paymentMethodId: null,
-      };
+      const { data: updatedTariff } = await TariffService.declineSubscription();
+
       setTariff(updatedTariff);
-
       showToast('Подписка успешно отменена', 'success');
     } catch (e) {
       showToast('Произошла ошибка при отмене подписки. Попробуйте еще раз', 'failure');

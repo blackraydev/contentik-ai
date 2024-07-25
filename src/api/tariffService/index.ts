@@ -13,7 +13,7 @@ export class TariffService {
     return await api.post('/checkoutTariff', { newPlan });
   }
 
-  static async declineSubscription(): Promise<AxiosResponse<void>> {
+  static async declineSubscription(): Promise<AxiosResponse<Tariff>> {
     return await api.post('/declineSubscriptionTariff');
   }
 }

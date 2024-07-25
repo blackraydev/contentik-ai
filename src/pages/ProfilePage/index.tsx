@@ -137,7 +137,7 @@ export const ProfilePage = () => {
             {tariff?.plan !== 'trial' && (
               <Input
                 label={
-                  tariff?.paymentMethodId ? 'Дата продления подписки' : 'Дата окончания подписки'
+                  tariff?.hasSubscription ? 'Дата продления подписки' : 'Дата окончания подписки'
                 }
                 value={getFormattedDate(tariff?.endAt || '')}
                 readOnly
@@ -157,7 +157,7 @@ export const ProfilePage = () => {
             />
             <ButtonsWrapper>
               <Button onClick={handleImproveTariffClick}>К тарифам</Button>
-              {tariff?.paymentMethodId && (
+              {tariff?.hasSubscription && (
                 <Button
                   onClick={() => setIsDeclineSubscriptionModalOpen(true)}
                   disabled={isSubscriptionDeclining}
