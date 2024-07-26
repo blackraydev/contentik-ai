@@ -165,11 +165,13 @@ export const UserScope = ({ children }: UserScopeProps) => {
       setUser(data.user);
       setProvider('email');
     } catch (e: any) {
-      if (e.response.status === 400) {
+      if (e?.response?.status === 400) {
         showToast(
           'Пользователь с таким Email уже зарегистрирован. Если это ваш Email, попробуйте зайти через VK ID или Яндекс ID',
           'failure',
         );
+      } else {
+        showToast('Регистрация пока недоступна', 'failure');
       }
     }
   };
@@ -182,8 +184,10 @@ export const UserScope = ({ children }: UserScopeProps) => {
       setUser(data.user);
       setProvider('email');
     } catch (e: any) {
-      if (e.response.status === 400) {
+      if (e?.response?.status === 400) {
         showToast('Аккаунт с такими данными не найден', 'failure');
+      } else {
+        showToast('Авторизация пока недоступна', 'failure');
       }
     }
   };

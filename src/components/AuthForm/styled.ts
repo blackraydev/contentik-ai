@@ -85,6 +85,7 @@ export const EnterLabel = styled.p`
   transition: 0.2s ease;
   color: ${({ theme }) => theme.colors.secondaryFont};
   margin-bottom: 20px;
+  text-align: center;
 `;
 
 export const EnterLink = styled.span`
@@ -104,6 +105,7 @@ export const PublicOfferLabel = styled(EnterLabel)`
   color: ${({ theme }) => theme.colors.secondaryFont};
   margin-top: 30px;
   font-size: 14px !important;
+  text-align: center;
 `;
 
 export const PublicOfferLabelLink = styled.a`

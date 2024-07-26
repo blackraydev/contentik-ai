@@ -210,7 +210,7 @@ export const AuthForm = () => {
           href="https://contentik-ai.ru/offer"
           rel="noreferrer noopener"
         >
-          публичной офертой
+          публичной&nbsp;офертой
         </PublicOfferLabelLink>
       </PublicOfferLabel>
     </AuthFormStyled>
