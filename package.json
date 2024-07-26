@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && rm -rf /var/www/contentik/app/* && cp -r ./dist/* /var/www/contentik/app/",
+    "build": "tsc && vite build && rm -rf /var/www/contentik-ai/* && cp -r ./dist/* /var/www/contentik-ai",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
