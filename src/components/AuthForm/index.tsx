@@ -37,7 +37,7 @@ export const AuthForm = () => {
   useEffect(() => {
     VKID.Config.init({
       app: Number(import.meta.env.VITE_VK_CLIENT_ID) || 0,
-      redirectUrl: 'https://contentik-ai.ru/app',
+      redirectUrl: import.meta.env.VITE_CLIENT_URL,
       state: 'dj29fnsadjsd82',
       codeVerifier: 'FGH767Gd65',
       mode: VKID.ConfigAuthMode.Redirect,
@@ -113,7 +113,7 @@ export const AuthForm = () => {
 
   const handleYandexAuth = () => {
     const CLIENT_ID = import.meta.env.VITE_YANDEX_CLIENT_ID || '0';
-    const REDIRECT_URI = 'https://contentik-ai.ru/app';
+    const REDIRECT_URI = import.meta.env.VITE_CLIENT_URL;
     const authUrl = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
 
     setIsAuthenticating(true);
