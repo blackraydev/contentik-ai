@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '../../UI';
 import { useCheckScreenType } from '../../hooks';
-import { useUserScope } from '../../scopes';
+import { useToastsScope, useUserScope } from '../../scopes';
 import { ButtonsWrapper, Label, SubmitAuthFormStyled, Title } from './styled';
 import { pluralize } from '../../utils';
 
 const ACTIVATION_ESTIMATE_TIME_STORAGE_KEY = 'activationEstimateTime';
 
 export const SubmitAuthForm = () => {
+  const { showToast } = useToastsScope();
   const { user, resendActivationLink, logout } = useUserScope();
   const { isMobile } = useCheckScreenType();
   const [isResendingActivationLink, setIsResendingActivationLink] = useState(false);
@@ -41,7 +42,10 @@ export const SubmitAuthForm = () => {
     timerRef.current = setInterval(() => {
       setEstimateTime((prevEstimateTime) => {
         if (prevEstimateTime > 0) {
-          sessionStorage.setItem(ACTIVATION_ESTIMATE_TIME_STORAGE_KEY, String(prevEstimateTime - 1));
+          sessionStorage.setItem(
+            ACTIVATION_ESTIMATE_TIME_STORAGE_KEY,
+            String(prevEstimateTime - 1),
+          );
           return prevEstimateTime - 1;
         }
 
@@ -59,8 +63,11 @@ export const SubmitAuthForm = () => {
     try {
       if (user) {
         setIsResendingActivationLink(true);
+
         await resendActivationLink(user.email);
         setTimer(30);
+
+        showToast('Отправили письмо с подтверждением на вашу почту', 'success');
       }
     } finally {
       setIsResendingActivationLink(false);
