@@ -1,5 +1,7 @@
-import { Fragment, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useCheckScreenType } from '../../hooks';
+import { Tooltip } from '../../UI';
+import { useToastsScope } from '../../scopes';
 import {
   CopyFormattedIcon,
   CopyIcon,
@@ -7,8 +9,6 @@ import {
   MarkdownStyled,
   MarkdownWrapper,
 } from './styled';
-import { Tooltip } from '../../UI';
-import { useToastsScope } from '../../scopes';
 
 type MarkdownProps = {
   source: string;
