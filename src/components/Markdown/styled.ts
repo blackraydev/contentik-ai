@@ -6,6 +6,7 @@ import { BiSolidCopy } from 'react-icons/bi';
 export const MarkdownWrapper = styled.div`
   display: inline-block;
   height: 100%;
+  width: 100%;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
