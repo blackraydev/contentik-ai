@@ -18,7 +18,7 @@ export const CreatePage = () => {
         <Content
           content={content}
           isGenerating={isGenerating}
-          emptyContentText="Контент не сгенерирован"
+          emptyContentText="Контент еще не сгенерирован 😴"
           setMobileView={setMobileView}
         />
       );
@@ -30,7 +30,7 @@ export const CreatePage = () => {
         <Content
           content={content}
           isGenerating={isGenerating}
-          emptyContentText="Контент не сгенерирован"
+          emptyContentText="Контент еще не сгенерирован 😴"
         />
       </Fragment>
     );
