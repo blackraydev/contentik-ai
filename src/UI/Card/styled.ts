@@ -11,6 +11,7 @@ export const CardStyled = styled.div<{ $padding?: string }>`
 `;
 
 export const ChildrenStyled = styled.div<{ $width: string; $height: string }>`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

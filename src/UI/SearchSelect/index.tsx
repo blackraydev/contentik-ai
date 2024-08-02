@@ -2,9 +2,11 @@ import { useRef, useState } from 'react';
 import {
   ChevronIcon,
   CrossIcon,
+  ExceedingText,
   InfoIcon,
   Label,
   LabelWrapper,
+  LabelWrapperLeft,
   OptionItem,
   OptionsList,
   SearchInputWrapper,
@@ -27,6 +29,7 @@ type SelectProps = {
   label?: string;
   withClear?: boolean;
   className?: string;
+  maxLength?: number;
 };
 
 export const SearchSelect = ({
@@ -37,6 +40,7 @@ export const SearchSelect = ({
   label,
   withClear = false,
   className,
+  maxLength,
 }: SelectProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const { isMobile } = useCheckScreenType();
@@ -44,6 +48,9 @@ export const SearchSelect = ({
 
   const chosenOption = options.find((option) => option.value === value);
   const chosenOptionLabel = chosenOption?.label;
+
+  const currentLength = value?.toString().length ?? 0;
+  const lengthExceeding = maxLength ? maxLength - currentLength < 50 : false;
 
   const handleOptionClick = (selectedValue: string) => {
     setIsOpen(false);
@@ -68,14 +75,21 @@ export const SearchSelect = ({
       $isMobile={isMobile}
     >
       <LabelWrapper>
-        <Label>{label}</Label>
-        <Tooltip
-          width={230}
-          content="Можно указать свой вариант или выбрать из предложенных"
-          offsetVertical={50}
-        >
-          <InfoIcon />
-        </Tooltip>
+        <LabelWrapperLeft>
+          <Label>{label}</Label>
+          <Tooltip
+            width={230}
+            content="Можно указать свой вариант или выбрать из предложенных"
+            offsetVertical={50}
+          >
+            <InfoIcon />
+          </Tooltip>
+        </LabelWrapperLeft>
+        {lengthExceeding && (
+          <ExceedingText>
+            {currentLength} / {maxLength}
+          </ExceedingText>
+        )}
       </LabelWrapper>
       <SearchInputWrapper
         onClick={() => {
@@ -89,6 +103,7 @@ export const SearchSelect = ({
           value={chosenOption ? chosenOptionLabel : value}
           placeholder={placeholder}
           $isOptionChosen={Boolean(value)}
+          maxLength={maxLength}
         />
         {Boolean(value) && withClear ? (
           <CrossIcon onClick={handleOptionClear} size={20} />

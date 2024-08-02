@@ -82,7 +82,14 @@ export const GenerationItem = ({ onCrossClick, ...generation }: GenerationItemPr
       {targetAudience && (
         <GenerationAdditionalWrapper>
           <GenerationAdditionalName>Целевая аудитория</GenerationAdditionalName>
-          <GenerationAdditionalInfo>{targetAudience}</GenerationAdditionalInfo>
+          {targetAudience
+            .split(',')
+            .filter((audience) => Boolean(audience.trim()))
+            .map((audience, index) => (
+              <GenerationAdditionalInfo key={index}>
+                {upperFirst(audience.trim())}
+              </GenerationAdditionalInfo>
+            ))}
         </GenerationAdditionalWrapper>
       )}
       {keywords && (
@@ -92,7 +99,9 @@ export const GenerationItem = ({ onCrossClick, ...generation }: GenerationItemPr
             .split(',')
             .filter((keyword) => Boolean(keyword.trim()))
             .map((keyword, index) => (
-              <GenerationAdditionalInfo key={index}>{upperFirst(keyword)}</GenerationAdditionalInfo>
+              <GenerationAdditionalInfo key={index}>
+                {upperFirst(keyword.trim())}
+              </GenerationAdditionalInfo>
             ))}
         </GenerationAdditionalWrapper>
       )}

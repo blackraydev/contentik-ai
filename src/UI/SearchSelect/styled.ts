@@ -34,6 +34,7 @@ export const SearchInput = styled(Input)<{ $isOptionChosen: boolean }>`
   gap: 6px;
   width: 100%;
   height: 48px;
+  padding-right: 35px;
 
   &:hover {
     background: ${({ theme }) => theme.colors.inputHover};
@@ -91,9 +92,22 @@ export const SearchSelectStyled = styled.div<SelectStyleProps>`
 export const LabelWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
-  gap: 10px;
   margin-bottom: 8px;
+`;
+
+export const LabelWrapperLeft = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const ExceedingText = styled.span`
+  transition: 0.2s ease;
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  padding-right: 5px;
 `;
 
 export const OptionsList = styled.ul`

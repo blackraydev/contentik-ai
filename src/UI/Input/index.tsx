@@ -1,7 +1,16 @@
 import { InputHTMLAttributes, forwardRef } from 'react';
-import { ErrorText, InfoIcon, InputStyled, Label, LabelWrapper, LeftPart, Wrapper } from './styled';
-import { Tooltip, TooltipProps } from '../Tooltip';
 import { useCheckScreenType } from '../../hooks';
+import { Tooltip, TooltipProps } from '../Tooltip';
+import {
+  ErrorText,
+  ExceedingText,
+  InfoIcon,
+  InputStyled,
+  Label,
+  LabelWrapper,
+  LeftPart,
+  Wrapper,
+} from './styled';
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
@@ -10,11 +19,15 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     text?: string;
   };
   tooltipProps?: Omit<TooltipProps, 'children'>;
+  maxLength?: number;
 };
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, tooltipProps, ...props }, ref) => {
+  ({ label, error, tooltipProps, value, maxLength, ...props }, ref) => {
     const { isMobile } = useCheckScreenType();
+
+    const currentLength = value?.toString().length ?? 0;
+    const lengthExceeding = maxLength ? maxLength - currentLength < 50 : false;
 
     return (
       <Wrapper $isMobile={isMobile} data-error={error?.visible && 'error'}>
@@ -28,10 +41,21 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                 </Tooltip>
               )}
             </LeftPart>
+            {lengthExceeding && (
+              <ExceedingText>
+                {currentLength} / {maxLength}
+              </ExceedingText>
+            )}
             {error?.visible && <ErrorText>{error.text || 'Обязательное поле'}</ErrorText>}
           </LabelWrapper>
         )}
-        <InputStyled $invalid={error?.visible} ref={ref} {...props} />
+        <InputStyled
+          $invalid={error?.visible}
+          ref={ref}
+          value={value}
+          maxLength={maxLength}
+          {...props}
+        />
       </Wrapper>
     );
   },

@@ -57,6 +57,13 @@ export const LeftPart = styled.div`
   gap: 10px;
 `;
 
+export const ExceedingText = styled.span`
+  transition: 0.2s ease;
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  padding-right: 5px;
+`;
+
 export const ErrorText = styled.span`
   transition: 0.2s ease;
   font-size: 14px;

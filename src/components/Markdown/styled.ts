@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
+import { BiCopy } from 'react-icons/bi';
+import { BiSolidCopy } from 'react-icons/bi';
+
+export const MarkdownWrapper = styled.div`
+  display: inline-block;
+  height: 100%;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
 
 export const MarkdownStyled = styled(MDEditor.Markdown)<{ $isMobile: boolean }>`
   color-scheme: none;
@@ -16,7 +28,8 @@ export const MarkdownStyled = styled(MDEditor.Markdown)<{ $isMobile: boolean }>`
   background-color: ${({ theme }) => theme.colors.primaryBg};
   color: ${({ theme }) => theme.colors.primaryFont};
   overflow: scroll !important;
-  padding: 25px 0;
+  padding-top: 25px;
+  padding-bottom: 25px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -48,5 +61,40 @@ export const MarkdownStyled = styled(MDEditor.Markdown)<{ $isMobile: boolean }>`
   a {
     transition: 0.2s ease;
     display: none;
+  }
+`;
+
+export const CopyWrapper = styled.div`
+  position: absolute;
+  right: 0;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+`;
+
+export const CopyIcon = styled(BiCopy)`
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  transition: 0.2s ease;
+  color: ${({ theme }) => theme.colors.secondaryLightFont};
+  margin-top: 1px;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.icon};
+  }
+`;
+
+export const CopyFormattedIcon = styled(BiSolidCopy)`
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  transition: 0.2s ease;
+  color: ${({ theme }) => theme.colors.secondaryLightFont};
+  margin-top: 1px;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.icon};
   }
 `;

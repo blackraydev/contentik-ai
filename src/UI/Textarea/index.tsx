@@ -1,6 +1,7 @@
 import { TextareaHTMLAttributes, forwardRef } from 'react';
 import {
   ErrorText,
+  ExceedingText,
   InfoIcon,
   Label,
   LabelWrapper,
@@ -18,11 +19,15 @@ export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
     text?: string;
   };
   tooltipProps?: Omit<TooltipProps, 'children'>;
+  maxLength?: number;
 };
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ label, error, tooltipProps, ...props }, ref) => {
+  ({ label, error, tooltipProps, value, maxLength, ...props }, ref) => {
     const { isMobile } = useCheckScreenType();
+
+    const currentLength = value?.toString().length ?? 0;
+    const lengthExceeding = maxLength ? maxLength - currentLength < 50 : false;
 
     return (
       <TextareaWrapper $isMobile={isMobile} data-error={error?.visible && 'error'}>
@@ -35,9 +40,20 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               </Tooltip>
             )}
           </LeftPart>
+          {lengthExceeding && (
+            <ExceedingText>
+              {currentLength} / {maxLength}
+            </ExceedingText>
+          )}
           {error?.visible && <ErrorText>{error.text || 'Обязательное поле'}</ErrorText>}
         </LabelWrapper>
-        <TextareaStyled $invalid={error?.visible} ref={ref} {...props} />
+        <TextareaStyled
+          $invalid={error?.visible}
+          ref={ref}
+          value={value}
+          maxLength={maxLength}
+          {...props}
+        />
       </TextareaWrapper>
     );
   },

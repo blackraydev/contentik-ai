@@ -198,6 +198,7 @@ export const Interaction = ({
                 content: 'Основная тема или заголовок',
                 width: 160,
               }}
+              maxLength={150}
             />
             <Textarea
               label="Описание"
@@ -208,6 +209,7 @@ export const Interaction = ({
                 content: 'Краткое описание или аннотация',
                 width: 175,
               }}
+              maxLength={1000}
             />
           </Fragment>
         ) : (
@@ -219,6 +221,7 @@ export const Interaction = ({
               removeInvalidField('text');
             }}
             error={{ visible: invalidFields.includes('text') }}
+            maxLength={tariff?.plan === 'trial' ? 1500 : 10000}
           />
         )}
       </Card>
@@ -231,12 +234,18 @@ export const Interaction = ({
             onChange={setContentType}
             options={contentTypes}
             withClear
+            maxLength={150}
           />
           <Input
             label="Целевая аудитория"
             value={targetAudience}
             onChange={(e) => setTargetAudience(e.target.value)}
             placeholder="Молодые мамы"
+            tooltipProps={{
+              content: 'Перечислите целевые аудитории через запятую',
+              width: 200,
+            }}
+            maxLength={250}
           />
         </FieldsWrapper>
         <Input
@@ -248,6 +257,7 @@ export const Interaction = ({
             content: 'Перечислите ключевые слова через запятую',
             width: 200,
           }}
+          maxLength={500}
         />
       </Accordion>
       <Accordion title="Дополнительные настройки" width="100%" height="fit-content">
@@ -259,6 +269,7 @@ export const Interaction = ({
             onChange={setStyle}
             options={styles}
             withClear
+            maxLength={150}
           />
           <SearchSelect
             label="Тон"
@@ -267,6 +278,7 @@ export const Interaction = ({
             onChange={setTone}
             options={tones}
             withClear
+            maxLength={150}
           />
         </FieldsWrapper>
         <LanguageSelect
