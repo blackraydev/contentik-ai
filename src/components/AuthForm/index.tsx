@@ -21,6 +21,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { AuthType } from '../../types';
 import { PublicRoutes } from '../../consts';
+import { getUserAgent } from '../../utils';
 
 export const AuthForm = () => {
   const navigate = useNavigate();
@@ -114,9 +115,10 @@ export const AuthForm = () => {
   const handleYandexAuth = () => {
     const CLIENT_ID = import.meta.env.VITE_YANDEX_CLIENT_ID || '0';
     const REDIRECT_URI = import.meta.env.VITE_CLIENT_URL;
-    // const DEVICE_ID = 'e05ec5cd-79e0-4445-a5e3-2f79e3175395';
-    // const DEVICE_NAME = getUserAgent();
-    const authUrl = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
+    const DEVICE_ID = import.meta.env.VITE_YANDEX_DEVICE_ID;
+    const DEVICE_NAME = getUserAgent();
+
+    const authUrl = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&device_id=${DEVICE_ID}&device_name=${DEVICE_NAME}`;
 
     setIsAuthenticating(true);
     window.location.href = authUrl;

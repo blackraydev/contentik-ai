@@ -142,7 +142,9 @@ export const UserScope = ({ children }: UserScopeProps) => {
 
       setIsAuthenticating(true);
 
-      AuthService.loginYandex(code)
+      const deviceId = getUserAgent();
+
+      AuthService.loginYandex(code, deviceId)
         .then(({ data }) => {
           localStorage.setItem('token', data.accessToken);
           setUser(data.user);

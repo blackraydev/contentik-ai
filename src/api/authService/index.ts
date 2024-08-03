@@ -64,8 +64,8 @@ export class AuthService {
     return await api.post('/logoutVK');
   }
 
-  static async loginYandex(code: string): Promise<AxiosResponse<AuthResponse>> {
-    return await api.post('/loginYandex', { code });
+  static async loginYandex(code: string, deviceId: string): Promise<AxiosResponse<AuthResponse>> {
+    return await api.post('/loginYandex', { code, deviceId });
   }
 
   static async refreshYandex(): Promise<AxiosResponse<AuthResponse>> {
