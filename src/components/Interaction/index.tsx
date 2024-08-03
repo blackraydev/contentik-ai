@@ -6,7 +6,7 @@ import { Accordion, Button, Card, Input, SearchSelect, Textarea } from '../../UI
 import { FormFields, Mode } from './types';
 import { contentTypes, languages, PrivateRoutes, styles, tones } from '../../consts';
 import { useCheckScreenType } from '../../hooks';
-import { scrollToFirstError } from '../../utils';
+import { scrollToFirstError, scrollToTop } from '../../utils';
 import { OutOfGenerationsModal, SubscriptionExpiredModal } from './components';
 import {
   ButtonsWrapper,
@@ -163,6 +163,11 @@ export const Interaction = ({
     }
   };
 
+  const handleNavigateToContent = () => {
+    setMobileView('content');
+    scrollToTop();
+  };
+
   return (
     <InteractionStyled $isMobile={isMobile}>
       {isOutOfGenerationsModalOpen && (
@@ -300,7 +305,7 @@ export const Interaction = ({
           >
             {mode === 'create' ? 'Сгенерировать' : 'Отредактировать'}
           </GenerateButton>
-          <Button onClick={() => setMobileView('content')}>Контент</Button>
+          <Button onClick={handleNavigateToContent}>Контент</Button>
         </ButtonsWrapper>
       ) : (
         <GenerateButton

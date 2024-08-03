@@ -10,7 +10,7 @@ export const CardStyled = styled.div<{ $padding?: string }>`
   padding: ${({ $padding }) => $padding ?? '25px'};
 `;
 
-export const ChildrenStyled = styled.div<{ $width: string; $height: string }>`
+export const ChildrenStyled = styled.div<{ $width: string; $height: string; $maxHeight?: string }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -19,4 +19,5 @@ export const ChildrenStyled = styled.div<{ $width: string; $height: string }>`
   gap: 10px;
   width: ${({ $width }) => $width};
   height: ${({ $height }) => $height};
+  max-height: ${({ $maxHeight }) => $maxHeight || 'unset'};
 `;

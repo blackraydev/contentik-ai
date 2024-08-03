@@ -74,7 +74,8 @@ export const GenerationView = () => {
       )}
       <Card
         width="100%"
-        height={isMobile ? 'calc(100lvh - 250px)' : '100%'}
+        height="100%"
+        maxHeight={isMobile ? 'calc(100lvh - 280px)' : 'calc(100lvh - 130px)'}
         padding="0 25px 0 25px"
       >
         {renderContent()}

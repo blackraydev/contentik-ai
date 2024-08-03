@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Button } from '../../UI';
 
 export const GenerationViewStyled = styled.div<{ $isMobile: boolean }>`
-  transition: 0.2 ease;
+  transition: 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +41,7 @@ export const FullWrapper = styled.div`
 `;
 
 export const Text = styled.p`
-  transition: 0.2 ease;
+  transition: 0.2s ease;
   padding: 25px 0;
   font-size: 18px;
   color: ${({ theme }) => theme.colors.primaryFont};

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && NODE_OPTIONS='--max-old-space-size=4096' vite build && rm -rf /var/www/contentik-ai/* && cp -r ./dist/* /var/www/contentik-ai",
+    "copy": "rm -rf /var/www/contentik-ai/* && cp -r ./dist/* /var/www/contentik-ai",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

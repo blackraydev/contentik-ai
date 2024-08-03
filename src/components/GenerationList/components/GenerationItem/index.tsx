@@ -15,7 +15,7 @@ import {
   PenIcon,
 } from './styled';
 import { useCheckScreenType } from '../../../../hooks';
-import { getFormattedDateWithTime, upperFirst } from '../../../../utils';
+import { getFormattedDateWithTime, scrollToTop, upperFirst } from '../../../../utils';
 
 type GenerationItemProps = Generation & {
   onCrossClick: (generationId: string) => void;
@@ -47,6 +47,10 @@ export const GenerationItem = ({ onCrossClick, ...generation }: GenerationItemPr
   const handleGenerationClick = () => {
     setMobileView('content');
     setChosenGeneration(generation);
+
+    if (isMobile) {
+      scrollToTop();
+    }
   };
 
   const handleCrossClick = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
