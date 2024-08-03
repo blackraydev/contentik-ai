@@ -12,12 +12,22 @@ import {
   ThemeToggleStyled,
 } from './styled';
 
-export const ThemeToggle = () => {
+type ThemeToggleProps = {
+  tooltipWithOffset?: boolean;
+};
+
+export const ThemeToggle = ({ tooltipWithOffset }: ThemeToggleProps) => {
   const { isMobile } = useCheckScreenType();
   const { isDarkTheme, toggleTheme } = useThemeScope();
 
   return (
-    <Tooltip width={125} position="bottom" content="Сменить тему" offsetVertical={52}>
+    <Tooltip
+      width={125}
+      position="bottom"
+      content="Сменить тему"
+      offsetVertical={52}
+      offsetHorizontal={tooltipWithOffset ? 70 : undefined}
+    >
       <ThemeToggleStyled
         id="theme-toggler"
         onClick={toggleTheme}

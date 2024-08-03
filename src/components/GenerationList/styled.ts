@@ -14,6 +14,7 @@ export const GenerationHistoryWrapper = styled.div<{ $isMobile: boolean }>`
   gap: 10px;
   width: ${({ $isMobile }) => ($isMobile ? '100%' : '50%')};
   height: ${({ $isMobile }) => ($isMobile ? 'fit-content' : 'calc(100vh - 100px)')};
+  min-height: 250px;
 
   ${GenerationListStyled} {
     padding-bottom: ${({ $isMobile }) => ($isMobile ? '35px' : '30px')};

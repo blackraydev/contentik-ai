@@ -21,7 +21,7 @@ export const AuthPage = () => {
       <AuthBlock $isMobile={isMobile}>
         <AuthHeader>
           <Logo />
-          <ThemeToggle />
+          <ThemeToggle tooltipWithOffset />
         </AuthHeader>
         {renderForm()}
       </AuthBlock>
