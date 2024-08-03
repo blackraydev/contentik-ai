@@ -23,6 +23,7 @@ export const FullWrapper = styled.div`
 `;
 
 export const Text = styled.p`
+  padding: 25px 0;
   font-size: 18px;
   color: ${({ theme }) => theme.colors.primaryFont};
 `;
