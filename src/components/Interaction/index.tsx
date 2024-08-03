@@ -120,7 +120,7 @@ export const Interaction = ({
       }
 
       setContent('');
-      setMobileView('content');
+      handleNavigateToContent();
       setGenerating(true);
       decrementGeneration(mode);
 
@@ -141,20 +141,28 @@ export const Interaction = ({
       const decoder = new TextDecoder();
 
       if (!stream) {
-        throw new Error('No stream found');
+        throw new Error('Stream not found');
       }
 
-      for await (const chunk of stream) {
-        const decodedChunk = decoder.decode(chunk);
+      const reader = stream.getReader();
+
+      const read = async () => {
+        const { done, value } = await reader.read();
+        if (done) return;
+
+        const decodedChunk = decoder.decode(value);
         setContent((prev) => prev + decodedChunk);
-      }
+
+        await read();
+      };
+
+      await read();
 
       await fetchGenerationList();
     } catch (e: any) {
       if (e?.status === 402) {
         showToast(e.message, 'failure');
       } else {
-        alert(JSON.stringify(e));
         showToast('Произошла техническая ошибка', 'failure');
       }
 
