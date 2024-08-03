@@ -154,6 +154,7 @@ export const Interaction = ({
       if (e?.status === 402) {
         showToast(e.message, 'failure');
       } else {
+        alert(JSON.stringify(e));
         showToast('Произошла техническая ошибка', 'failure');
       }
 
