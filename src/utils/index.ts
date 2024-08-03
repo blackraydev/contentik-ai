@@ -5,3 +5,4 @@ export { upperFirst } from './upperFirst';
 export { pluralize } from './pluralize';
 export { getCheckoutWidget } from './getCheckoutWidget';
 export { scrollToTop } from './scrollToTop';
+export { getUserAgent } from './getUserAgent';

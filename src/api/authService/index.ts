@@ -4,12 +4,20 @@ import { AuthResponse } from '../../types';
 import { API_URL } from '../../consts';
 
 export class AuthService {
-  static async login(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-    return await api.post('/login', { email, password });
+  static async login(
+    email: string,
+    password: string,
+    deviceId: string,
+  ): Promise<AxiosResponse<AuthResponse>> {
+    return await api.post('/login', { email, password, deviceId });
   }
 
-  static async registration(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-    return await api.post('/registration', { email, password });
+  static async registration(
+    email: string,
+    password: string,
+    deviceId: string,
+  ): Promise<AxiosResponse<AuthResponse>> {
+    return await api.post('/registration', { email, password, deviceId });
   }
 
   static async logout(): Promise<void> {

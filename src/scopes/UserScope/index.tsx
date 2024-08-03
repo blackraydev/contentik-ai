@@ -4,6 +4,7 @@ import { User } from '../../types';
 import { useToastsScope } from '../ToastScope';
 import { useNavigate } from 'react-router-dom';
 import { PublicRoutes } from '../../consts';
+import { getUserAgent } from '../../utils';
 
 type UserScopeProps = {
   children: React.ReactNode;
@@ -159,7 +160,8 @@ export const UserScope = ({ children }: UserScopeProps) => {
 
   const register = async (email: string, password: string) => {
     try {
-      const { data } = await AuthService.registration(email, password);
+      const deviceId = getUserAgent();
+      const { data } = await AuthService.registration(email, password, deviceId);
 
       localStorage.setItem('token', data.accessToken);
       setUser(data.user);
@@ -178,7 +180,8 @@ export const UserScope = ({ children }: UserScopeProps) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const { data } = await AuthService.login(email, password);
+      const deviceId = getUserAgent();
+      const { data } = await AuthService.login(email, password, deviceId);
 
       localStorage.setItem('token', data.accessToken);
       setUser(data.user);
