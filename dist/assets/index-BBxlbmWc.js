@@ -1126,6 +1126,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   flex-direction: column;
   align-items: center;
   width: ${({$isMobile:e})=>e?"100%":"50%"};
+  height: 100%;
   gap: 20px;
 
   button {
@@ -1141,7 +1142,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 `,CV=N.p`
   font-size: 18px;
   color: ${({theme:e})=>e.colors.primaryFont};
-`,Fc=({content:e,isGenerating:t,emptyContentText:n,setMobileView:r})=>{const{isMobile:a}=Ie(),i=()=>e?m.jsx(vk,{source:e}):t?m.jsx(gL,{}):m.jsx(vV,{children:m.jsx(CV,{children:n})});return m.jsxs(xV,{$isMobile:a,children:[m.jsx(Ws,{width:"100%",height:a?"calc(100lvh - 280px)":"calc(100vh - 175px)",padding:"0 25px 0 25px",children:i()}),a&&m.jsx(ze,{onClick:()=>r==null?void 0:r("info"),children:"Параметры"})]})},rg=N.svg`
+`,Fc=({content:e,isGenerating:t,emptyContentText:n,setMobileView:r})=>{const{isMobile:a}=Ie(),i=()=>e?m.jsx(vk,{source:e}):t?m.jsx(gL,{}):m.jsx(vV,{children:m.jsx(CV,{children:n})});return m.jsxs(xV,{$isMobile:a,children:[m.jsx(Ws,{width:"100%",height:a?"calc(100lvh - 250px)":"100%",padding:"0 25px 0 25px",children:i()}),a&&m.jsx(ze,{onClick:()=>r==null?void 0:r("info"),children:"Параметры"})]})},rg=N.svg`
   transition: 0.2s ease;
   width: 32px;
   height: 32px;

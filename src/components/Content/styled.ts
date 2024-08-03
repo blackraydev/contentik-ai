@@ -5,6 +5,7 @@ export const ContentStyled = styled.div<{ $isMobile: boolean }>`
   flex-direction: column;
   align-items: center;
   width: ${({ $isMobile }) => ($isMobile ? '100%' : '50%')};
+  height: 100%;
   gap: 20px;
 
   button {
