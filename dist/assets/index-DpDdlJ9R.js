@@ -3217,4 +3217,4 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     scroll-behavior: smooth;
     background: ${({theme:e})=>e.colors.mainBg};
   }
-`;function LK(){return b.jsx(HO,{basename:"/",children:b.jsxs(t5,{children:[b.jsx(DK,{}),b.jsx($q,{})]})})}_f.createRoot(document.getElementById("root")).render(b.jsx(LK,{}));
+`;function LK(){return b.jsx(HO,{basename:"/",children:b.jsxs(t5,{children:[b.jsx(DK,{}),b.jsx($q,{})]})})}Object.hasOwn||(Object.hasOwn=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)});_f.createRoot(document.getElementById("root")).render(b.jsx(LK,{}));
