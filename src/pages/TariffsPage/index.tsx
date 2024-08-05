@@ -18,30 +18,34 @@ export const TariffsPage = () => {
   const confirmationTokenRef = useRef<string | undefined | null>(null);
 
   useEffect(() => {
-    if (isPaymentModalOpen && window.YooMoneyCheckoutWidget) {
-      const checkout = getCheckoutWidget(confirmationTokenRef.current, isDarkTheme);
+    try {
+      if (isPaymentModalOpen && window.YooMoneyCheckoutWidget) {
+        const checkout = getCheckoutWidget(confirmationTokenRef.current, isDarkTheme);
 
-      checkout.on('fail', () => {
-        showToast('Произошла ошибка при попытке оплатить тариф', 'success');
-        setIsPaymentModalOpen(false);
+        checkout.on('fail', () => {
+          showToast('Произошла ошибка при попытке оплатить тариф', 'failure');
+          setIsPaymentModalOpen(false);
 
-        checkout.destroy();
-      });
+          checkout.destroy();
+        });
 
-      checkout.on('success', async () => {
-        await fetchTariff();
+        checkout.on('success', async () => {
+          await fetchTariff();
 
-        showToast('Оплата прошла успешно', 'success');
-        setIsPaymentModalOpen(false);
+          showToast('Оплата прошла успешно', 'success');
+          setIsPaymentModalOpen(false);
 
-        checkout.destroy();
-      });
+          checkout.destroy();
+        });
 
-      checkout.render('payment-form');
+        checkout.render('payment-form');
 
-      return () => {
-        checkout.destroy();
-      };
+        return () => {
+          checkout.destroy();
+        };
+      }
+    } catch (e) {
+      setIsPaymentModalOpen(false);
     }
   }, [isPaymentModalOpen]);
 
