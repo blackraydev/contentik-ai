@@ -7,7 +7,7 @@ export enum CommonColors {
 export const DarkTheme = {
   colors: {
     ...CommonColors,
-    mainBg: 'rgb(16, 16, 18)',
+    mainBg: 'rgb(18, 18, 20)',
     primaryBg: 'rgb(10, 10, 12)',
     elemBg: 'black',
     primaryBgReverse: 'white',

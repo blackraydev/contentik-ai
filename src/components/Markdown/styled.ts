@@ -36,22 +36,46 @@ export const MarkdownStyled = styled(MDEditor.Markdown)<{ $isMobile: boolean }>`
     display: none;
   }
 
-  h2 {
+  h1,
+  h2,
+  h3 {
+    padding: 0 !important;
+    margin-top: 8px !important;
     margin-bottom: 8px !important;
-    border: none !important;
   }
 
+  h1 {
+    font-size: 1.5em !important;
+  }
+
+  h2 {
+    font-size: 1.3em !important;
+  }
+
+  h3 {
+    font-size: 1.1em !important;
+  }
+
+  h4 {
+    font-size: 1em !important;
+  }
+
+  ol,
   ul {
-    padding-left: 1em !important;
+    padding-left: 1.25em !important;
   }
 
   li {
+    transition: 0.2s ease !important;
     color: ${({ theme }) => theme.colors.primaryLightFont};
+    font-size: 1em !important;
   }
 
   p {
+    transition: 0.2s ease !important;
     color: ${({ theme }) => theme.colors.primaryLightFont};
     margin-bottom: 8px;
+    font-size: 1em !important;
   }
 
   strong {
@@ -62,6 +86,10 @@ export const MarkdownStyled = styled(MDEditor.Markdown)<{ $isMobile: boolean }>`
   a {
     transition: 0.2s ease;
     display: none;
+  }
+
+  & * {
+    border: none !important;
   }
 `;
 
