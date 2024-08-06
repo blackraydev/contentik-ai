@@ -1068,7 +1068,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     padding: 0 !important;
     margin-top: 8px !important;
     margin-bottom: 8px !important;
