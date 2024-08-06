@@ -30,12 +30,14 @@ export const TariffsPage = () => {
         });
 
         checkout.on('success', async () => {
-          await fetchTariff();
+          setTimeout(async () => {
+            await fetchTariff();
 
-          showToast('Оплата прошла успешно', 'success');
-          setIsPaymentModalOpen(false);
+            showToast('Оплата прошла успешно', 'success');
+            setIsPaymentModalOpen(false);
 
-          checkout.destroy();
+            checkout.destroy();
+          }, 500);
         });
 
         checkout.render('payment-form');
