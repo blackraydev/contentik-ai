@@ -64,12 +64,17 @@ export const MarkdownStyled = styled(MDEditor.Markdown)<{ $isMobile: boolean }>`
   ol,
   ul {
     padding-left: 1.25em !important;
+    margin-bottom: 0 !important;
   }
 
   li {
     transition: 0.2s ease !important;
     color: ${({ theme }) => theme.colors.primaryLightFont};
     font-size: 1em !important;
+  }
+
+  li p {
+    margin-top: 4px !important;
   }
 
   p {

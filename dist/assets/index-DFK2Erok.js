@@ -1094,12 +1094,17 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   ol,
   ul {
     padding-left: 1.25em !important;
+    margin-bottom: 0 !important;
   }
 
   li {
     transition: 0.2s ease !important;
     color: ${({theme:e})=>e.colors.primaryLightFont};
     font-size: 1em !important;
+  }
+
+  li p {
+    margin-top: 4px !important;
   }
 
   p {
