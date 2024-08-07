@@ -1,6 +1,7 @@
 export const contentTypes = [
   { value: 'Пост', label: 'Пост' },
   { value: 'Статья', label: 'Статья' },
+  { value: 'Сценарий', label: 'Сценарий' },
   { value: 'Блог', label: 'Блог' },
   { value: 'Реклама', label: 'Реклама' },
   { value: 'Объявление', label: 'Объявление' },
