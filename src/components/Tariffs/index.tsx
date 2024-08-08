@@ -87,7 +87,7 @@ export const Tariffs = ({ onPurchase, chosenPlan }: TariffsProps) => {
             </TariffHeader>
             <TariffPrice>
               <TariffOldPrice>999 ₽ / месяц</TariffOldPrice>
-              799 ₽ / месяц
+              699 ₽ / месяц
             </TariffPrice>
             <ChooseTariffButton
               isLoading={chosenPlan === 'pro' && isRequestingCheckout}
