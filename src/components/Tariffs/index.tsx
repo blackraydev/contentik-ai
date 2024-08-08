@@ -46,10 +46,10 @@ export const Tariffs = ({ onPurchase, chosenPlan }: TariffsProps) => {
         <TariffSticker $plan="start">
           <TariffHeader>
             <TariffTitle>Стартовый</TariffTitle>
-            <TariffChips>Скидка 20%</TariffChips>
+            <TariffChips>Скидка 25%</TariffChips>
           </TariffHeader>
           <TariffPrice>
-            <TariffOldPrice>499 ₽ / месяц</TariffOldPrice>
+            <TariffOldPrice>549 ₽ / месяц</TariffOldPrice>
             399 ₽ / месяц
           </TariffPrice>
           <Button
@@ -82,7 +82,7 @@ export const Tariffs = ({ onPurchase, chosenPlan }: TariffsProps) => {
           <TariffSticker $plan="pro">
             <TariffHeader>
               <TariffTitle>Про</TariffTitle>
-              <TariffChips>Скидка 20%</TariffChips>
+              <TariffChips>Скидка 30%</TariffChips>
               <TariffChips>Популярный</TariffChips>
             </TariffHeader>
             <TariffPrice>
@@ -121,11 +121,11 @@ export const Tariffs = ({ onPurchase, chosenPlan }: TariffsProps) => {
         <TariffSticker $plan="expert">
           <TariffHeader>
             <TariffTitle>Эксперт</TariffTitle>
-            <TariffChips>Скидка 20%</TariffChips>
+            <TariffChips>Скидка 35%</TariffChips>
           </TariffHeader>
           <TariffPrice>
             <TariffOldPrice>1999 ₽ / месяц</TariffOldPrice>
-            1599 ₽ / месяц
+            1299 ₽ / месяц
           </TariffPrice>
           <ChooseExpertTariffButton
             isLoading={chosenPlan === 'expert' && isRequestingCheckout}
