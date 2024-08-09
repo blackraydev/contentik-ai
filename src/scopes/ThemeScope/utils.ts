@@ -12,5 +12,5 @@ export const getCachedTheme = () => {
     return isDarkThemeCached;
   }
 
-  return true;
+  return false;
 };
