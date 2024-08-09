@@ -2483,7 +2483,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   &::-webkit-scrollbar {
     display: none;
   }
-`,vq=()=>{const{showToast:e}=Tr(),{isDarkTheme:t}=ym(),{isMobile:n}=ke(),{tariff:r,checkoutTariff:a,fetchTariff:i,isRequestingCheckout:o}=Wa(),[s,l]=k.useState(!1),[u,c]=k.useState(!1),[d,f]=k.useState("start"),h=k.useRef(null);k.useEffect(()=>{try{if(u&&window.YooMoneyCheckoutWidget){const S=ZL(h.current,t);return S.on("fail",()=>{e("Произошла ошибка при попытке оплатить тариф","failure"),c(!1),S.destroy()}),S.on("success",async()=>{setTimeout(async()=>{await i(),e("Оплата прошла успешно","success"),c(!1),S.destroy()},500)}),S.render("payment-form"),()=>{S.destroy()}}}catch{c(!1)}},[u]);const g=async S=>{h.current=await a(S),c(!0)},T=async S=>{f(S),(r==null?void 0:r.plan)===S?l(!0):g(S)};return b.jsxs(xq,{$isMobile:n,children:[s&&b.jsx(bo,{isSubmitting:o,onSubmit:()=>g(d),onClose:()=>l(!1),title:new Date((r==null?void 0:r.endAt)||"")<=new Date?"Продлить подписку?":"Восполнить лимиты",description:"При повторном приобретении данного тарифа лимиты будут восстановлены, а следующее списание средств будет произведено через месяц после этого платежа",submitText:"Подтвердить",declineText:"Отменить"}),u&&b.jsx(OK,{onClose:()=>c(!1)}),b.jsx(IK,{onPurchase:T,chosenPlan:d})]})},Cq=N.div`
+`,vq=()=>{const{showToast:e}=Tr(),{isDarkTheme:t}=ym(),{isMobile:n}=ke(),{tariff:r,checkoutTariff:a,fetchTariff:i,isRequestingCheckout:o}=Wa(),[s,l]=k.useState(!1),[u,c]=k.useState(!1),[d,f]=k.useState("start"),h=k.useRef(null);k.useEffect(()=>{try{if(u&&window.YooMoneyCheckoutWidget){const S=ZL(h.current,t);return S.on("fail",()=>{e("Произошла ошибка при попытке оплатить тариф","failure"),c(!1),S.destroy()}),S.on("success",async()=>{setTimeout(async()=>{await i(),e("Оплата прошла успешно","success"),c(!1),S.destroy()},500)}),S.render("payment-form"),()=>{S.destroy()}}else u&&!window.YooMoneyCheckoutWidget&&(c(!1),e("Произошла ошибка при попытке оплатить тариф. Попробуйте перезагрузить страницу","failure"))}catch{c(!1)}},[u]);const g=async S=>{h.current=await a(S),c(!0)},T=async S=>{f(S),(r==null?void 0:r.plan)===S?l(!0):g(S)};return b.jsxs(xq,{$isMobile:n,children:[s&&b.jsx(bo,{isSubmitting:o,onSubmit:()=>g(d),onClose:()=>l(!1),title:new Date((r==null?void 0:r.endAt)||"")<=new Date?"Продлить подписку?":"Восполнить лимиты",description:"При повторном приобретении данного тарифа лимиты будут восстановлены, а следующее списание средств будет произведено через месяц после этого платежа",submitText:"Подтвердить",declineText:"Отменить"}),u&&b.jsx(OK,{onClose:()=>c(!1)}),b.jsx(IK,{onPurchase:T,chosenPlan:d})]})},Cq=N.div`
   display: flex;
   flex-direction: ${({$isMobile:e})=>e?"column":"row"};
   height: 100%;
@@ -3242,8 +3242,6 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     border: none;
     outline: none;
     font-family: 'Rubik', sans-serif !important;
-    font-weight: 400;
-    font-style: normal;
   }
 
   html {

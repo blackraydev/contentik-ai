@@ -45,6 +45,12 @@ export const TariffsPage = () => {
         return () => {
           checkout.destroy();
         };
+      } else if (isPaymentModalOpen && !window.YooMoneyCheckoutWidget) {
+        setIsPaymentModalOpen(false);
+        showToast(
+          'Произошла ошибка при попытке оплатить тариф. Попробуйте перезагрузить страницу',
+          'failure',
+        );
       }
     } catch (e) {
       setIsPaymentModalOpen(false);

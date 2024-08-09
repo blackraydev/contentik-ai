@@ -11,8 +11,6 @@ export const GlobalStyles = createGlobalStyle`
     border: none;
     outline: none;
     font-family: 'Rubik', sans-serif !important;
-    font-weight: 400;
-    font-style: normal;
   }
 
   html {
