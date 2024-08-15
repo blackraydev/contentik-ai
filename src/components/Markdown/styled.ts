@@ -32,6 +32,10 @@ export const MarkdownStyled = styled(MDEditor.Markdown)<{ $isMobile: boolean }>`
   padding-top: 25px;
   padding-bottom: 25px;
 
+  hr {
+    display: none;
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
